@@ -4,4 +4,12 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ServiceStack.Core" Version="5.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Grocerly.ServiceModel\Grocerly.ServiceModel.csproj" />
+  </ItemGroup>
+
 </Project>

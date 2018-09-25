@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Funq;
+using Grocerly.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -44,7 +45,7 @@ namespace Grocerly.API
     public class AppHost : AppHostBase
     {
         public AppHost()
-            : base("EducationAttendence", typeof(SchoolServices).Assembly) { }
+            : base("EducationAttendence", typeof(TagService).Assembly) { }
 
         public override void Configure(Container container)
         {

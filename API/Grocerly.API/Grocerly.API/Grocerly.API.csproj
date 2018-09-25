@@ -10,8 +10,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="ServiceStack.Core" Version="5.4.0" />
     <PackageReference Include="ServiceStack.Api.OpenApi.Core" Version="5.4.0" />
+    <PackageReference Include="ServiceStack.Core" Version="5.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Grocerly.Database\Grocerly.Database.csproj" />
+    <ProjectReference Include="..\Grocerly.Interface\Grocerly.Interface.csproj" />
+    <ProjectReference Include="..\Grocerly.ServiceModel\Grocerly.ServiceModel.csproj" />
   </ItemGroup>
 
 </Project>
