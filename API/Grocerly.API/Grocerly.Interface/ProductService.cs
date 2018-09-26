@@ -21,7 +21,7 @@ namespace Grocerly.Interface
 
         public HttpResult Get(GetProducts request)
         {
-            var products = Orm.Products.ToList();
+            var products = Orm.Products.Select(p => FillObject(p)).ToList();
             return new HttpResult(products, HttpStatusCode.OK);
 
             //var products = (from s in Orm.Products
