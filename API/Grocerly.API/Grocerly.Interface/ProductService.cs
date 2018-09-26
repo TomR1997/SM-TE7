@@ -23,31 +23,18 @@ namespace Grocerly.Interface
         {
             var products = Orm.Products.Select(p => FillObject(p)).ToList();
             return new HttpResult(products, HttpStatusCode.OK);
-
-            //var products = (from s in Orm.Products
-            //                select FillObject(s)).ToList();
         }
 
         public HttpResult Get(GetProduct request)
         {
-            var product = Orm.Products.FirstOrDefault(x => x.Id.Equals(request.Id));
+            var product = Orm.Products.FirstOrDefault(p => p.Id.Equals(request.Id));
             return new HttpResult(FillObject(product), HttpStatusCode.OK);
-
-            /*var product = (from s in Orm.Products
-                           where s.Id.Equals(request.Id)
-                           select FillObject(s));
-            return new HttpResult(product, HttpStatusCode.OK);*/
         }
 
         public HttpResult Get(GetProductByName request)
         {
-            var product = Orm.Products.FirstOrDefault(x => x.Name.Equals(request.Name));
+            var product = Orm.Products.FirstOrDefault(p => p.Name.Equals(request.Name));
             return new HttpResult(FillObject(product), HttpStatusCode.OK);
-
-            /*var product = (from s in Orm.Products
-                           where s.Name.Equals(request.Name)
-                           select FillObject(s));
-            return new HttpResult(product, HttpStatusCode.OK);*/
         }
 
         private ProductResponse FillObject(Products data)
