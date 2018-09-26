@@ -9,13 +9,13 @@ namespace Grocerly.ServiceModel
     {
     }
 
-    [Route("/tag", "GET")]
+    [Route("/tags/{Id}", "GET")]
     public class GetTag : IReturn<TagsResponse>
     {
         public Guid Id { get; set; }
     }
 
-    [Route("/tag", "GET")]
+    [Route("/tags/{Name}", "GET")]
     public class GetTagByName : IReturn<TagsResponse>
     {
         public string Name { get; set; }
