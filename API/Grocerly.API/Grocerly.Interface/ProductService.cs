@@ -28,7 +28,7 @@ namespace Grocerly.Interface
             //                select FillObject(s)).ToList();
         }
 
-        public HttpResult GetProduct(GetProduct request)
+        public HttpResult Get(GetProduct request)
         {
             var product = Orm.Products.FirstOrDefault(x => x.Id.Equals(request.Id));
             return new HttpResult(FillObject(product), HttpStatusCode.OK);
@@ -39,7 +39,7 @@ namespace Grocerly.Interface
             return new HttpResult(product, HttpStatusCode.OK);*/
         }
 
-        public HttpResult GetProductByName(GetProductByName request)
+        public HttpResult Get(GetProductByName request)
         {
             var product = Orm.Products.FirstOrDefault(x => x.Name.Equals(request.Name));
             return new HttpResult(FillObject(product), HttpStatusCode.OK);
