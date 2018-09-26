@@ -25,6 +25,22 @@ namespace Grocerly.Interface
             return new HttpResult(tags, HttpStatusCode.OK);
         }
 
+        public HttpResult GetTag(GetTag request)
+        {
+            var tag = (from s in Orm.Tags
+                       select FillObject(s));
+
+            return new HttpResult(tag, HttpStatusCode.OK);
+        }
+
+        public HttpResult GetTagByName(GetTagByName request)
+        {
+            var tag = (from s in Orm.Tags
+                       select FillObject(s));
+
+            return new HttpResult(tag, HttpStatusCode.OK);
+        }
+
         private TagsResponse FillObject(Tags data)
         {
             return new TagsResponse
