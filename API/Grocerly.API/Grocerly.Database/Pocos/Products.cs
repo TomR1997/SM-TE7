@@ -10,5 +10,8 @@ namespace Grocerly.Database.Pocos
         public string Name { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
+        public List<ProductTag> Tags { get; set; }
+        public List<ShoppinglistItem> Lists { get; set; }
+        public List<ShopProduct> Shops { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace Grocerly.Database.Pocos
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public List<ProductTag> Products { get; set; }
     }
 }

@@ -8,8 +8,9 @@ namespace Grocerly.Database.Pocos
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string ZipCode { get; set; }
+        public string Zipcde { get; set; }
         public long Longitude { get; set; }
         public long Latitude { get; set; }
+        public List<ShopProduct> Products { get; set; }
     }
 }
