@@ -25,7 +25,7 @@ namespace Grocerly.Interface
             return new HttpResult(tags, HttpStatusCode.OK);
         }
 
-        public HttpResult GetTag(GetTag request)
+        public HttpResult Get(GetTag request)
         {
             var tag = (from s in Orm.Tags
                        where s.Id.Equals(request.Id)
@@ -34,7 +34,7 @@ namespace Grocerly.Interface
             return new HttpResult(tag, HttpStatusCode.OK);
         }
 
-        public HttpResult GetTagByName(GetTagByName request)
+        public HttpResult Get(GetTagByName request)
         {
             var tag = (from s in Orm.Tags
                        where s.Name.Equals(request.Name)
