@@ -8,6 +8,7 @@ namespace Grocerly.Database
     {
 
         public DbSet<Tags> Tags { get; set; }
+        public DbSet<Products> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
