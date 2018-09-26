@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Grocerly.Database\Grocerly.Database.csproj" />
     <ProjectReference Include="..\Grocerly.ServiceModel\Grocerly.ServiceModel.csproj" />
   </ItemGroup>
 

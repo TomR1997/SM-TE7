@@ -1,16 +1,39 @@
-﻿using ServiceStack;
+﻿using Grocerly.Database;
+using Grocerly.Database.Pocos;
+using ServiceStack;
 using System;
 using System.Net;
-using static Grocerly.ServiceModel.Tag;
+using System.Linq;
+using Grocerly.ServiceModel;
 
 namespace Grocerly.Interface
 {
     public class TagService : Service
     {
+        private GrocerlyContext Orm;
+
+        public TagService(GrocerlyContext orm)
+        {
+            this.Orm = orm;
+        }
+
         public HttpResult Get(GetTags request)
         {
-            //FIX LATER
-            return new HttpResult(HttpStatusCode.OK);
+            var tags = (from s in Orm.Tags
+                        select FillObject(s)).ToList();
+
+            return new HttpResult(tags, HttpStatusCode.OK);
         }
+
+        private TagsResponse FillObject(Tags data)
+        {
+            return new TagsResponse
+            {
+                Id = data.Id,
+                Name = data.Name
+            };
+        }
+
+        
     }
 }
