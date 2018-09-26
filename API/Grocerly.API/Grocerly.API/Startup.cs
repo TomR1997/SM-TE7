@@ -53,7 +53,7 @@ namespace Grocerly.API
     public class AppHost : AppHostBase
     {
         public AppHost()
-            : base("EducationAttendence", typeof(TagService).Assembly) { }
+            : base("Grocerly", typeof(TagService).Assembly) { }
 
         public override void Configure(Container container)
         {
