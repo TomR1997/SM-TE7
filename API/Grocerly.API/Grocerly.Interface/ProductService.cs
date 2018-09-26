@@ -21,20 +21,33 @@ namespace Grocerly.Interface
 
         public HttpResult Get(GetProducts request)
         {
-            var products = Orm.Products; //Orm.Products.Select(x => x)
+            var products = Orm.Products.ToList();
             return new HttpResult(products, HttpStatusCode.OK);
+
+            //var products = (from s in Orm.Products
+            //                select FillObject(s)).ToList();
         }
 
         public HttpResult GetProduct(GetProduct request)
         {
-            var product = Orm.Products.Where(x => x.Id.Equals(request.Id));
-            return new HttpResult(product, HttpStatusCode.OK);
+            var product = Orm.Products.FirstOrDefault(x => x.Id.Equals(request.Id));
+            return new HttpResult(FillObject(product), HttpStatusCode.OK);
+
+            /*var product = (from s in Orm.Products
+                           where s.Id.Equals(request.Id)
+                           select FillObject(s));
+            return new HttpResult(product, HttpStatusCode.OK);*/
         }
 
         public HttpResult GetProductByName(GetProductByName request)
         {
-            var product = Orm.Products.Where(x => x.Name.Equals(request.Name));
-            return new HttpResult(product, HttpStatusCode.OK);
+            var product = Orm.Products.FirstOrDefault(x => x.Name.Equals(request.Name));
+            return new HttpResult(FillObject(product), HttpStatusCode.OK);
+
+            /*var product = (from s in Orm.Products
+                           where s.Name.Equals(request.Name)
+                           select FillObject(s));
+            return new HttpResult(product, HttpStatusCode.OK);*/
         }
 
         private ProductResponse FillObject(Products data)
