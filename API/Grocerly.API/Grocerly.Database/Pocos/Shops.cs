@@ -4,11 +4,12 @@ using System.Text;
 
 namespace Grocerly.Database.Pocos
 {
-
-    public class ShoppingLists
+    public class Shops
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Status { get; set; }
+        public string Zipcde { get; set; }
+        public long Longitude { get; set; }
+        public long Latitude { get; set; }
     }
 }
