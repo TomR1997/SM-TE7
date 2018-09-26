@@ -19,25 +19,25 @@ namespace Grocerly.Interface
 
         public HttpResult Get(GetTags request)
         {
-            var tags = Orm.Tags.Select(t => FillObject(t)).ToList();
+            var tags = Orm.Tags.Select(x => FillObject(x)).ToList();
             return new HttpResult(tags, HttpStatusCode.OK);
         }
 
         public HttpResult Get(GetTag request)
         {
-            var tag = Orm.Tags.FirstOrDefault(t => t.Id.Equals(request.Id));
+            var tag = Orm.Tags.FirstOrDefault(x => x.Id.Equals(request.Id));
             return new HttpResult(FillObject(tag), HttpStatusCode.OK);
         }
 
         public HttpResult Get(GetTagByName request)
         {
-            var tag = Orm.Tags.FirstOrDefault(t => t.Name.Equals(request.Name));
+            var tag = Orm.Tags.FirstOrDefault(x => x.Name.Equals(request.Name));
             return new HttpResult(FillObject(tag), HttpStatusCode.OK);
         }
 
-        private TagsResponse FillObject(Tags data)
+        private TagResponse FillObject(Tags data)
         {
-            return new TagsResponse
+            return new TagResponse
             {
                 Id = data.Id,
                 Name = data.Name

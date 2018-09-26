@@ -21,19 +21,19 @@ namespace Grocerly.Interface
 
         public HttpResult Get(GetProducts request)
         {
-            var products = Orm.Products.Select(p => FillObject(p)).ToList();
+            var products = Orm.Products.Select(x => FillObject(x)).ToList();
             return new HttpResult(products, HttpStatusCode.OK);
         }
 
         public HttpResult Get(GetProduct request)
         {
-            var product = Orm.Products.FirstOrDefault(p => p.Id.Equals(request.Id));
+            var product = Orm.Products.FirstOrDefault(x => x.Id.Equals(request.Id));
             return new HttpResult(FillObject(product), HttpStatusCode.OK);
         }
 
         public HttpResult Get(GetProductByName request)
         {
-            var product = Orm.Products.FirstOrDefault(p => p.Name.Equals(request.Name));
+            var product = Orm.Products.FirstOrDefault(x => x.Name.Equals(request.Name));
             return new HttpResult(FillObject(product), HttpStatusCode.OK);
         }
 
