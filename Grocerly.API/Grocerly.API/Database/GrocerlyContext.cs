@@ -70,13 +70,13 @@ namespace Grocerly.Database
                 Users.Add(new Users
                 {
                     Id = new Guid(),
-                    Name = "User " + i,
+                    Name = "User" + i,
                     Email = "Email" + i + "@mail.com",
                     Role = "User",
                     Zipcode = "55" + i + "AZ",
                     Address = "Address" + i,
                     HouseNumber = i,
-                    Username = "Username " + i,
+                    Username = "Username" + i,
                     Password = "Password" + i
                 });
             }
