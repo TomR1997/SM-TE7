@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,6 +12,8 @@ namespace Grocerly.Database.Pocos
         public string ZipCode { get; set; }
         public long Longitude { get; set; }
         public long Latitude { get; set; }
+
+        [JsonIgnore]
         public List<ShopProduct> Products { get; set; }
     }
 }

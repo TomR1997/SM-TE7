@@ -1,4 +1,5 @@
-﻿using Grocerly.Database.Pocos;
+﻿using Grocerly.API.Utils;
+using Grocerly.Database.Pocos;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -20,6 +21,10 @@ namespace Grocerly.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Users>()
+                .HasAlternateKey(u => u.Username)
+                .HasName("Unique_Username");
+
             modelBuilder.Entity<ProductTag>()
             .HasKey(pt => new {pt.Id_Product, pt.Id_Tag });
 
@@ -61,23 +66,25 @@ namespace Grocerly.Database
 
             modelBuilder.Entity<Users>()
                 .HasMany(u => u.ShoppingLists);
+
+
         }
 
         public void CreateDummyData()
         {
-            for(int i = 0; i < 20; i++)
+            for (int i = 0; i < 20; i++)
             {
                 Users.Add(new Users
                 {
                     Id = new Guid(),
-                    Name = "User" + i,
+                    Name = "User " + i,
                     Email = "Email" + i + "@mail.com",
                     Role = "User",
                     Zipcode = "55" + i + "AZ",
                     Address = "Address" + i,
                     HouseNumber = i,
                     Username = "Username" + i,
-                    Password = "Password" + i
+                    Password = PasswordHasher.HashPassword("Password" + i)
                 });
             }
 

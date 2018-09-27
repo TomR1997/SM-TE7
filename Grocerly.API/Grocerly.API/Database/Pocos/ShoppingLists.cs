@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,8 @@ namespace Grocerly.Database.Pocos
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
+
+        [JsonIgnore]
         public List<ShoppinglistItem> Products { get; set; }
     }
 }

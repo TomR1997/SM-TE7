@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,9 +14,12 @@ namespace Grocerly.Database.Pocos
         public string Zipcode { get; set; }
         public string Address { get; set; }
         public int HouseNumber { get; set; }
+
         public string Username { get; set; }
+        [JsonIgnore]
         public string Password { get; set; }
 
+        [JsonIgnore]
         public List<ShoppingLists> ShoppingLists { get; set; }
     }
 }
