@@ -13,5 +13,7 @@ namespace Grocerly.Database.Pocos
         public string Zipcode { get; set; }
         public string Address { get; set; }
         public int HouseNumber { get; set; }
+
+        public List<ShoppingLists> ShoppingLists { get; set; }
     }
 }

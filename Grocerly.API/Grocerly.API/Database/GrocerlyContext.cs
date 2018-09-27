@@ -60,7 +60,7 @@ namespace Grocerly.Database
                 .HasForeignKey(sp => sp.Id_Shop);
 
             modelBuilder.Entity<Users>()
-                .HasMany(u => u.Shoppinglists);
+                .HasMany(u => u.ShoppingLists);
 
 
         }
