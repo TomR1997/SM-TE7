@@ -26,8 +26,6 @@ namespace Grocerly.API
         {
             services.AddMvc();
             services.AddScoped<GrocerlyContext>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +43,7 @@ namespace Grocerly.API
                 var context = serviceScope.ServiceProvider.GetRequiredService<GrocerlyContext>();
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
+                context.CreateDummyData();
             }
         }
     }
