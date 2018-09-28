@@ -118,6 +118,24 @@ namespace Grocerly.API.Controllers
             return Ok(shops);
         }
 
+        [HttpGet("{id}/Products")]
+        public IActionResult GetProductsForShop([FromRoute] Guid id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var products =
+                (from p in _context.Products
+                 from sp in _context.ShopProducts
+                 where p.Id.Equals(sp.Id_Product) && sp.Id_Shop.Equals(id)
+                 select sp.Product);
+
+
+            return Ok(products);
+        }
+
         private bool ShopsExists(Guid id)
         {
             return _context.Shops.Any(e => e.Id == id);

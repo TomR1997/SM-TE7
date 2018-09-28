@@ -2,6 +2,7 @@
 using Grocerly.Database.Pocos;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace Grocerly.Database
 {
@@ -13,6 +14,7 @@ namespace Grocerly.Database
         public DbSet<ShoppingLists> ShoppingLists { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Shops> Shops { get; set; }
+        public DbSet<ShopProduct> ShopProducts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,7 +28,7 @@ namespace Grocerly.Database
                 .HasName("Unique_Username");
 
             modelBuilder.Entity<ProductTag>()
-            .HasKey(pt => new {pt.Id_Product, pt.Id_Tag });
+            .HasKey(pt => new { pt.Id_Product, pt.Id_Tag });
 
             modelBuilder.Entity<ProductTag>()
                 .HasOne(pt => pt.Product)
@@ -70,7 +72,7 @@ namespace Grocerly.Database
 
         }
 
-        public void CreateDummyData()
+        public async void CreateDummyData()
         {
             for (int i = 0; i < 20; i++)
             {
@@ -88,7 +90,53 @@ namespace Grocerly.Database
                 });
             }
 
-            SaveChanges();
+            var AH = new Shops
+            {
+                Name = "Albert Heijn Strijpsestraat 137a",
+                ZipCode = "5616GM",
+                Latitude = 51.4407741,
+                Longitude = 5.4531073,
+                Products = new List<ShopProduct>()
+            };
+
+            var Lidl = new Shops
+            {
+                Name = "Lidl Woenselse Markt 38",
+                ZipCode = " 5612CS",
+                Latitude = 51.4507828,
+                Longitude = 5.4718054,
+                Products = new List<ShopProduct>()
+            };
+
+            Shops.Add(AH);
+            Shops.Add(Lidl);
+
+
+            var AHProducts = new List<Products>();
+
+            for (int i = 0; i < 20; i++)
+            {
+                AHProducts.Add(new Products
+                {
+                    Name = "AH product " + i,
+                    Price = 3.12,
+                    Quantity = 500
+                });
+            }
+
+            Products.AddRange(AHProducts);
+
+            for (int i = 0; i < 20; i++)
+            {
+                AH.Products.Add(
+                    new ShopProduct
+                    {
+                        Shop = AH,
+                        Product = AHProducts[i]
+                    });
+            }
+
+            await SaveChangesAsync();
         }
     }
 }

@@ -10,7 +10,6 @@ namespace Grocerly.API.Utils
 {
     public class PasswordHasher
     {
-        private readonly RandomNumberGenerator _rng;
 
         public static string HashPassword(string password)
         {
