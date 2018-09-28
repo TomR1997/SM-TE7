@@ -118,6 +118,38 @@ namespace Grocerly.API.Controllers
             return Ok(shoppingLists);
         }
 
+        [HttpPost("{id_list}/products/{id_product}")]
+        public async Task<IActionResult> AddProductToList ([FromRoute] Guid id_list, [FromRoute] Guid id_product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var shoppingList = await _context.ShoppingLists.SingleOrDefaultAsync(m => m.Id == id_list);
+            if (shoppingList == null)
+            {
+                return NotFound("Shoppinglist doesn't exist");
+            }
+
+            var product = await _context.Products.SingleOrDefaultAsync(m => m.Id == id_product);
+            if (product == null)
+            {
+                return NotFound("Product doesn't exist");
+            }
+
+            _context.ShoppinglistItems.Add(
+                new ShoppinglistItem
+                {
+                    List = shoppingList,
+                    Product = product
+                });
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
         private bool ShoppingListsExists(Guid id)
         {
             return _context.ShoppingLists.Any(e => e.Id == id);

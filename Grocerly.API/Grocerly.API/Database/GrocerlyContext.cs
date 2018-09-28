@@ -14,7 +14,9 @@ namespace Grocerly.Database
         public DbSet<ShoppingLists> ShoppingLists { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Shops> Shops { get; set; }
+
         public DbSet<ShopProduct> ShopProducts { get; set; }
+        public DbSet<ShoppinglistItem> ShoppinglistItems { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -120,7 +122,7 @@ namespace Grocerly.Database
                 {
                     Name = "AH product " + i,
                     Price = 3.12,
-                    Quantity = 500
+                    Quantity = "500 gr"
                 });
             }
 
