@@ -27,10 +27,9 @@ namespace Grocerly.API.Controllers
         [HttpPost]
         public IActionResult Authenticate(string username, string password)
         {
-            var hashed = PasswordHasher.HashPassword(password);
-            Users user = _context.Users.SingleOrDefault(u => u.Username.Equals(username) && u.Password.Equals(hashed));
+            Users user = _context.Users.SingleOrDefault(u => u.Username.Equals(username));
 
-            if (user == null)
+            if (user == null || !PasswordHasher.ValidatePassword(password, user.Password))
                 throw new UnauthorizedAccessException("Invalid username or password");
 
             var tokenHandler = new JwtSecurityTokenHandler();
