@@ -23,9 +23,12 @@ namespace Grocerly.API.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public IEnumerable<Products> GetProducts(int numberOfRows = 15, int page = 1)
+        public IEnumerable<Products> GetProducts(int numberOfRows = 15, int page = 1, string name = "")
         {
-            return _context.Products.OrderBy(p => p.CreationDate).Skip(numberOfRows * (page - 1)).Take(numberOfRows);
+            return _context.Products.Where(p => p.Name.Contains(name))
+                           .OrderBy(p => p.CreationDate)
+                           .Skip(numberOfRows * (page - 1))
+                           .Take(numberOfRows);
         }
 
         // GET: api/Products/5
