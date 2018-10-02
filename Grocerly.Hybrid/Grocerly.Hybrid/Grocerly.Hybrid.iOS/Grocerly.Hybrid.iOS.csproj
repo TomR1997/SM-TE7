@@ -124,6 +124,7 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\grocerly_logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -139,7 +140,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Grocerly.Hybrid\Grocerly.Hybrid.csproj">
-      <Project>{C1505CDF-912E-4D7C-9D2D-79EC2FEDDDD3}</Project>
+      <Project>{A5FC089E-1C67-4515-8DBA-EC39A3180B39}</Project>
       <Name>Grocerly.Hybrid</Name>
     </ProjectReference>
   </ItemGroup>

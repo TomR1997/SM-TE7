@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Grocerly.Hybrid.Views.StartPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="400"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            
+            
+            <Image Source="grocerly_logo" 
+                   Aspect="AspectFit"
+                   BackgroundColor="White"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="1"/>
+            
+            <Button Text="Inloggen"
+                    Clicked="LoginClick"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    BorderColor="{StaticResource NavigationPrimary}"
+                    BorderWidth="2"/>
+            
+            <Button Text="Registeren"
+                    BackgroundColor="{StaticResource ColorPrimary}"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    TextColor="White"/>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

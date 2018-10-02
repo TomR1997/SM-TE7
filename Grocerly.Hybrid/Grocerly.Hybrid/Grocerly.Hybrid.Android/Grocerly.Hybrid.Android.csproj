@@ -85,6 +85,7 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\drawable\xamarin_logo.png" />
+    <AndroidResource Include="Resources\drawable\grocerly_logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable-hdpi\" />
@@ -94,7 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Grocerly.Hybrid\Grocerly.Hybrid.csproj">
-      <Project>{C1505CDF-912E-4D7C-9D2D-79EC2FEDDDD3}</Project>
+      <Project>{A5FC089E-1C67-4515-8DBA-EC39A3180B39}</Project>
       <Name>Grocerly.Hybrid</Name>
     </ProjectReference>
   </ItemGroup>
