@@ -71,6 +71,10 @@ namespace Grocerly.Database
             modelBuilder.Entity<Users>()
                 .HasMany(u => u.ShoppingLists);
 
+            modelBuilder.Entity<Products>()
+                        .Property(p => p.CreationDate)
+                        .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S','now')");
+
 
         }
 
