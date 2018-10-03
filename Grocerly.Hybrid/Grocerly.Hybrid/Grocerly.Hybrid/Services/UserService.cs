@@ -29,7 +29,7 @@ namespace Grocerly.Hybrid.Services
                 Password = password
             }), Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync("http://i315103core.venus.fhict.nl/api/users", content).ConfigureAwait(false);
+            var response = await client.PostAsync($"api/users", content);
 
             return await Task.Run(() => JsonConvert.DeserializeObject<User>(response.Content.ToString()));
         }
