@@ -11,7 +11,7 @@ namespace Grocerly.Hybrid
     {
         //TODO: Replace with *.azurewebsites.net url after deploying backend to Azure
         public static string AzureBackendUrl = "http://localhost:5000";
-        public static string BaseApiUrl = "http://192.168.2.12:8000";
+        public static string BaseApiUrl = "https://i315103core.venus.fhict.nl";
         public static bool UseMockDataStore = true;
 
         public App()
@@ -22,6 +22,8 @@ namespace Grocerly.Hybrid
                 DependencyService.Register<MockDataStore>();
             else
                 DependencyService.Register<AzureDataStore>();
+
+            DependencyService.Register<AuthService>();
 
             MainPage = new MainPage();
         }

@@ -30,7 +30,7 @@ namespace Grocerly.API.Controllers
             Users user = _context.Users.SingleOrDefault(u => u.Username.Equals(username));
 
             if (user == null || !PasswordHasher.ValidatePassword(password, user.Password))
-                throw new UnauthorizedAccessException("Invalid username or password");
+                return Unauthorized();
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("kaaskaaskaaskaaskaaskaas");

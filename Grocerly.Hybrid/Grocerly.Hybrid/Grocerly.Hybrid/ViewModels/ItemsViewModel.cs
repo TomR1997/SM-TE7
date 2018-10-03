@@ -7,11 +7,13 @@ using Xamarin.Forms;
 
 using Grocerly.Hybrid.Models;
 using Grocerly.Hybrid.Views;
+using Grocerly.Hybrid.Services;
 
 namespace Grocerly.Hybrid.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
+        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
         public ObservableCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 

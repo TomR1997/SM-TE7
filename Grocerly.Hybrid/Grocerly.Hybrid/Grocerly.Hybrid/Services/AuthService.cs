@@ -11,7 +11,7 @@ namespace Grocerly.Hybrid.Services
 {
     public class AuthService
     {
-        HttpClient client;
+        readonly HttpClient client;
 
         public AuthService()
         {
@@ -25,7 +25,7 @@ namespace Grocerly.Hybrid.Services
         {
             var parameters = String.Format("?username={0}&password={1}", username, password);
 
-            var response = await client.PostAsync($"api/auth", new StringContent(parameters));
+            var response = await client.PostAsync($"api/auth" + parameters, null);
 
             if (response.Headers.TryGetValues("Authorization", out IEnumerable<string> values))
             {
