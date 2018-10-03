@@ -3,14 +3,14 @@ namespace Grocerly.Hybrid.Models
 {
     public class User
     {
-        public Guid id { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string role { get; set; }
-        public string zipcode { get; set; }
-        public string address { get; set; }
-        public int houseNumber { get; set; }
-        public string username { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Role { get; set; }
+        public string Zipcode { get; set; }
+        public string Address { get; set; }
+        public int Housenumber { get; set; }
+        public string Username { get; set; }
 
         public User()
         {
