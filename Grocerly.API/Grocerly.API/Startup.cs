@@ -49,6 +49,8 @@ namespace Grocerly.API
             });
 
             app.UseMvc();
+            app.UseCors(builder =>
+            builder.AllowAnyOrigin());
 
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
