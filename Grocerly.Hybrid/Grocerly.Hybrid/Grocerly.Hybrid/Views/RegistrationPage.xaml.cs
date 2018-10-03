@@ -1,4 +1,5 @@
 ﻿using Grocerly.Hybrid.Models;
+using Grocerly.Hybrid.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,28 +16,16 @@ namespace Grocerly.Hybrid.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RegistrationPage : ContentPage
 	{
-        private HttpClient client;
+        private UserViewModel viewModel; 
 		public RegistrationPage()
 		{
 			InitializeComponent ();
             Init();
-            client = new HttpClient();
 		}
         
         async void Register(object sender, EventArgs e)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(new
-            {
-                Email = Entry_Email.Text,
-                Username = Entry_Username.Text,
-                Password = Entry_Password.Text
-            }), Encoding.UTF8, "application/json");
-
-            var result = await client.PostAsync("http://i315103core.venus.fhict.nl/api/users", content).ConfigureAwait(false);
-            /*if (result.IsSuccessStatusCode)
-            {
-                DisplayAlert("Register", "Register successful", "Ok");
-            }*/
+            await viewModel.TryRegister(Entry_Email.Text, Entry_Username.Text, Entry_Password.Text);
         }
 
         void Init()
