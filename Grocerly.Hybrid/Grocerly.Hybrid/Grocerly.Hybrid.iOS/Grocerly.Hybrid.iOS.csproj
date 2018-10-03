@@ -144,4 +144,7 @@
       <Name>Grocerly.Hybrid</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\grocerly_icon.png" />
+  </ItemGroup>
 </Project>
