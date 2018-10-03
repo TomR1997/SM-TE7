@@ -15,5 +15,10 @@ namespace Grocerly.Hybrid.Views
         async void LoginClick (object sender, EventArgs e){
             await Navigation.PushAsync(new LoginPage());
         }
+
+        async void RegisterClick(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RegistrationPage());
+        }
     }
 }

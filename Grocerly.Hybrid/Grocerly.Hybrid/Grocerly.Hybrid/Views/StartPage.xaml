@@ -34,6 +34,7 @@
                     BorderWidth="2"/>
             
             <Button Text="Registeren"
+                    Clicked="RegisterClick"
                     BackgroundColor="{StaticResource ColorPrimary}"
                     Grid.Row="2"
                     Grid.Column="2"
