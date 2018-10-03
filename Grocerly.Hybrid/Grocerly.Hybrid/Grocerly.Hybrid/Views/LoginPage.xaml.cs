@@ -13,16 +13,20 @@ namespace Grocerly.Hybrid.Views
         {
             InitializeComponent();
             BindingContext = viewModel = new LoginViewModel();
+
+            username.Focused += (s, ev) => error_label.IsVisible = false;
+            username.Completed += (s, ev) => password.Focus();
         }
 
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            string Username = username.Text;
-            string Password = password.Text;
+            bool isValid = await viewModel.TryLogin(username.Text, password.Text);
 
-            await viewModel.TryLogin(Username, Password);
-           
-            await Navigation.PopAsync();
+            if (isValid)
+                await Navigation.PopAsync();
+            else
+                error_label.IsVisible = true;
+
         }
     }
 }

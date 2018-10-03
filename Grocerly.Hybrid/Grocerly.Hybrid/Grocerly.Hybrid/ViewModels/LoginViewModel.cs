@@ -19,25 +19,24 @@ namespace Grocerly.Hybrid.ViewModels
             Title = "Inloggen";
         }
 
-        public async Task TryLogin(string username, string password){
-            await ExecuteLoginCommand(username, password);
+        public async Task<bool> TryLogin(string username, string password){
+           return await ExecuteLoginCommand(username, password);
         }
 
-        async Task ExecuteLoginCommand(string username, string password)
+        async Task<bool> ExecuteLoginCommand(string username, string password)
         {
-            if (IsBusy)
-                return;
 
             IsBusy = true;
 
             try
             {
                 User = await AuthService.LoginAsync(username, password);
+                return true;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                LoginSucces = false;
+                return false;
             }
             finally
             {

@@ -14,6 +14,8 @@ namespace Grocerly.Hybrid
         public static string BaseApiUrl = "https://i315103core.venus.fhict.nl";
         public static bool UseMockDataStore = true;
 
+        public static bool isLoggedIn;
+
         public App()
         {
             InitializeComponent();
@@ -24,6 +26,11 @@ namespace Grocerly.Hybrid
                 DependencyService.Register<AzureDataStore>();
 
             DependencyService.Register<AuthService>();
+
+            if (Properties.ContainsKey("jwt"))
+            {
+                isLoggedIn = true;
+            }
 
             MainPage = new MainPage();
         }

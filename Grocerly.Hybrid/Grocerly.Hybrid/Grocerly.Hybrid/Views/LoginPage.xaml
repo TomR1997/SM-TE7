@@ -38,7 +38,10 @@
                 <Button Text="Inloggen"
                         Clicked="OnLoginButtonClicked"/>
                 
-                <Label TextColor="Red"
+                <Label
+                    x:Name="error_label"
+                    IsVisible="false"
+                    TextColor="Red"
                        Text="Gebruikersnaam of wachtwoord is incorrect"/>
                 
             </StackLayout>

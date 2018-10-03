@@ -25,6 +25,8 @@ namespace Grocerly.Hybrid.Services
         {
             var parameters = String.Format("?username={0}&password={1}", username, password);
 
+            client.DefaultRequestHeaders.Add("Content", "application/json");
+
             var response = await client.PostAsync($"api/auth" + parameters, null);
 
             if (response.Headers.TryGetValues("Authorization", out IEnumerable<string> values))
@@ -33,7 +35,12 @@ namespace Grocerly.Hybrid.Services
                 await Application.Current.SavePropertiesAsync();
             }
 
-            return await Task.Run(() => JsonConvert.DeserializeObject<User>(response.Content.ToString()));
+            if (!response.IsSuccessStatusCode)
+                throw new UnauthorizedAccessException();
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            return await Task.Run(() => JsonConvert.DeserializeObject<User>(json));
         }
     }
 }
