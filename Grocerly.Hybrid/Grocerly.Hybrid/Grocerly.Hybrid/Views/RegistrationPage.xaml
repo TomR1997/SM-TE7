@@ -17,11 +17,11 @@
 
                 <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True"/>
 
-                <Label x:Name="Lbl_Email" Text="Email:"/>
+                <Label x:Name="Lbl_Email" Text="Email:" FontSize="Large"/>
                 <Entry x:Name="Entry_Email" Placeholder="Email"/>
-                <Label x:Name="Lbl_Username" Text="Username:"/>
+                <Label x:Name="Lbl_Username" Text="Username:" FontSize="Large"/>
                 <Entry x:Name="Entry_Username" Placeholder="Username"/>
-                <Label x:Name="Lbl_Password" Text="Password:"/>
+                <Label x:Name="Lbl_Password" Text="Password:" FontSize="Large"/>
                 <Entry x:Name="Entry_Password" IsPassword="True" Placeholder="Password"/>
                 <Button x:Name="Btn_Register" Text="Register" Clicked="Register"/>
             </StackLayout>

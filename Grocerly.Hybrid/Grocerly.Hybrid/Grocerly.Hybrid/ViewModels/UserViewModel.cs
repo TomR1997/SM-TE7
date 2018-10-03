@@ -11,8 +11,7 @@ namespace Grocerly.Hybrid.ViewModels
 {
     public class UserViewModel : BaseViewModel
     {
-        public UserService userService => DependencyService.Get<UserService>();
-        public bool RegisterSuccess { get; set; }
+        public UserService UserService => DependencyService.Get<UserService>();
         public User User { get; set; }
         public Command RegisterCommand { get; set; }
 
@@ -21,26 +20,27 @@ namespace Grocerly.Hybrid.ViewModels
             Title = "Registeren";
         }
 
-        public async Task TryRegister(string email, string username, string password)
+        public async Task<bool> TryRegister(string email, string username, string password)
         {
-            await ExecuteRegisterCommand(email, username, password);
+            return await ExecuteRegisterCommand(email, username, password);
         }
 
-        async Task ExecuteRegisterCommand(string email, string username, string password)
+        async Task<bool> ExecuteRegisterCommand(string email, string username, string password)
         {
             if (IsBusy)
-                return;
+                return false;
 
             IsBusy = true;
 
             try
             {
-                User = await userService.RegisterAsync(email, username, password);
+                User = await UserService.RegisterAsync(email, username, password);
+                return true;
             }
             catch(Exception ex)
             {
                 Debug.WriteLine(ex);
-                RegisterSuccess = false;
+                return false;
             }
             finally
             {

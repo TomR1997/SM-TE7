@@ -21,11 +21,12 @@ namespace Grocerly.Hybrid.Views
 		{
 			InitializeComponent ();
             Init();
+            viewModel = new UserViewModel();
 		}
         
         async void Register(object sender, EventArgs e)
         {
-            await viewModel.TryRegister(Entry_Email.Text, Entry_Username.Text, Entry_Password.Text);
+            bool success = await viewModel.TryRegister(Entry_Email.Text, Entry_Username.Text, Entry_Password.Text);
         }
 
         void Init()
@@ -39,7 +40,6 @@ namespace Grocerly.Hybrid.Views
 
             Entry_Email.Completed += (s, e) => Entry_Username.Focus();
             Entry_Username.Completed += (s, e) => Entry_Password.Focus();
-            Entry_Password.Completed += (s, e) => Register(s, e);
         }
 	}
 }
