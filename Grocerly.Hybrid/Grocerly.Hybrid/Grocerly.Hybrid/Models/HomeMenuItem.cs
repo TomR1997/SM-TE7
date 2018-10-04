@@ -7,7 +7,7 @@ namespace Grocerly.Hybrid.Models
     public enum MenuItemType
     {
         Browse,
-        About
+        Shoppinglist
     }
     public class HomeMenuItem
     {

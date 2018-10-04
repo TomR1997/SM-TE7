@@ -21,7 +21,7 @@ namespace Grocerly.Hybrid.Views
             menuItems = new List<HomeMenuItem>
             {
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.Shoppinglist, Title ="Mijn boodschappenlijst"}
             };
 
             ListViewMenu.ItemsSource = menuItems;
