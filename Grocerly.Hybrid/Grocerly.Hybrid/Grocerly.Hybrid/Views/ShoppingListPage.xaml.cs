@@ -1,4 +1,5 @@
 ﻿using Grocerly.Hybrid.Models;
+using Grocerly.Hybrid.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,12 +15,15 @@ namespace Grocerly.Hybrid.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ShoppingListPage : ContentPage
     {
-        //public ObservableCollection<string> Items { get; set; }
+        private ShoppingListViewModel viewModel;
         public List<Product> Products { get; set; }
 
         public ShoppingListPage()
         {
             InitializeComponent();
+            viewModel = new ShoppingListViewModel();
+
+            //Products = await viewModel.GetProductsForShoppingList(new Guid());
 
             Products = new List<Product>();
             for (int i = 0; i < 20; i++)

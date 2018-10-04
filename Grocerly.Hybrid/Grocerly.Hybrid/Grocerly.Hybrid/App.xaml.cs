@@ -29,6 +29,8 @@ namespace Grocerly.Hybrid
             DependencyService.Register<UserService>();
             DependencyService.Register<ProductService>();
 
+            DependencyService.Register<ShoppingListService>();
+
             isLoggedIn = Properties.ContainsKey("jwt");
 
             MainPage = isLoggedIn ? new MainPage() : (Page)new NavigationPage(new StartPage());
