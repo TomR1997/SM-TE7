@@ -6,9 +6,9 @@
     <ContentPage.Content>
         <StackLayout x:Name="MasterLayout">
             <StackLayout x:Name="Logo" VerticalOptions="FillAndExpand">
-                <Image x:Name="RegisterIcon" Source="grocerly_icon" Margin="0,80,0,0"/>
+                <Image x:Name="RegisterIcon" Source="grocerly_icon" Margin="0,20,0,0"/>
             </StackLayout>
-            <StackLayout x:Name="RegisterForm" VerticalOptions="StartAndExpand">
+            <StackLayout x:Name="RegisterForm" VerticalOptions="StartAndExpand" Margin="20,0,20,0">
 
                 <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True"/>
 
@@ -23,7 +23,7 @@
                     x:Name="error_label"
                     IsVisible="false"
                     TextColor="Red"
-                    Text="Gebruikersnaam of wachtwoord is incorrect"/>
+                    Text="Alle velden zijn verplicht"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
