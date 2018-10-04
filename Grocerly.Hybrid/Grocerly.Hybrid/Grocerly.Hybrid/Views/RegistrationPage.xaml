@@ -9,12 +9,6 @@
                 <Image x:Name="RegisterIcon" Source="grocerly_icon" Margin="0,80,0,0"/>
             </StackLayout>
             <StackLayout x:Name="RegisterForm" VerticalOptions="StartAndExpand">
-                <StackLayout.Padding>
-                    <OnIdiom x:TypeArguments="Thickness">
-                        <OnIdiom.Phone>40, 0, 40, 0</OnIdiom.Phone>
-                        <OnIdiom.Tablet>140, 150, 140, 0</OnIdiom.Tablet>
-                    </OnIdiom>
-                </StackLayout.Padding>
 
                 <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True"/>
 
@@ -25,6 +19,11 @@
                 <Label x:Name="Lbl_Password" Text="Password:" FontSize="Large"/>
                 <Entry x:Name="Entry_Password" IsPassword="True" Placeholder="Password"/>
                 <Button x:Name="Btn_Register" Text="Register" Clicked="Register"/>
+                <Label
+                    x:Name="error_label"
+                    IsVisible="false"
+                    TextColor="Red"
+                    Text="Gebruikersnaam of wachtwoord is incorrect"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

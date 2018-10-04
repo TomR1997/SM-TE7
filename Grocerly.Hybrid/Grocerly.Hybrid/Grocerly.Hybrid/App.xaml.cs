@@ -27,6 +27,7 @@ namespace Grocerly.Hybrid
                 DependencyService.Register<AzureDataStore>();
 
             DependencyService.Register<AuthService>();
+            DependencyService.Register<UserService>();
 
             isLoggedIn = Properties.ContainsKey("jwt");
 
