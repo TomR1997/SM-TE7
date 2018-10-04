@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using Grocerly.Hybrid.Models;
 using Newtonsoft.Json;
 
@@ -24,18 +25,20 @@ namespace Grocerly.Hybrid.Services
         }
 
         public async Task<IEnumerable<Product>> GetProductsAsync(
-            int numberOfRows, int page, string name
+            int numberOfRows = 15, int page = 1, string name = ""
         )
         {
+            var builder = new UriBuilder(client.BaseAddress + "api/products");
+            var query = HttpUtility.ParseQueryString(builder.Query);
 
-            var values = new NameValueCollection
-            {
-                {"numberOfRows", numberOfRows.ToString() },
-                { "page", page.ToString() },
-                { "name", name }
-            };
-            
-            var json = await client.GetStringAsync($"api/item");
+            query["numberOfRows"] = numberOfRows.ToString();
+            query["page"] = page.ToString();
+            if (!String.IsNullOrEmpty(name))
+                query["name"] = name;
+
+            builder.Query = query.ToString();
+
+            var json = await client.GetStringAsync(builder.ToString());
             products = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Product>>(json));
 
             return products;

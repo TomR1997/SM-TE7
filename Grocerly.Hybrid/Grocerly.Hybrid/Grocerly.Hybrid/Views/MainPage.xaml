@@ -17,7 +17,7 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:StartPage />
+                <views:ProductPage />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>
