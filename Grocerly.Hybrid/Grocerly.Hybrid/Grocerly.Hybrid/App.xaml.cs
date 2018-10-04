@@ -3,7 +3,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Grocerly.Hybrid.Services;
 using Grocerly.Hybrid.Views;
-using Android.Content.Res;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Grocerly.Hybrid
