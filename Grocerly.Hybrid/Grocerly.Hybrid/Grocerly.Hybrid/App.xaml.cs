@@ -30,9 +30,7 @@ namespace Grocerly.Hybrid
 
             isLoggedIn = Properties.ContainsKey("jwt");
 
-            MainPage = isLoggedIn ?
-                new NavigationPage (new MainPage()) : new NavigationPage(new StartPage());
-                //new MainPage() : (Page)new StartPage();
+            MainPage = isLoggedIn ? new MainPage() : (Page)new NavigationPage(new StartPage());
         }
 
         protected override void OnStart()
