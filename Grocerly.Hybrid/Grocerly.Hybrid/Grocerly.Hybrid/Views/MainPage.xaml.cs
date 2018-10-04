@@ -18,7 +18,6 @@ namespace Grocerly.Hybrid.Views
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
-            //MenuPages.Add((int)MenuItemType.Shoppinglist, (NavigationPage)Detail);
 
         }
 
@@ -29,7 +28,7 @@ namespace Grocerly.Hybrid.Views
                 switch (id)
                 {
                     case (int)MenuItemType.Browse:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+                        MenuPages.Add(id, new NavigationPage(new ProductPage()));
                         break;
                     case (int)MenuItemType.Shoppinglist:
                         MenuPages.Add(id, new NavigationPage(new ShoppingListPage()));
