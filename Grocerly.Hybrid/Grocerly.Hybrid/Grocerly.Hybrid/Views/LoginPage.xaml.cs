@@ -23,7 +23,11 @@ namespace Grocerly.Hybrid.Views
             bool isValid = await viewModel.TryLogin(username.Text, password.Text);
 
             if (isValid)
+            {
+                App.isLoggedIn = true;
+                Navigation.InsertPageBefore(new MainPage(), this);
                 await Navigation.PopAsync();
+            }
             else
                 error_label.IsVisible = true;
 

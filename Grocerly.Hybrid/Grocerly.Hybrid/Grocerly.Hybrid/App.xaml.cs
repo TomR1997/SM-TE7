@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Grocerly.Hybrid.Services;
 using Grocerly.Hybrid.Views;
+using Android.Content.Res;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Grocerly.Hybrid
@@ -27,12 +28,11 @@ namespace Grocerly.Hybrid
 
             DependencyService.Register<AuthService>();
 
-            if (Properties.ContainsKey("jwt"))
-            {
-                isLoggedIn = true;
-            }
+            isLoggedIn = Properties.ContainsKey("jwt");
 
-            MainPage = new MainPage();
+            MainPage = isLoggedIn ?
+                new NavigationPage (new MainPage()) : new NavigationPage(new StartPage());
+                //new MainPage() : (Page)new StartPage();
         }
 
         protected override void OnStart()

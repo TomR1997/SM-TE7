@@ -10,7 +10,6 @@ namespace Grocerly.Hybrid.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         public AuthService AuthService => DependencyService.Get<AuthService>();
-        public bool LoginSucces { get; set; }
         public User User { get; set; }
         public Command LoginCommand { get; set; }
 

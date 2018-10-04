@@ -36,5 +36,17 @@ namespace Grocerly.Hybrid.Views
                 await RootPage.NavigateFromMenu(id);
             };
         }
+
+        async void OnLogoutButtonClicked(object sender, EventArgs e)
+        {
+            if (Application.Current.Properties.ContainsKey("jwt"))
+            {
+                Application.Current.Properties.Remove("jwt");
+
+                await Application.Current.SavePropertiesAsync();
+            }
+
+            await Navigation.PushModalAsync(new NavigationPage(new StartPage()));
+        }
     }
 }

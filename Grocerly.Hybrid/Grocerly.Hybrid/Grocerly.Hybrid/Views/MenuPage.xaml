@@ -4,8 +4,11 @@
              x:Class="Grocerly.Hybrid.Views.MenuPage"
              Title="Menu">
     <StackLayout VerticalOptions="FillAndExpand">
+        
         <Button Text="Uitloggen"
-                x:Name="btnLogout"/>
+                x:Name="btnLogout"
+                Clicked="OnLogoutButtonClicked"/>
+        
         <ListView x:Name="ListViewMenu"
                     HasUnevenRows="True">
             <ListView.ItemTemplate>
