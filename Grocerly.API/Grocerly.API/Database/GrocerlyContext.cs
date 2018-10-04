@@ -1,4 +1,5 @@
-﻿using Grocerly.API.Utils;
+﻿using Grocerly.API.Database.Pocos;
+using Grocerly.API.Utils;
 using Grocerly.Database.Pocos;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -80,22 +81,6 @@ namespace Grocerly.Database
 
         public async void CreateDummyData()
         {
-            for (int i = 0; i < 20; i++)
-            {
-                Users.Add(new Users
-                {
-                    Id = new Guid(),
-                    Name = "User " + i,
-                    Email = "Email" + i + "@mail.com",
-                    Role = "User",
-                    Zipcode = "55" + i + "AZ",
-                    Address = "Address" + i,
-                    HouseNumber = i,
-                    Username = "Username" + i,
-                    Password = PasswordHasher.HashPassword("Password" + i)
-                });
-            }
-
             var AH = new Shops
             {
                 Name = "Albert Heijn Strijpsestraat 137a",
@@ -140,6 +125,41 @@ namespace Grocerly.Database
                         Shop = AH,
                         Product = AHProducts[i]
                     });
+            }
+
+            for (int i = 0; i < 20; i++)
+            {
+                ShoppingLists shoppingList = new ShoppingLists
+                {
+                    Id = new Guid(),
+                    Name = "Name" + i,
+                    Status = (Status)Enum.GetValues(typeof(Status)).GetValue(new Random().Next(Enum.GetValues(typeof(Status)).Length))
+
+                };
+                ShoppingLists.Add(shoppingList);
+
+                Users user = new Users
+                {
+                    Id = new Guid(),
+                    Name = "User " + i,
+                    Email = "Email" + i + "@mail.com",
+                    Role = "User",
+                    Zipcode = "55" + i + "AZ",
+                    Address = "Address" + i,
+                    HouseNumber = i,
+                    Username = "Username" + i,
+                    Password = PasswordHasher.HashPassword("Password" + i),
+                    ShoppingLists = new List<ShoppingLists>()
+                };
+
+                user.ShoppingLists.Add(shoppingList);
+                Users.Add(user);
+
+                ShoppinglistItems.Add(new ShoppinglistItem
+                {
+                    List = shoppingList,
+                    Product = AHProducts[i]
+                });
             }
 
             await SaveChangesAsync();
