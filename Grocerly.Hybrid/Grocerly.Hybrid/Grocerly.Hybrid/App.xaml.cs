@@ -27,6 +27,7 @@ namespace Grocerly.Hybrid
 
             DependencyService.Register<AuthService>();
             DependencyService.Register<UserService>();
+            DependencyService.Register<ShoppingListService>();
 
             isLoggedIn = Properties.ContainsKey("jwt");
 
