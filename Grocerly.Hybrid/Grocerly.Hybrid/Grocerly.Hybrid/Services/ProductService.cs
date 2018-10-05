@@ -33,7 +33,7 @@ namespace Grocerly.Hybrid.Services
 
             query["numberOfRows"] = numberOfRows.ToString();
             query["page"] = page.ToString();
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
                 query["name"] = name;
 
             builder.Query = query.ToString();

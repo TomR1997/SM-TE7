@@ -14,9 +14,11 @@ namespace Grocerly.Hybrid.ViewModels
         public UserService UserService => DependencyService.Get<UserService>();
         public User User { get; set; }
         public Command RegisterCommand { get; set; }
+        public List<ShoppingList> ShoppingLists { get; set; }
 
         public UserViewModel()
         {
+            ShoppingLists = new List<ShoppingList>();
             Title = "Registeren";
         }
 
@@ -46,6 +48,29 @@ namespace Grocerly.Hybrid.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        public async Task<List<ShoppingList>> GetShoppingListsForUser(Guid id, Status status)
+        {
+            if (IsBusy)
+                return ShoppingLists;
+
+            IsBusy = true;
+
+            try
+            {
+                ShoppingLists = await UserService.GetShoppingListsForUser(id, status);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+            return ShoppingLists;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Grocerly.Hybrid.Services
 
         public async Task<User> LoginAsync(string username, string password)
         {
-            var parameters = String.Format("?username={0}&password={1}", username, password);
+            var parameters = string.Format("?username={0}&password={1}", username, password);
 
             client.DefaultRequestHeaders.Add("Content", "application/json");
 

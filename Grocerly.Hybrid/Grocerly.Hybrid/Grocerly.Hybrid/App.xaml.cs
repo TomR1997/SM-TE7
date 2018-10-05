@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Grocerly.Hybrid.Services;
 using Grocerly.Hybrid.Views;
+using Grocerly.Hybrid.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Grocerly.Hybrid
@@ -15,6 +16,7 @@ namespace Grocerly.Hybrid
         public static bool UseMockDataStore = true;
 
         public static bool isLoggedIn;
+        public static User user;
 
         public App()
         {

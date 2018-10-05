@@ -30,6 +30,7 @@ namespace Grocerly.Hybrid.ViewModels
             try
             {
                 User = await AuthService.LoginAsync(username, password);
+                App.user = User;
                 return true;
             }
             catch (Exception ex)

@@ -33,5 +33,11 @@ namespace Grocerly.Hybrid.Services
 
             return await Task.Run(() => JsonConvert.DeserializeObject<User>(response.Content.ToString()));
         }
+
+        public async Task<List<ShoppingList>> GetShoppingListsForUser(Guid id, Status status)
+        {
+            var response = await client.GetAsync($"api/users/" + id + "/shoppinglists?status=" + status);
+            return await Task.Run(() => JsonConvert.DeserializeObject<List<ShoppingList>>(response.ToString()));
+        }
     }
 }

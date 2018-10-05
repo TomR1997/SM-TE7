@@ -12,18 +12,18 @@ namespace Grocerly.Hybrid.ViewModels
     public class ShoppingListViewModel : BaseViewModel
     {
         public ShoppingListService ShoppingListService => DependencyService.Get<ShoppingListService>();
-        public IEnumerable<Product> Products { get; set; }
-        public Command RegisterCommand { get; set; }
+        public List<Product> Products { get; set; }
 
         public ShoppingListViewModel()
         {
+            Products = new List<Product>();
             Title = "Boodschappenlijst";
         }
 
-        public async Task<IEnumerable<Product>> GetProductsForShoppingList(Guid id)
+        public async Task<List<Product>> GetProductsForShoppingList(Guid id)
         {
             if (IsBusy)
-                return null;
+                return Products;
 
             IsBusy = true;
 

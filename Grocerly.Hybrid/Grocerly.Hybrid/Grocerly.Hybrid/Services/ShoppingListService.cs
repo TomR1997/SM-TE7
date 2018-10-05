@@ -20,10 +20,10 @@ namespace Grocerly.Hybrid.Services
             };
         }
 
-        public async Task<IEnumerable<Product>> GetProductsForShoppingList(Guid id)
+        public async Task<List<Product>> GetProductsForShoppingList(Guid id)
         {
             var response = await client.GetAsync($"api/shoppinglists/" + id + "/products");
-            return await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Product>>(response.ToString()));
+            return await Task.Run(() => JsonConvert.DeserializeObject<List<Product>>(response.ToString()));
         }
     }
 }
