@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Grocerly.Database;
 using Grocerly.Database.Pocos;
+using Grocerly.API.Database.Pocos;
 
 namespace Grocerly.API.Controllers
 {
@@ -116,6 +117,27 @@ namespace Grocerly.API.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(users);
+        }
+
+        [HttpGet("{id}/shoppinglists/")]
+        public IActionResult GetShoppingListsForUsers([FromRoute] Guid id, Status status = Status.Closed)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var shoppinglists = from u in _context.Users
+                       from s in u.ShoppingLists
+                       where u.Id.Equals(id) && s.Status.Equals(status)
+                       select s;
+
+            if (shoppinglists == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(shoppinglists);
         }
 
         private bool UsersExists(Guid id)
