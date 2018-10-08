@@ -42,5 +42,30 @@ namespace Grocerly.Hybrid.ViewModels
 
             return Products;
         }
+
+        public async Task<ShoppingList> CreateShoppingList(string name, Status status)
+        {
+            ShoppingList shoppingList = new ShoppingList();
+
+            if (IsBusy)
+                return shoppingList;
+
+            IsBusy = true;
+
+            try
+            {
+                shoppingList = await ShoppingListService.CreateShoppingList(name, status);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+            return shoppingList;
+        }
     }
 }

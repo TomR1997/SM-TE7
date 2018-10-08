@@ -25,5 +25,18 @@ namespace Grocerly.Hybrid.Services
             var response = await client.GetAsync($"api/shoppinglists/" + id + "/products");
             return await Task.Run(() => JsonConvert.DeserializeObject<List<Product>>(response.ToString()));
         }
+
+        public async Task<ShoppingList> CreateShoppingList(string name, Status status)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(new ShoppingList
+            {
+                Name = "New shoppinglist",
+                Status = Status.Open
+            }), Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync($"api/users", content);
+
+            return await Task.Run(() => JsonConvert.DeserializeObject<ShoppingList>(response.ToString()));
+        }
     }
 }
