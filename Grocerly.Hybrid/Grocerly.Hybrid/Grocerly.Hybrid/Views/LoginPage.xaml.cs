@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Grocerly.Hybrid.Models;
 using Grocerly.Hybrid.ViewModels;
 using Xamarin.Forms;
 
@@ -8,11 +9,15 @@ namespace Grocerly.Hybrid.Views
     public partial class LoginPage : ContentPage
     {
         LoginViewModel viewModel;
+        UserViewModel userViewModel;
+        ShoppingListViewModel shoppingListViewModel;
 
         public LoginPage()
         {
             InitializeComponent();
             BindingContext = viewModel = new LoginViewModel();
+            userViewModel = new UserViewModel();
+            shoppingListViewModel = new ShoppingListViewModel();
 
             username.Focused += (s, ev) => error_label.IsVisible = false;
             username.Completed += (s, ev) => password.Focus();
@@ -21,9 +26,16 @@ namespace Grocerly.Hybrid.Views
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
             bool isValid = await viewModel.TryLogin(username.Text, password.Text);
+            List<ShoppingList> shoppingLists = new List<ShoppingList>();
 
             if (isValid)
             {
+                shoppingLists = await userViewModel.GetShoppingListsForUser(App.user.Id, Status.Open);
+                if (shoppingLists.Count <= 0)
+                {
+                    await shoppingListViewModel.CreateShoppingList("New shoppinglist", Status.Open);
+                }
+
                 App.isLoggedIn = true;
                 Navigation.InsertPageBefore(new MainPage(), this);
                 await Navigation.PopAsync();

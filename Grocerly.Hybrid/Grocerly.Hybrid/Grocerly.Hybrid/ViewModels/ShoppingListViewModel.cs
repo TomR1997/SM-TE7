@@ -2,6 +2,7 @@
 using Grocerly.Hybrid.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,24 +13,29 @@ namespace Grocerly.Hybrid.ViewModels
     public class ShoppingListViewModel : BaseViewModel
     {
         public ShoppingListService ShoppingListService => DependencyService.Get<ShoppingListService>();
-        public List<Product> Products { get; set; }
+        public ObservableCollection<ShoppingListItem> ShoppingListItems { get; set; }
 
         public ShoppingListViewModel()
         {
-            Products = new List<Product>();
+            ShoppingListItems = new ObservableCollection<ShoppingListItem>();
             Title = "Boodschappenlijst";
         }
 
-        public async Task<List<Product>> GetProductsForShoppingList(Guid id)
+        public async Task GetProductsForShoppingList(Guid id)
         {
             if (IsBusy)
-                return Products;
+                return;
 
             IsBusy = true;
 
             try
             {
-                Products = await ShoppingListService.GetProductsForShoppingList(id);
+                ShoppingListItems.Clear();
+                var items = await ShoppingListService.GetProductsForShoppingList(id);
+                foreach(var i in items)
+                {
+                    ShoppingListItems.Add(i);
+                }
             }
             catch (Exception ex)
             {
@@ -39,8 +45,6 @@ namespace Grocerly.Hybrid.ViewModels
             {
                 IsBusy = false;
             }
-
-            return Products;
         }
 
         public async Task<ShoppingList> CreateShoppingList(string name, Status status)

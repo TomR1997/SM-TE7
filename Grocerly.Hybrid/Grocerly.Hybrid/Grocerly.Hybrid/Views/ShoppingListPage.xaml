@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Grocerly.Hybrid.Views.ShoppingListPage">
     <ListView x:Name="ShoppinglistListView"
-                ItemsSource="{Binding Products}"
+                ItemsSource="{Binding ShoppingListItems}"
                 HasUnevenRows="True"
                 VerticalOptions="FillAndExpand"
                 ItemTapped="Handle_ItemTapped"
