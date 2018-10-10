@@ -58,7 +58,7 @@ namespace Grocerly.Hybrid.ViewModels
 
             try
             {
-                shoppingList = await ShoppingListService.CreateShoppingList(name, status);
+                shoppingList = await ShoppingListService.CreateShoppingList();
             }
             catch (Exception ex)
             {

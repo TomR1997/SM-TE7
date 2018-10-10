@@ -25,7 +25,7 @@ namespace Grocerly.Hybrid.Services
             var response = await client.GetStringAsync($"api/shoppinglists/" + id + "/products");
 
 
-            return await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ShoppingListItem>>(response.ToString()));
+            return await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ShoppingListItem>>(response));
         }
 
         public async Task<ShoppingList> CreateShoppingList()
@@ -39,7 +39,9 @@ namespace Grocerly.Hybrid.Services
 
             var response = await client.PostAsync($"api/shoppinglists", content);
 
-            return await Task.Run(() => JsonConvert.DeserializeObject<ShoppingList>(response.ToString()));
+            var json = await response.Content.ReadAsStringAsync();
+
+            return await Task.Run(() => JsonConvert.DeserializeObject<ShoppingList>(json));
         }
 
         public async Task<Product> AddProductToList(Guid product_id, Guid shoppingList_id)
