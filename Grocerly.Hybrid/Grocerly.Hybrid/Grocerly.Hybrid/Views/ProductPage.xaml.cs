@@ -13,6 +13,8 @@ namespace Grocerly.Hybrid.Views
         {
             InitializeComponent();
             BindingContext = viewModel = new ProductsViewModel();
+
+            productSearch.SearchButtonPressed += async (s, e) => await viewModel.SearchProducts(12, 1, productSearch.Text);
         }
 
         protected override void OnAppearing()
@@ -25,7 +27,9 @@ namespace Grocerly.Hybrid.Views
 
         async void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {
+            viewModel.currentSearch = productSearch.Text;
             await viewModel.SearchProducts(12, 1, productSearch.Text);
         }
+        
     }
 }

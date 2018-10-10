@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="Grocerly.Hybrid.Views.ProductPage">
+             x:Class="Grocerly.Hybrid.Views.ProductPage"
+             xmlns:b="clr-namespace:Grocerly.Hybrid.Behaviours">
     
     <ContentPage.ToolbarItems>
         
@@ -20,20 +21,41 @@
                   IsPullToRefreshEnabled="true"
                   IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                   CachingStrategy="RecycleElement">
+                
+                <ListView.Behaviors>  
+            <b:InfiniteScroll LoadMoreCommand="{Binding LoadMore}" />  
+        </ListView.Behaviors>  
+                
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Name}" 
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
-                            <Label Text="{Binding Price}" 
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
-                        </StackLayout>
-                    </ViewCell>            
+                        <Grid Padding="20, 10, 30, 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{Binding Name}" 
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        FontSize="16" />
+                                <Label Text="{Binding Quantity}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="13" />
+                            </StackLayout>
+                        <Label Text="{Binding Price, StringFormat='{0:C}'}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="16" 
+                                        Grid.Column="1"
+                                        XAlign="End"/>
+                        </Grid>
+                    </ViewCell>         
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Grocerly.Hybrid.Models;
 using Grocerly.Hybrid.Services;
 using Xamarin.Forms;
@@ -13,11 +14,25 @@ namespace Grocerly.Hybrid.ViewModels
         public ProductService DataStore => DependencyService.Get<ProductService>();
         public ObservableCollection<Product> Products { get; set; }
         public Command LoadProductsCommand { get; set; }
+        public ICommand LoadMore { get; set; }
+
+        public string currentSearch = "";
+         
 
         public ProductsViewModel()
         {
             Products = new ObservableCollection<Product>();
             LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
+
+            int page = 2;
+            this.LoadMore = new Command(async () => {
+                var newProducts = await DataStore.GetProductsAsync(12, page, currentSearch);
+                page += 1;
+                foreach (var p in newProducts)
+                {
+                    Products.Add(p);
+                }
+            });
         }
 
         public async Task SearchProducts (int rows, int page, string name)

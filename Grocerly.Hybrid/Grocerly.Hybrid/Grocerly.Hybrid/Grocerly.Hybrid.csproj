@@ -33,4 +33,7 @@
       <HintPath>..\..\..\..\..\..\..\..\Library\Frameworks\Mono.framework\External\xbuild-frameworks\MonoAndroid\v8.1\Mono.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Behaviours\" />
+  </ItemGroup>
 </Project>
