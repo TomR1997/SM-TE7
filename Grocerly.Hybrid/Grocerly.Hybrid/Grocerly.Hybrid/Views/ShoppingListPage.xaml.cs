@@ -28,7 +28,7 @@ namespace Grocerly.Hybrid.Views
             Products = new List<Product>();
             for (int i = 0; i < 20; i++)
             {
-                Products.Add(new Product { Name = "Item" + i, Price = 5, Quantity = "500g", CreationDate = DateTime.Now });
+                Products.Add(new Product { Name = "Item" + i, Price = 5, Volume = "500g", CreationDate = DateTime.Now });
             }
 
             ShoppinglistListView.ItemsSource = Products;

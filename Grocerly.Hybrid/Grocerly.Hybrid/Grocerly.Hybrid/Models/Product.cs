@@ -6,7 +6,7 @@ namespace Grocerly.Hybrid.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public string Quantity { get; set; }
+        public string Volume { get; set; }
         public DateTime CreationDate { get; set; }
     }
 }

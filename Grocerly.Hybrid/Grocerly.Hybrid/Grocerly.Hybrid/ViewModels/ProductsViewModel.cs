@@ -16,11 +16,15 @@ namespace Grocerly.Hybrid.ViewModels
         public Command LoadProductsCommand { get; set; }
         public ICommand LoadMore { get; set; }
 
+        public int UniformColumns { get; set; }
+
         public string currentSearch = "";
          
 
         public ProductsViewModel()
         {
+            UniformColumns = Device.Idiom == TargetIdiom.Phone ? 2 : 3;
+
             Products = new ObservableCollection<Product>();
             LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
 
