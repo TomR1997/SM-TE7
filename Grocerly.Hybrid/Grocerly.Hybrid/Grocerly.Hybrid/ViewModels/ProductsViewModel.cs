@@ -12,15 +12,34 @@ namespace Grocerly.Hybrid.ViewModels
     public class ProductsViewModel : BaseViewModel
     {
         public ProductService DataStore => DependencyService.Get<ProductService>();
+        public ShoppingListService ListStore => DependencyService.Get<ShoppingListService>();
         public ObservableCollection<Product> Products { get; set; }
         public Command LoadProductsCommand { get; set; }
         public ICommand LoadMore { get; set; }
 
+        public decimal CurrentPrice { get; set; }
+
+        public int UniformColumns { get; set; }
+
         public string currentSearch = "";
-         
+
+        private Command<object> _ProductTapped;
+        public Command<object> ProductTapped
+        {
+            get
+            {
+                return _ProductTapped = _ProductTapped ?? new Command<object>(async (x) => {
+                    var item = x as Product;
+                    await AddProductToShoppingList(item);
+                });
+            }
+        }
+
 
         public ProductsViewModel()
         {
+            UniformColumns = Device.Idiom == TargetIdiom.Phone ? 2 : 3;
+
             Products = new ObservableCollection<Product>();
             LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
 
@@ -65,5 +84,36 @@ namespace Grocerly.Hybrid.ViewModels
                 IsBusy = false;
             }
         }
+
+        public async Task AddProductToShoppingList(Product product)
+        {
+            Guid shoppingListId = await CheckAndCreateShoppingList();
+
+            try 
+            {
+                var newProduct = await ListStore.AddProductToList(product.Id, shoppingListId);
+                CurrentPrice = Decimal.Add(CurrentPrice, newProduct.Price);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        }
+
+        private async Task<Guid> CheckAndCreateShoppingList()
+        {
+
+            if (Application.Current.Properties.ContainsKey("ShoppingListId"))
+            {
+                return (Guid)Application.Current.Properties["ShoppingListId"];
+            }
+            
+            ShoppingList shoppingList = await ListStore.CreateShoppingList();
+            Application.Current.Properties["ShoppingListId"] = shoppingList.Id;
+            
+            return shoppingList.Id;
+        }
+      
     }
 }

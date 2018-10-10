@@ -2,10 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Grocerly.Hybrid.Views.ProductPage"
+             xmlns:l="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
              xmlns:b="clr-namespace:Grocerly.Hybrid.Behaviours">
     
     <ContentPage.ToolbarItems>
-        
+        <ToolbarItem Text="{Binding CurrentPrice, StringFormat='{0:C}'}"/>           
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
@@ -14,52 +15,55 @@
                        Placeholder="Zoek producten"
                        TextChanged="Handle_TextChanged"
                        />
-            <ListView ItemsSource="{Binding Products}"
-                  VerticalOptions="FillAndExpand"
-                  HasUnevenRows="true"
-                  RefreshCommand="{Binding LoadItemsCommand}"
-                  IsPullToRefreshEnabled="true"
-                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                  CachingStrategy="RecycleElement">
-                
-                <ListView.Behaviors>  
-            <b:InfiniteScroll LoadMoreCommand="{Binding LoadMore}" />  
-        </ListView.Behaviors>  
-                
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="20, 10, 30, 10">
+        <ScrollView HorizontalOptions="FillAndExpand">
+            <l:RepeatableWrapLayout
+                ItemsSource="{Binding Products}"
+                ItemTapCommand="{Binding ProductTapped}"
+                Spacing="3" UniformColumns="{Binding UniformColumns}"
+                IsSquare="true" >
+                <l:RepeatableWrapLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10, 5, 15, 5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
+                                
+                                <Image Grid.Row="0"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       Source="grocerly_icon"
+                                       Aspect="AspectFit"/>
 
-                            <StackLayout Grid.Column="0">
+                            <StackLayout Grid.Column="0"
+                                         Grid.ColumnSpan="2"
+                                         Grid.Row="1">
                                 <Label Text="{Binding Name}" 
                                         LineBreakMode="NoWrap" 
                                         Style="{DynamicResource ListItemTextStyle}" 
-                                        FontSize="16" />
-                                <Label Text="{Binding Quantity}" 
+                                        FontSize="12" />
+                                <Label Text="{Binding Volume}" 
                                         LineBreakMode="NoWrap"
                                         Style="{DynamicResource ListItemDetailTextStyle}"
-                                        FontSize="13" />
+                                        FontSize="8" />
                             </StackLayout>
                         <Label Text="{Binding Price, StringFormat='{0:C}'}" 
                                         LineBreakMode="NoWrap"
                                         Style="{DynamicResource ListItemTextStyle}"
-                                        FontSize="16" 
+                                        FontSize="20" 
                                         Grid.Column="1"
+                                        Grid.Row="1"
                                         XAlign="End"/>
                         </Grid>
-                    </ViewCell>         
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        </StackLayout>
+                    </DataTemplate>
+                </l:RepeatableWrapLayout.ItemTemplate>
+            </l:RepeatableWrapLayout>
+        </ScrollView>
+    </StackLayout>
         
     </ContentPage.Content>
 </ContentPage>
