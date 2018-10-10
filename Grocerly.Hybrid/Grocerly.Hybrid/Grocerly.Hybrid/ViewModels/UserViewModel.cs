@@ -59,7 +59,11 @@ namespace Grocerly.Hybrid.ViewModels
 
             try
             {
-                ShoppingLists = await UserService.GetShoppingListsForUser(id, status);
+                var shoppingLists = await UserService.GetShoppingListsForUser(id, status);
+                foreach(var s in shoppingLists)
+                {
+                    ShoppingLists.Add(s);
+                }
             }
             catch (Exception ex)
             {
