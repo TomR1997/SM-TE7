@@ -30,7 +30,7 @@ namespace Grocerly.Hybrid.Views
 
             if (isValid)
             {
-                shoppingLists = await userViewModel.GetShoppingListsForUser(App.user.Id, Status.Open);
+                shoppingLists = await shoppingListViewModel.GetShoppingListsForUser(App.user.Id, Status.Open);
                 if (shoppingLists.Count <= 0)
                 {
                     await shoppingListViewModel.CreateShoppingList("New shoppinglist", Status.Open);

@@ -16,24 +16,30 @@ namespace Grocerly.Hybrid.Views
     public partial class ShoppingListPage : ContentPage
     {
         private ShoppingListViewModel viewModel;
-        public List<Product> Products { get; set; }
 
         public ShoppingListPage()
         {
             InitializeComponent();
-            viewModel = new ShoppingListViewModel();
-
-            //Products = await viewModel.GetProductsForShoppingList(new Guid());
-
-            Products = new List<Product>();
-            for (int i = 0; i < 20; i++)
-            {
-                Products.Add(new Product { Name = "Item" + i, Price = 5, Quantity = "500g", CreationDate = DateTime.Now });
-            }
-
-            ShoppinglistListView.ItemsSource = Products;
+            BindingContext = viewModel = new ShoppingListViewModel();
+            GetProductsForShoppingList();
         }
 
+        async void GetProductsForShoppingList()
+        {
+            //var shoppingLists = await viewModel.GetShoppingListsForUser(App.user.Id, Status.Open);
+            //if (shoppingLists.Count() <= 0)
+            //{
+            //    await viewModel.CreateShoppingList("New shoppinglist", Status.Open);
+            //}
+            //else
+            //{
+            //    ShoppingList shoppingList = shoppingLists.Single();
+            //    await viewModel.GetProductsForShoppingList(shoppingList.Id);
+            //}
+
+            //await viewModel.GetProductsForShoppingList(new Guid("c0c5870b-636e-4a52-a723-6cc598e24e6c"));
+
+        }
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)

@@ -14,9 +14,11 @@ namespace Grocerly.Hybrid.ViewModels
     {
         public ShoppingListService ShoppingListService => DependencyService.Get<ShoppingListService>();
         public ObservableCollection<ShoppingListItem> ShoppingListItems { get; set; }
+        public List<ShoppingList> ShoppingLists { get; set; }
 
         public ShoppingListViewModel()
         {
+            ShoppingLists = new List<ShoppingList>();
             ShoppingListItems = new ObservableCollection<ShoppingListItem>();
             Title = "Boodschappenlijst";
         }
@@ -70,6 +72,34 @@ namespace Grocerly.Hybrid.ViewModels
             }
 
             return shoppingList;
+        }
+
+
+        public async Task<List<ShoppingList>> GetShoppingListsForUser(Guid id, Status status)
+        {
+            if (IsBusy)
+                return ShoppingLists;
+
+            IsBusy = true;
+
+            try
+            {
+                var shoppingLists = await ShoppingListService.GetShoppingListsForUser(id, status);
+                foreach (var s in shoppingLists)
+                {
+                    ShoppingLists.Add(s);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+            return ShoppingLists;
         }
     }
 }

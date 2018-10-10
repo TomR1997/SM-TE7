@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Grocerly.Hybrid.Models;
 using Grocerly.Hybrid.Services;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace Grocerly.Hybrid.ViewModels
@@ -31,6 +32,8 @@ namespace Grocerly.Hybrid.ViewModels
             {
                 User = await AuthService.LoginAsync(username, password);
                 App.user = User;
+                Application.Current.Properties["User"] = JsonConvert.SerializeObject(User);
+                await Application.Current.SavePropertiesAsync();
                 return true;
             }
             catch (Exception ex)
