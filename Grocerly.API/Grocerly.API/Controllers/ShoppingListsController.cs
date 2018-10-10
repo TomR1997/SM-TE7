@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Grocerly.Database;
 using Grocerly.Database.Pocos;
+using Grocerly.API.Database.Pocos;
 
 namespace Grocerly.API.Controllers
 {
@@ -189,7 +190,15 @@ namespace Grocerly.API.Controllers
                 (from p in _context.Products
                  from sp in _context.ShoppinglistItems
                  where p.Id.Equals(sp.Id_Product) && sp.Id_Shoppinglist.Equals(id)
-                 select sp.Product);
+                 select new ProductsDTO
+                 {
+                     Id = sp.Product.Id,
+                     Name = sp.Product.Name,
+                     Price = sp.Product.Price,
+                     CreationDate = sp.Product.CreationDate,
+                     Volume = sp.Product.Volume,
+                     Quantity = sp.Quantity
+                 });
 
             return Ok(products);
         }

@@ -8,6 +8,7 @@ namespace Grocerly.Database.Pocos
     {
         public Guid Id_Shoppinglist { get; set; }
         public Guid Id_Product { get; set; }
+        public int Quantity { get; set; }
 
         public ShoppingLists List { get; set; }
         public Products Product { get; set; }

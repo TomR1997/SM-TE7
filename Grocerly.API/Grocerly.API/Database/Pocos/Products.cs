@@ -10,7 +10,7 @@ namespace Grocerly.Database.Pocos
         public Guid Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
-        public string Quantity { get; set; }
+        public string Volume { get; set; }
         public DateTime CreationDate { get; set; }
 
         [JsonIgnore]

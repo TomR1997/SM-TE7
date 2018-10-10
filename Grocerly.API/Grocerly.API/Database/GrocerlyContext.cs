@@ -111,7 +111,7 @@ namespace Grocerly.Database
                 {
                     Name = "AH product " + i,
                     Price = 3.12,
-                    Quantity = "500 gr"
+                    Volume = "500 gr"
                 });
             }
 
@@ -158,7 +158,8 @@ namespace Grocerly.Database
                 ShoppinglistItems.Add(new ShoppinglistItem
                 {
                     List = shoppingList,
-                    Product = AHProducts[i]
+                    Product = AHProducts[i],
+                    Quantity = new Random().Next(10)
                 });
             }
 
