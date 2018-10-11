@@ -28,7 +28,6 @@ namespace Grocerly.Hybrid.Views
             bool isValid = await viewModel.TryLogin(username.Text, password.Text);
 
 
-
             if (isValid)
             {
                 App.isLoggedIn = true;

@@ -39,13 +39,11 @@ namespace Grocerly.Hybrid.Views
 
         async void OnLogoutButtonClicked(object sender, EventArgs e)
         {
-            if (Application.Current.Properties.ContainsKey("jwt"))
-            {
-                Application.Current.Properties.Remove("jwt");
+            Application.Current.Properties.Clear();
+            await Application.Current.SavePropertiesAsync();
 
-                await Application.Current.SavePropertiesAsync();
-            }
-
+            App.isLoggedIn = false;
+            App.user = null;
             await Navigation.PushModalAsync(new NavigationPage(new StartPage()));
         }
     }
