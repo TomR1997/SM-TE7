@@ -14,13 +14,32 @@ namespace Grocerly.Hybrid.ViewModels
     {
         public ShoppingListService ShoppingListService => DependencyService.Get<ShoppingListService>();
         public ObservableCollection<ShoppingListItem> ShoppingListItems { get; set; }
-        public List<ShoppingList> ShoppingLists { get; set; }
+        public ObservableCollection<ShoppingList> ShoppingLists { get; set; }
+
+        public Command LoadListsAndProductsCommand { get; set; }
 
         public ShoppingListViewModel()
         {
-            ShoppingLists = new List<ShoppingList>();
+            ShoppingLists = new ObservableCollection<ShoppingList>();
             ShoppingListItems = new ObservableCollection<ShoppingListItem>();
             Title = "Boodschappenlijst";
+
+            LoadListsAndProductsCommand = new Command(async () => await GetProductsForShoppingList());
+        }
+
+        async Task GetProductsForShoppingList()
+        {
+            await GetShoppingListsForUser(App.user.Id, Status.Open);
+            if (ShoppingLists.Count == 0)
+            {
+               // await CreateShoppingList();
+            }
+            else
+            {
+                //ShoppingList shoppingList = ShoppingLists[0];
+                await GetProductsForShoppingList(new Guid("eb5886b9-e7e8-4351-a38f-f816ceaca36e"));
+            }
+
         }
 
         public async Task GetProductsForShoppingList(Guid id)
@@ -49,12 +68,9 @@ namespace Grocerly.Hybrid.ViewModels
             }
         }
 
-        public async Task<ShoppingList> CreateShoppingList(string name, Status status)
+        public async Task<ShoppingList> CreateShoppingList()
         {
             ShoppingList shoppingList = new ShoppingList();
-
-            if (IsBusy)
-                return shoppingList;
 
             IsBusy = true;
 
@@ -75,10 +91,8 @@ namespace Grocerly.Hybrid.ViewModels
         }
 
 
-        public async Task<List<ShoppingList>> GetShoppingListsForUser(Guid id, Status status)
+        public async Task GetShoppingListsForUser(Guid id, Status status)
         {
-            if (IsBusy)
-                return ShoppingLists;
 
             IsBusy = true;
 
@@ -99,7 +113,7 @@ namespace Grocerly.Hybrid.ViewModels
                 IsBusy = false;
             }
 
-            return ShoppingLists;
+            
         }
     }
 }

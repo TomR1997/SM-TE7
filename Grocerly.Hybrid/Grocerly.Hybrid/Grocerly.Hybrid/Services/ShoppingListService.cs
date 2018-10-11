@@ -41,6 +41,9 @@ namespace Grocerly.Hybrid.Services
 
             var json = await response.Content.ReadAsStringAsync();
 
+            if (!response.IsSuccessStatusCode)
+                throw new ArgumentException();
+
             return await Task.Run(() => JsonConvert.DeserializeObject<ShoppingList>(json));
         }
 
@@ -58,7 +61,7 @@ namespace Grocerly.Hybrid.Services
         public async Task<IEnumerable<ShoppingList>> GetShoppingListsForUser(Guid id, Status status)
         {
             var response = await client.GetStringAsync($"api/users/" + id + "/shoppinglists?status=" + status);
-            return await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ShoppingList>>(response.ToString()));
+            return await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ShoppingList>>(response));
         }
     }
 }

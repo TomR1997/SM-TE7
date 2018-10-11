@@ -26,19 +26,25 @@ namespace Grocerly.Hybrid.Views
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
             bool isValid = await viewModel.TryLogin(username.Text, password.Text);
-            List<ShoppingList> shoppingLists = new List<ShoppingList>();
+
+
 
             if (isValid)
             {
-                shoppingLists = await shoppingListViewModel.GetShoppingListsForUser(App.user.Id, Status.Open);
-                if (shoppingLists.Count <= 0)
-                {
-                    await shoppingListViewModel.CreateShoppingList("New shoppinglist", Status.Open);
-                }
-
                 App.isLoggedIn = true;
                 Navigation.InsertPageBefore(new MainPage(), this);
                 await Navigation.PopAsync();
+
+                await shoppingListViewModel.GetShoppingListsForUser(App.user.Id, Status.Open);
+
+                if (shoppingListViewModel.ShoppingLists.Count == 0)
+                {
+                   var shoppingList = await shoppingListViewModel.CreateShoppingList();
+                   // Application.Current.Properties["ShoppingListId"] = shoppingList.Id;
+                    await Application.Current.SavePropertiesAsync();
+                }
+
+
             }
             else
                 error_label.IsVisible = true;

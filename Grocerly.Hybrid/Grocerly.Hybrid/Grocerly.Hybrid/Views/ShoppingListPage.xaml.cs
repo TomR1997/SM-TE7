@@ -21,25 +21,18 @@ namespace Grocerly.Hybrid.Views
         {
             InitializeComponent();
             BindingContext = viewModel = new ShoppingListViewModel();
-            GetProductsForShoppingList();
+            
         }
 
-        async void GetProductsForShoppingList()
+        protected override void OnAppearing()
         {
-            //var shoppingLists = await viewModel.GetShoppingListsForUser(App.user.Id, Status.Open);
-            //if (shoppingLists.Count() <= 0)
-            //{
-            //    await viewModel.CreateShoppingList("New shoppinglist", Status.Open);
-            //}
-            //else
-            //{
-            //    ShoppingList shoppingList = shoppingLists.Single();
-            //    await viewModel.GetProductsForShoppingList(shoppingList.Id);
-            //}
+            base.OnAppearing();
 
-            //await viewModel.GetProductsForShoppingList(new Guid("c0c5870b-636e-4a52-a723-6cc598e24e6c"));
-
+            if (viewModel.ShoppingListItems.Count == 0)
+                viewModel.LoadListsAndProductsCommand.Execute(null);
         }
+
+
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
