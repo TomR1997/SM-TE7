@@ -32,12 +32,12 @@ namespace Grocerly.Hybrid.ViewModels
             await GetShoppingListsForUser(App.user.Id, Status.Open);
             if (ShoppingLists.Count == 0)
             {
-               // await CreateShoppingList();
+               await CreateShoppingList();
             }
             else
             {
-                //ShoppingList shoppingList = ShoppingLists[0];
-                await GetProductsForShoppingList(new Guid("eb5886b9-e7e8-4351-a38f-f816ceaca36e"));
+                ShoppingList shoppingList = ShoppingLists[0];
+                await GetProductsForShoppingList(shoppingList.Id);
             }
 
         }

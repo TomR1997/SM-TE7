@@ -33,11 +33,12 @@ namespace Grocerly.Hybrid.Services
             var content = new StringContent(JsonConvert.SerializeObject(new ShoppingList
             {
                 Name = "New shoppinglist",
-                Status = Status.Open,
-                User = App.user
+                Status = Status.Open
             }), Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync($"api/shoppinglists", content);
+            var url = String.Format("api/shoppinglists?user_id={0}", App.user.Id);
+
+            var response = await client.PostAsync(url, content);
 
             var json = await response.Content.ReadAsStringAsync();
 

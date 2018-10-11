@@ -103,14 +103,19 @@ namespace Grocerly.Hybrid.ViewModels
 
         private async Task<Guid> CheckAndCreateShoppingList()
         {
+            ShoppingList shoppingList = new ShoppingList();
 
             if (Application.Current.Properties.ContainsKey("ShoppingListId"))
             {
                 return (Guid)Application.Current.Properties["ShoppingListId"];
             }
-            
-            ShoppingList shoppingList = await ListStore.CreateShoppingList();
-            Application.Current.Properties["ShoppingListId"] = shoppingList.Id;
+            try
+            {
+                shoppingList = await ListStore.CreateShoppingList();
+                Application.Current.Properties["ShoppingListId"] = shoppingList.Id;
+            }catch(Exception ex){
+                Debug.WriteLine(ex);
+            }
             
             return shoppingList.Id;
         }

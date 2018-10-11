@@ -40,7 +40,7 @@ namespace Grocerly.Hybrid.Views
                 if (shoppingListViewModel.ShoppingLists.Count == 0)
                 {
                    var shoppingList = await shoppingListViewModel.CreateShoppingList();
-                   // Application.Current.Properties["ShoppingListId"] = shoppingList.Id;
+                   Application.Current.Properties["ShoppingListId"] = shoppingList.Id;
                     await Application.Current.SavePropertiesAsync();
                 }
 
