@@ -36,14 +36,12 @@ namespace Grocerly.Hybrid
 
             isLoggedIn = Properties.ContainsKey("jwt");
 
-            object user;
             if (isLoggedIn)
             {
                 if (Current.Properties.ContainsKey("User"))
                 {
-                    user = Current.Properties["User"];
-                    var jUser = JsonConvert.DeserializeObject<User>(user.ToString());
-                    App.user = jUser;
+                    var user = Current.Properties["User"];
+                    App.user = JsonConvert.DeserializeObject<User>(user.ToString());
                 }
                 MainPage = new MainPage();
             }
@@ -51,8 +49,6 @@ namespace Grocerly.Hybrid
             {
                 MainPage = (Page)new NavigationPage(new StartPage());
             }
-
-            MainPage = isLoggedIn ? new MainPage() : (Page)new NavigationPage(new StartPage());
         }
 
         protected override void OnStart()
