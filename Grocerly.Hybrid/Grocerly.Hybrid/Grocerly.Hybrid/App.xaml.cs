@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using Grocerly.Hybrid.Services;
 using Grocerly.Hybrid.Views;
 using Grocerly.Hybrid.Models;
+using Newtonsoft.Json;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Grocerly.Hybrid
@@ -34,6 +35,22 @@ namespace Grocerly.Hybrid
             DependencyService.Register<ShoppingListService>();
 
             isLoggedIn = Properties.ContainsKey("jwt");
+
+            object user;
+            if (isLoggedIn)
+            {
+                if (Current.Properties.ContainsKey("User"))
+                {
+                    user = Current.Properties["User"];
+                    var jUser = JsonConvert.DeserializeObject<User>(user.ToString());
+                    App.user = jUser;
+                }
+                MainPage = new MainPage();
+            }
+            else
+            {
+                MainPage = (Page)new NavigationPage(new StartPage());
+            }
 
             MainPage = isLoggedIn ? new MainPage() : (Page)new NavigationPage(new StartPage());
         }
