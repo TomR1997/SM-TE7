@@ -34,17 +34,6 @@ namespace Grocerly.Hybrid.Views
                 App.isLoggedIn = true;
                 Navigation.InsertPageBefore(new MainPage(), this);
                 await Navigation.PopAsync();
-
-                await shoppingListViewModel.GetShoppingListsForUser(App.user.Id, Status.Open);
-
-                if (shoppingListViewModel.ShoppingLists.Count == 0)
-                {
-                   var shoppingList = await shoppingListViewModel.CreateShoppingList();
-                   Application.Current.Properties["ShoppingListId"] = shoppingList.Id;
-                    await Application.Current.SavePropertiesAsync();
-                }
-
-
             }
             else
                 error_label.IsVisible = true;

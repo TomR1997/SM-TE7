@@ -29,8 +29,9 @@ namespace Grocerly.Hybrid.ViewModels
 
         async Task GetProductsForShoppingList()
         {
+
             var shoppingListId = await CheckAndCreateShoppingList();
-           
+
             await GetProductsForShoppingList(shoppingListId);
 
 
@@ -112,6 +113,13 @@ namespace Grocerly.Hybrid.ViewModels
 
         private async Task<Guid> CheckAndCreateShoppingList()
         {
+            await GetShoppingListsForUser(App.user.Id, Status.Open);
+
+            if (ShoppingLists.Count > 0)
+            {
+                Application.Current.Properties["ShoppingListId"] = ShoppingLists[0].Id;
+            }
+
             ShoppingList shoppingList = new ShoppingList();
 
             if (Application.Current.Properties.ContainsKey("ShoppingListId"))
