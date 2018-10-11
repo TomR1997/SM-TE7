@@ -11,6 +11,7 @@ namespace Grocerly.Hybrid.Models
         public string Address { get; set; }
         public int Housenumber { get; set; }
         public string Username { get; set; }
+        public string Password { get; set; }
 
         public User()
         {

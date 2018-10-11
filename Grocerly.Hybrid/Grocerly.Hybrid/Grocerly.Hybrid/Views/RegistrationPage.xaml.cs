@@ -26,7 +26,14 @@ namespace Grocerly.Hybrid.Views
         
         async void Register(object sender, EventArgs e)
         {
-            bool success = await viewModel.TryRegister(Entry_Email.Text, Entry_Username.Text, Entry_Password.Text);
+            string role = "User";
+            bool isVolunteer = Switch_Roles.IsToggled;
+            if (isVolunteer)
+            {
+                role = "Volunteer";
+            }
+
+            bool success = await viewModel.TryRegister(Entry_Email.Text, Entry_Username.Text, Entry_Password.Text, role);
 
             if (success)
                 await Navigation.PushAsync(new LoginPage());

@@ -92,7 +92,7 @@ namespace Grocerly.Hybrid.ViewModels
             try 
             {
                 var newProduct = await ListStore.AddProductToList(product.Id, shoppingListId);
-                CurrentPrice = Decimal.Add(CurrentPrice, newProduct.Price);
+                CurrentPrice = decimal.Add(CurrentPrice, newProduct.Price);
 
             }
             catch (Exception ex)
