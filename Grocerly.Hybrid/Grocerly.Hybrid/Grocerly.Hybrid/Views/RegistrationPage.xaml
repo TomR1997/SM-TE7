@@ -12,13 +12,17 @@
 
                 <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True"/>
 
-                <Label x:Name="Lbl_Email" Text="Email:" FontSize="Large"/>
+                <Label x:Name="Lbl_Email" Text="Email" FontSize="Large"/>
                 <Entry x:Name="Entry_Email" Placeholder="Email"/>
-                <Label x:Name="Lbl_Username" Text="Username:" FontSize="Large"/>
+                <Label x:Name="Lbl_Username" Text="Gebruikersnaam" FontSize="Large"/>
                 <Entry x:Name="Entry_Username" Placeholder="Username"/>
-                <Label x:Name="Lbl_Password" Text="Password:" FontSize="Large"/>
+                <Label x:Name="Lbl_Password" Text="Wachtwoord" FontSize="Large"/>
                 <Entry x:Name="Entry_Password" IsPassword="True" Placeholder="Password"/>
-                <Button x:Name="Btn_Register" Text="Register" Clicked="Register"/>
+                <StackLayout HorizontalOptions="Start">
+                    <Label x:Name="Lbl_Roles" Text="Vrijwilliger" FontSize="Large"/>
+                    <Switch x:Name="Switch_Roles"/>
+                </StackLayout>
+                <Button x:Name="Btn_Register" Text="Registreer" Clicked="Register"/>
                 <Label
                     x:Name="error_label"
                     IsVisible="false"
