@@ -20,18 +20,21 @@ namespace Grocerly.Hybrid.Services
             };
         }
 
-        public async Task<User> RegisterAsync(string email, string username, string password)
+        public async Task<User> RegisterAsync(string email, string username, string password, string role)
         {
-            var content = new StringContent(JsonConvert.SerializeObject(new
+            var content = new StringContent(JsonConvert.SerializeObject(new User
             {
                 Email = email,
                 Username = username,
-                Password = password
+                Password = password,
+                Role = role
             }), Encoding.UTF8, "application/json");
 
             var response = await client.PostAsync($"api/users", content);
 
-            return await Task.Run(() => JsonConvert.DeserializeObject<User>(response.Content.ToString()));
+            var json = await response.Content.ReadAsStringAsync();
+
+            return await Task.Run(() => JsonConvert.DeserializeObject<User>(json));
         }
     }
 }
