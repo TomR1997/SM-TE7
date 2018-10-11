@@ -70,13 +70,12 @@ namespace Grocerly.Database
                 .HasForeignKey(sp => sp.Id_Shop);
 
             modelBuilder.Entity<Users>()
-                .HasMany(u => u.ShoppingLists);
+                .HasMany(u => u.ShoppingLists)
+                .WithOne(sl => sl.User);
 
             modelBuilder.Entity<Products>()
                         .Property(p => p.CreationDate)
                         .HasDefaultValueSql("strftime('%Y-%m-%d %H:%M:%S','now')");
-
-
         }
 
         public async void CreateDummyData()
@@ -159,7 +158,7 @@ namespace Grocerly.Database
                 {
                     List = shoppingList,
                     Product = AHProducts[i],
-                    Quantity = new Random().Next(10)
+                    Quantity = new Random().Next(1, 10)
                 });
             }
 
