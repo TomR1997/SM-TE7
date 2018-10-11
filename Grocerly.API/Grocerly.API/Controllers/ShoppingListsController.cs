@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Grocerly.Database;
 using Grocerly.Database.Pocos;
 using Grocerly.API.Database.Pocos;
+using System.Diagnostics;
 
 namespace Grocerly.API.Controllers
 {
@@ -85,15 +86,27 @@ namespace Grocerly.API.Controllers
 
         // POST: api/ShoppingLists
         [HttpPost]
-        public async Task<IActionResult> PostShoppingLists([FromBody] ShoppingLists shoppingLists)
+        public async Task<IActionResult> PostShoppingLists([FromBody] ShoppingLists shoppingLists, Guid user_id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var users = await _context.Users.SingleOrDefaultAsync(m => m.Id == user_id);
+
+            if (users == null)
+            {
+                return NotFound();
+            }
+            shoppingLists.User = users;
             _context.ShoppingLists.Add(shoppingLists);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }catch(Exception ex){
+                Debug.WriteLine(ex);
+            }
 
             return CreatedAtAction("GetShoppingLists", new { id = shoppingLists.Id }, shoppingLists);
         }

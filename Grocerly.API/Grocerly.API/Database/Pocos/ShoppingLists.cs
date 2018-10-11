@@ -16,6 +16,7 @@ namespace Grocerly.Database.Pocos
         [JsonIgnore]
         public List<ShoppinglistItem> Products { get; set; }
 
+        [JsonIgnore]
         public Users User { get; set; }
     }
 }
