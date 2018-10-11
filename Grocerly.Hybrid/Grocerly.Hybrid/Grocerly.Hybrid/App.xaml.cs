@@ -19,6 +19,8 @@ namespace Grocerly.Hybrid
         public static bool isLoggedIn;
         public static User user;
 
+        public static Page staticMainPage;
+
         public App()
         {
             InitializeComponent();
@@ -38,12 +40,12 @@ namespace Grocerly.Hybrid
 
             if (isLoggedIn)
             {
-                if (Current.Properties.ContainsKey("User"))
+                if (Properties.ContainsKey("User"))
                 {
-                    var user = Current.Properties["User"];
-                    App.user = JsonConvert.DeserializeObject<User>(user.ToString());
+                    user = JsonConvert.DeserializeObject<User>(Current.Properties["User"].ToString());
                 }
                 MainPage = new MainPage();
+
             }
             else
             {

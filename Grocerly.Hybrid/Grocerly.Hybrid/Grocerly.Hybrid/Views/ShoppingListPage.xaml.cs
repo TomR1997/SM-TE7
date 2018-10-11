@@ -27,9 +27,7 @@ namespace Grocerly.Hybrid.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (viewModel.ShoppingListItems.Count == 0)
-                viewModel.LoadListsAndProductsCommand.Execute(null);
+            viewModel.LoadListsAndProductsCommand.Execute(null);
         }
 
 

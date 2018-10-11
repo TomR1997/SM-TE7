@@ -31,8 +31,7 @@ namespace Grocerly.Hybrid.Views
             if (isValid)
             {
                 App.isLoggedIn = true;
-                Navigation.InsertPageBefore(new MainPage(), this);
-                await Navigation.PopAsync();
+                Application.Current.MainPage = new MainPage();
             }
             else
                 error_label.IsVisible = true;
