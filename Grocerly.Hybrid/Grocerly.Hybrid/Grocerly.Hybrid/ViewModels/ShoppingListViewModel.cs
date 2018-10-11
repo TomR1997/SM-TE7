@@ -29,16 +29,10 @@ namespace Grocerly.Hybrid.ViewModels
 
         async Task GetProductsForShoppingList()
         {
-            await GetShoppingListsForUser(App.user.Id, Status.Open);
-            if (ShoppingLists.Count == 0)
-            {
-               await CreateShoppingList();
-            }
-            else
-            {
-                ShoppingList shoppingList = ShoppingLists[0];
-                await GetProductsForShoppingList(shoppingList.Id);
-            }
+            var shoppingListId = await CheckAndCreateShoppingList();
+           
+            await GetProductsForShoppingList(shoppingListId);
+
 
         }
 
@@ -114,6 +108,27 @@ namespace Grocerly.Hybrid.ViewModels
             }
 
             
+        }
+
+        private async Task<Guid> CheckAndCreateShoppingList()
+        {
+            ShoppingList shoppingList = new ShoppingList();
+
+            if (Application.Current.Properties.ContainsKey("ShoppingListId"))
+            {
+                return (Guid)Application.Current.Properties["ShoppingListId"];
+            }
+            try
+            {
+                shoppingList = await CreateShoppingList();
+                Application.Current.Properties["ShoppingListId"] = shoppingList.Id;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            return shoppingList.Id;
         }
     }
 }
