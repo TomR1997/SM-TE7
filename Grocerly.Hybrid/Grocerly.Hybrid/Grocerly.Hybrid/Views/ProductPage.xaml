@@ -5,9 +5,7 @@
              xmlns:l="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
              xmlns:b="clr-namespace:Grocerly.Hybrid.Behaviours">
     
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{Binding CurrentPrice, StringFormat='{0:C}'}"/>           
-    </ContentPage.ToolbarItems>
+   
     
     <ContentPage.Content>
         <StackLayout>
@@ -17,19 +15,21 @@
                        />
         <ScrollView HorizontalOptions="FillAndExpand">
             <l:RepeatableWrapLayout
+                BackgroundColor="#e5e5e5"
                 ItemsSource="{Binding Products}"
                 ItemTapCommand="{Binding ProductTapped}"
                 Spacing="3" UniformColumns="{Binding UniformColumns}"
                 IsSquare="true" >
                 <l:RepeatableWrapLayout.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10, 5, 15, 5">
+                        <Grid Padding="10, 5, 15, 5"
+                              BackgroundColor="White">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                                 
@@ -49,7 +49,7 @@
                                 <Label Text="{Binding Volume}" 
                                         LineBreakMode="NoWrap"
                                         Style="{DynamicResource ListItemDetailTextStyle}"
-                                        FontSize="8" />
+                                        FontSize="10" />
                             </StackLayout>
                         <Label Text="{Binding Price, StringFormat='{0:C}'}" 
                                         LineBreakMode="NoWrap"

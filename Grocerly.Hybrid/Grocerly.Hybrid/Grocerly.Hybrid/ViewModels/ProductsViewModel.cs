@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Grocerly.Hybrid.Models;
@@ -16,6 +17,9 @@ namespace Grocerly.Hybrid.ViewModels
         public ObservableCollection<Product> Products { get; set; }
         public Command LoadProductsCommand { get; set; }
         public ICommand LoadMore { get; set; }
+        public Command CalculatePriceCommand { get; set; }
+
+        public ToolbarItem ShoppingCart { get; set; }
 
         public decimal CurrentPrice { get; set; }
 
@@ -23,7 +27,7 @@ namespace Grocerly.Hybrid.ViewModels
 
         public string currentSearch = "";
 
-        private Command<object> _ProductTapped;
+        Command<object> _ProductTapped;
         public Command<object> ProductTapped
         {
             get
@@ -42,9 +46,15 @@ namespace Grocerly.Hybrid.ViewModels
 
             Products = new ObservableCollection<Product>();
             LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
+            CalculatePriceCommand = new Command(async () => await CalculateCurrentPrice());
+
+            ShoppingCart = new ToolbarItem
+            {
+                Text = SetPrice(CurrentPrice)
+            };
 
             int page = 2;
-            this.LoadMore = new Command(async () => {
+            LoadMore = new Command(async () => {
                 var newProducts = await DataStore.GetProductsAsync(12, page, currentSearch);
                 page += 1;
                 foreach (var p in newProducts)
@@ -53,13 +63,34 @@ namespace Grocerly.Hybrid.ViewModels
                 }
             });
         }
+        
+        public async Task CalculateCurrentPrice()
+        {
+            if (Application.Current.Properties.ContainsKey("ShoppingListId"))
+            {
+                CurrentPrice = 0;
+                var id = Application.Current.Properties["ShoppingListId"];
+                var products = await ListStore.GetProductsForShoppingList((Guid)id);
+
+                foreach (var p in products)
+                {
+                    decimal price = p.Price;
+                    if (p.Quantity > 1)
+                        price = p.Price * p.Quantity;
+
+                    CurrentPrice = Decimal.Add(CurrentPrice, price);
+                }
+
+                ShoppingCart.Text = SetPrice(CurrentPrice);
+            }
+        }
 
         public async Task SearchProducts (int rows, int page, string name)
         {
             await ExecuteLoadProductsCommand(rows, page, name);
         }
 
-        async Task ExecuteLoadProductsCommand(int rows = 15, int page = 1, string name = "")
+        async Task ExecuteLoadProductsCommand(int rows = 12, int page = 1, string name = "")
         {
             if (IsBusy)
                 return;
@@ -93,6 +124,7 @@ namespace Grocerly.Hybrid.ViewModels
             {
                 var newProduct = await ListStore.AddProductToList(product.Id, shoppingListId);
                 CurrentPrice = decimal.Add(CurrentPrice, newProduct.Price);
+                ShoppingCart.Text = SetPrice(CurrentPrice);
 
             }
             catch (Exception ex)
@@ -113,11 +145,17 @@ namespace Grocerly.Hybrid.ViewModels
             {
                 shoppingList = await ListStore.CreateShoppingList();
                 Application.Current.Properties["ShoppingListId"] = shoppingList.Id;
+                await Application.Current.SavePropertiesAsync();
             }catch(Exception ex){
                 Debug.WriteLine(ex);
             }
             
             return shoppingList.Id;
+        }
+
+        string SetPrice(decimal price)
+        {
+            return price.ToString("C2");
         }
       
     }

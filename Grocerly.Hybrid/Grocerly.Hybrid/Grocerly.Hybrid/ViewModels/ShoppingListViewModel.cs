@@ -118,6 +118,7 @@ namespace Grocerly.Hybrid.ViewModels
             if (ShoppingLists.Count > 0)
             {
                 Application.Current.Properties["ShoppingListId"] = ShoppingLists[0].Id;
+                await Application.Current.SavePropertiesAsync();
             }
 
             ShoppingList shoppingList = new ShoppingList();

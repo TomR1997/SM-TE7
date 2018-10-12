@@ -5,6 +5,7 @@ using Grocerly.Hybrid.Services;
 using Grocerly.Hybrid.Views;
 using Grocerly.Hybrid.Models;
 using Newtonsoft.Json;
+using System.Globalization;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Grocerly.Hybrid
@@ -19,11 +20,11 @@ namespace Grocerly.Hybrid
         public static bool isLoggedIn;
         public static User user;
 
-        public static Page staticMainPage;
-
         public App()
         {
             InitializeComponent();
+
+            CultureInfo.CurrentCulture = new CultureInfo("nl-NL");
 
             if (UseMockDataStore)
                 DependencyService.Register<MockDataStore>();
