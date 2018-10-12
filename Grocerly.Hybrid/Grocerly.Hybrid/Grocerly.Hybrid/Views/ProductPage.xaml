@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Grocerly.Hybrid.Views.ProductPage"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              xmlns:l="clr-namespace:AiForms.Layouts;assembly=AiForms.Layouts"
              xmlns:b="clr-namespace:Grocerly.Hybrid.Behaviours">
     
@@ -13,17 +14,26 @@
                        Placeholder="Zoek producten"
                        TextChanged="Handle_TextChanged"
                        />
-        <ScrollView HorizontalOptions="FillAndExpand">
-            <l:RepeatableWrapLayout
+            <flv:FlowListView
                 BackgroundColor="#e5e5e5"
-                ItemsSource="{Binding Products}"
-                ItemTapCommand="{Binding ProductTapped}"
-                Spacing="3" UniformColumns="{Binding UniformColumns}"
-                IsSquare="true" >
-                <l:RepeatableWrapLayout.ItemTemplate>
+                FlowItemsSource="{Binding Products}"
+                FlowItemTappedCommand="{Binding ProductTapped}"
+                FlowColumnCount="{Binding UniformColumns}"
+                HasUnevenRows="true"
+                FlowIsLoadingInfiniteEnabled="true"
+                FlowLoadingCommand="{Binding LoadMore}"
+                 >
+                
+                <flv:FlowListView.Behaviors>
+                    <b:WrapInfiniteScroll LoadMoreCommand="{Binding LoadMore}" />
+                </flv:FlowListView.Behaviors>
+                
+               <flv:FlowListView.FlowColumnTemplate>
                     <DataTemplate>
                         <Grid Padding="10, 5, 15, 5"
-                              BackgroundColor="White">
+                              Margin="2"
+                              BackgroundColor="White"
+                              HeightRequest="150">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
@@ -60,9 +70,9 @@
                                         XAlign="End"/>
                         </Grid>
                     </DataTemplate>
-                </l:RepeatableWrapLayout.ItemTemplate>
-            </l:RepeatableWrapLayout>
-        </ScrollView>
+                </flv:FlowListView.FlowColumnTemplate>
+            </flv:FlowListView>
+
     </StackLayout>
         
     </ContentPage.Content>

@@ -16,6 +16,8 @@ namespace Grocerly.Hybrid.Views
         {
             InitializeComponent();
 
+            laUsername.BindingContext = App.user;
+
             btnLogout.IsVisible = App.isLoggedIn;
 
             menuItems = new List<HomeMenuItem>

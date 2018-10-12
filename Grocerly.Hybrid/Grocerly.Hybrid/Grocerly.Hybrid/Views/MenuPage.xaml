@@ -4,7 +4,21 @@
              x:Class="Grocerly.Hybrid.Views.MenuPage"
              Title="Menu">
     <StackLayout VerticalOptions="FillAndExpand">
-        
+        <OnPlatform x:TypeArguments="View"> 
+            <OnPlatform.Android>
+                <BoxView HeightRequest="50"
+                    BackgroundColor="#4CAF50"/>
+            </OnPlatform.Android>
+            <OnPlatform.iOS>
+                <BoxView HeightRequest="50"
+                    BackgroundColor="White"/>
+            </OnPlatform.iOS>
+        </OnPlatform>
+    
+            
+        <Label x:Name="laUsername" 
+               Text="{Binding Name}"
+               XAlign="Center"/>
         <Button Text="Uitloggen"
                 x:Name="btnLogout"
                 Clicked="OnLogoutButtonClicked"/>
