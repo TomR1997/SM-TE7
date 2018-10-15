@@ -25,7 +25,7 @@ namespace Grocerly.API.Controllers
 
         // GET: api/ShoppingLists
         [HttpGet]
-        public IEnumerable<ShoppingLists> GetShoppingLists()
+        public IEnumerable<ShoppingLists> GetShoppingLists(Status status = Status.Pending)
         {
             return _context.ShoppingLists;
         }
