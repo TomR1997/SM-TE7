@@ -3,12 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Grocerly.Hybrid.Views.ShoppingListPage"
              Title="{Binding Title}">
-    <ListView x:Name="ShoppinglistListView"
-                ItemsSource="{Binding ShoppingListItems}"
-                HasUnevenRows="True"
-                VerticalOptions="FillAndExpand"
-                ItemTapped="Handle_ItemTapped"
-                CachingStrategy="RecycleElement">
+    <StackLayout>
+        <Button Text="Aanvragen"
+                Clicked="RequestShoppingList"/>
+        <Label
+                    x:Name="error_label"
+                    IsVisible="false"
+                    TextColor="Red"
+                    Text="Het aanvragen is mislukt."/>
+        <ListView x:Name="ShoppinglistListView"
+                    ItemsSource="{Binding ShoppingListItems}"
+                    HasUnevenRows="True"
+                    VerticalOptions="FillAndExpand"
+                    ItemTapped="Handle_ItemTapped"
+                    CachingStrategy="RecycleElement">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -50,4 +58,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+    </StackLayout>
 </ContentPage>

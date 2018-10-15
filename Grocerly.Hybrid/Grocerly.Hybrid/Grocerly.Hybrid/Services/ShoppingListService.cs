@@ -36,7 +36,7 @@ namespace Grocerly.Hybrid.Services
                 Status = Status.Open
             }), Encoding.UTF8, "application/json");
 
-            var url = String.Format("api/shoppinglists?user_id={0}", App.user.Id);
+            var url = string.Format("api/shoppinglists?user_id={0}", App.user.Id);
 
             var response = await client.PostAsync(url, content);
 
@@ -63,6 +63,24 @@ namespace Grocerly.Hybrid.Services
         {
             var response = await client.GetStringAsync($"api/users/" + id + "/shoppinglists?status=" + status);
             return await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<ShoppingList>>(response));
+        }
+
+        public async Task<bool> UpdateShoppingList(ShoppingList shoppingList)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(shoppingList), Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"api/shoppinglists/" + shoppingList.Id, content);
+
+            var json = response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+                return false;
+
+            return true;
+        }
+
+        public async Task<ShoppingList> GetShoppingList(Guid id)
+        {
+            var response = await client.GetStringAsync($"api/shoppinglists/" + id);
+            return await Task.Run(() => JsonConvert.DeserializeObject<ShoppingList>(response));
         }
     }
 }

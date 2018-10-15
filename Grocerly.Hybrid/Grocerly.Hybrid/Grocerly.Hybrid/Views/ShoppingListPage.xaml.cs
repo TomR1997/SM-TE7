@@ -21,7 +21,6 @@ namespace Grocerly.Hybrid.Views
         {
             InitializeComponent();
             BindingContext = viewModel = new ShoppingListViewModel();
-            
         }
 
         protected override void OnAppearing()
@@ -40,6 +39,22 @@ namespace Grocerly.Hybrid.Views
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+
+        private async void RequestShoppingList(object sender, EventArgs e)
+        {
+            await viewModel.GetShoppingList();
+            if (viewModel.ShoppingList != null)
+            {
+                viewModel.ShoppingList.Status = Status.Pending;
+                var updated = await viewModel.UpdateShoppingList(viewModel.ShoppingList);
+                if (!updated)
+                    error_label.IsVisible = true;
+                else
+                    await viewModel.GetProductsForShoppingList();
+            }
+            else
+                error_label.IsVisible = true;
         }
     }
 }

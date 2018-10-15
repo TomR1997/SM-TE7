@@ -15,6 +15,7 @@ namespace Grocerly.Hybrid.ViewModels
         public ShoppingListService ShoppingListService => DependencyService.Get<ShoppingListService>();
         public ObservableCollection<ShoppingListItem> ShoppingListItems { get; set; }
         public ObservableCollection<ShoppingList> ShoppingLists { get; set; }
+        public ShoppingList ShoppingList { get; set; }
 
         public Command LoadListsAndProductsCommand { get; set; }
 
@@ -27,14 +28,10 @@ namespace Grocerly.Hybrid.ViewModels
             LoadListsAndProductsCommand = new Command(async () => await GetProductsForShoppingList());
         }
 
-        async Task GetProductsForShoppingList()
+        public async Task GetProductsForShoppingList()
         {
-
             var shoppingListId = await CheckAndCreateShoppingList();
-
             await GetProductsForShoppingList(shoppingListId);
-
-
         }
 
         public async Task GetProductsForShoppingList(Guid id)
@@ -89,12 +86,12 @@ namespace Grocerly.Hybrid.ViewModels
 
         public async Task GetShoppingListsForUser(Guid id, Status status)
         {
-
             IsBusy = true;
 
             try
             {
                 var shoppingLists = await ShoppingListService.GetShoppingListsForUser(id, status);
+                ShoppingLists.Clear();
                 foreach (var s in shoppingLists)
                 {
                     ShoppingLists.Add(s);
@@ -108,8 +105,50 @@ namespace Grocerly.Hybrid.ViewModels
             {
                 IsBusy = false;
             }
+        }
 
-            
+        public async Task<bool> UpdateShoppingList(ShoppingList shoppingList)
+        {
+            IsBusy = true;
+
+            try
+            {
+                await ShoppingListService.UpdateShoppingList(shoppingList);
+                if (Application.Current.Properties.ContainsKey("ShoppingListId"))
+                {
+                    Application.Current.Properties.Remove("ShoppingListId");
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                return false;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        public async Task GetShoppingList()
+        {
+            IsBusy = true;
+
+            try
+            {
+                var shoppingListId = await CheckAndCreateShoppingList(); 
+                ShoppingList = await ShoppingListService.GetShoppingList(shoppingListId);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         private async Task<Guid> CheckAndCreateShoppingList()
