@@ -128,12 +128,21 @@ namespace Grocerly.Database
 
             for (int i = 0; i < 20; i++)
             {
+                Status status = Status.Open;
+                if (i > 10)
+                {
+                    status = Status.Closed;
+                    if(i > 15)
+                    {
+                        status = Status.Pending;
+                    }
+                }
+
                 ShoppingLists shoppingList = new ShoppingLists
                 {
                     Id = new Guid(),
                     Name = "Name" + i,
-                    Status = (Status)Enum.GetValues(typeof(Status)).GetValue(new Random().Next(Enum.GetValues(typeof(Status)).Length))
-
+                    Status = status
                 };
                 ShoppingLists.Add(shoppingList);
 
