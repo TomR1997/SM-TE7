@@ -50,6 +50,7 @@ namespace Grocerly.Hybrid.ViewModels
                 var items = await ShoppingListService.GetProductsForShoppingList(id);
                 foreach(var i in items)
                 {
+                    i.Price = i.Price * i.Quantity;
                     ShoppingListItems.Add(i);
                 }
             }

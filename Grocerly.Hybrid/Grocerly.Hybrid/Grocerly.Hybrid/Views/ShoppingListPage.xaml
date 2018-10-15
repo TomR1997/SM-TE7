@@ -17,26 +17,33 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
                             <StackLayout Grid.Column="0">
                                 <Label Text="{Binding Name}" 
-                                        LineBreakMode="NoWrap" 
+                                        LineBreakMode="CharacterWrap" 
                                         Style="{DynamicResource ListItemTextStyle}" 
                                         FontSize="16" />
-                                <Label Text="{Binding Quantity}" 
+                                <Label Text="{Binding Volume}" 
                                         LineBreakMode="NoWrap"
                                         Style="{DynamicResource ListItemDetailTextStyle}"
                                         FontSize="13" />
                             </StackLayout>
+                        <Label Text="{Binding Quantity}"
+                               HorizontalOptions="Center"
+                               LineBreakMode="NoWrap"
+                               Style="{DynamicResource ListItemTextStyle}"
+                               FontSize="16"
+                               Grid.Column="1"/>
                         <Label Text="{Binding Price, StringFormat='{0:C}'}" 
                                         LineBreakMode="NoWrap"
                                         Style="{DynamicResource ListItemTextStyle}"
                                         FontSize="16" 
-                                        Grid.Column="1"
+                                        Grid.Column="2"
                                         XAlign="End"/>
                         </Grid>
                     </ViewCell>
