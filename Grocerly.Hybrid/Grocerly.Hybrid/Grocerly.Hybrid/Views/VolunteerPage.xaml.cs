@@ -11,11 +11,11 @@ using Xamarin.Forms.Xaml;
 namespace Grocerly.Hybrid.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Volunteer : ContentPage
+    public partial class VolunteerPage : ContentPage
     {
         VolunteerViewModel viewModel;
 
-        public Volunteer()
+        public VolunteerPage()
         {
             InitializeComponent();
 

@@ -19,7 +19,8 @@ namespace Grocerly.Hybrid.ViewModels
 
         public VolunteerViewModel()
         {
-
+            ShoppingLists = new ObservableCollection<ShoppingList>();
+            GetAvailableListsCommand = new Command(async () => await GetAvailableShoppinglists());
         }
 
         async Task GetAvailableShoppinglists()

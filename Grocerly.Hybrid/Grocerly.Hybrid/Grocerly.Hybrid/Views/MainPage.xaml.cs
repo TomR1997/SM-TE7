@@ -33,6 +33,9 @@ namespace Grocerly.Hybrid.Views
                     case (int)MenuItemType.Shoppinglist:
                         MenuPages.Add(id, new NavigationPage(new ShoppingListPage()));
                         break;
+                    case (int)MenuItemType.Volunteer:
+                        MenuPages.Add(id, new NavigationPage(new VolunteerPage()));
+                            break;
                 }
             }
 
