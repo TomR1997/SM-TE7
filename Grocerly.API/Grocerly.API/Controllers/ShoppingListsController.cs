@@ -152,12 +152,23 @@ namespace Grocerly.API.Controllers
                 return NotFound("Product doesn't exist");
             }
 
-            _context.ShoppinglistItems.Add(
-                new ShoppinglistItem
-                {
-                    List = shoppingList,
-                    Product = product
-                });
+            var shoppingListItem = await _context.ShoppinglistItems.SingleOrDefaultAsync(x => x.Id_Shoppinglist.Equals(shoppingList.Id) && x.Id_Product.Equals(product.Id));
+
+            if(shoppingListItem != null)
+            {
+                shoppingListItem.Quantity++;
+                _context.Entry(shoppingListItem).State = EntityState.Modified;
+            }
+            else
+            {
+                _context.ShoppinglistItems.Add(
+                    new ShoppinglistItem
+                    {
+                        List = shoppingList,
+                        Product = product,
+                        Quantity = 1
+                    });
+            }
 
             await _context.SaveChangesAsync();
 
@@ -180,12 +191,23 @@ namespace Grocerly.API.Controllers
 
             var shoppingListItem = await _context.ShoppinglistItems.SingleOrDefaultAsync(m => m.Id_Shoppinglist.Equals(id_list) 
                 && m.Id_Product.Equals(id_product));
+
             if(shoppingListItem == null)
             {
                 return NotFound("Shoppinglist doesn't exist");
             }
 
-            _context.Remove(shoppingListItem);
+            shoppingListItem.Quantity--;
+            if (shoppingListItem.Quantity <= 0)
+            {
+                _context.Remove(shoppingListItem);
+            }
+            else
+            {
+                _context.Entry(shoppingListItem).State = EntityState.Modified;
+            }
+
+
             await _context.SaveChangesAsync();
 
             return Ok();
