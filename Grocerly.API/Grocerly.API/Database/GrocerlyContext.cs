@@ -171,6 +171,17 @@ namespace Grocerly.Database
                 });
             }
 
+            var admin = new Users
+            {
+                Username = "admin",
+                Password = PasswordHasher.HashPassword("admin"),
+                Role = "Admin",
+                Name = "Ad minius"
+                
+            };
+
+            Users.Add(admin);
+
             await SaveChangesAsync();
         }
     }

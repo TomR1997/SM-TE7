@@ -47,6 +47,7 @@ namespace Grocerly.Hybrid.Views
 
             App.isLoggedIn = false;
             App.user = null;
+            App.jwt = null;
             await Navigation.PushModalAsync(new NavigationPage(new StartPage()));
         }
     }

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Grocerly.Database;
 using Grocerly.Database.Pocos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Grocerly.API.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/Products")]
     public class ProductsController : Controller
@@ -87,6 +89,7 @@ namespace Grocerly.API.Controllers
 
         // POST: api/Products
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PostProducts([FromBody] Products products)
         {
             if (!ModelState.IsValid)

@@ -11,6 +11,7 @@ using Grocerly.Database.Pocos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace Grocerly.API.Controllers
 {
@@ -39,7 +40,8 @@ namespace Grocerly.API.Controllers
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim("name", user.Name),
-                    new Claim("id", user.Id.ToString())
+                    new Claim("id", user.Id.ToString()),
+                    new Claim("roles", user.Role)
 
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),

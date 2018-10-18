@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using Grocerly.Hybrid.Models;
@@ -20,6 +21,8 @@ namespace Grocerly.Hybrid.Services
             {
                 BaseAddress = new Uri($"{App.BaseApiUrl}/")
             };
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", App.jwt);
 
             products = new List<Product>();
         }

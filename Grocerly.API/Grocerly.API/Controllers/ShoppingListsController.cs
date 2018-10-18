@@ -9,9 +9,11 @@ using Grocerly.Database;
 using Grocerly.Database.Pocos;
 using Grocerly.API.Database.Pocos;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Grocerly.API.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/ShoppingLists")]
     public class ShoppingListsController : Controller

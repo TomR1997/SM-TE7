@@ -32,6 +32,7 @@ namespace Grocerly.Hybrid.Services
             if (response.Headers.TryGetValues("Authorization", out IEnumerable<string> values))
             {
                 Application.Current.Properties["jwt"] = values.First();
+                App.jwt = values.First();
                 await Application.Current.SavePropertiesAsync();
             }
 
