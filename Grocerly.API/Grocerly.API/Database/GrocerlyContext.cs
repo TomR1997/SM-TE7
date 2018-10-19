@@ -182,6 +182,16 @@ namespace Grocerly.Database
 
             Users.Add(admin);
 
+            for(int i = 0; i < 5; i++)
+            {
+                var tag = new Tags
+                {
+                    Name = "Tag" + i
+                };
+
+                Tags.Add(tag);
+            }
+
             await SaveChangesAsync();
         }
     }

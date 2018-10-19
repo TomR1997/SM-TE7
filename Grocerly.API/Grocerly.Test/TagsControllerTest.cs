@@ -1,4 +1,4 @@
-using Grocerly.API;
+﻿using Grocerly.API;
 using Grocerly.Database.Pocos;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Grocerly.Test
 {
     [TestFixture]
-    public class ProductsControllerTest
+    public class TagsControllerTest
     {
         private TestServer server;
         private HttpClient client;
@@ -38,120 +38,119 @@ namespace Grocerly.Test
         }
 
         [Test]
-        public async Task Test_Products()
+        public async Task Test_Tags()
         {
-            // GET all products
-            var response = await client.GetAsync("/api/products");
+            // GET all tags
+            var response = await client.GetAsync("/api/tags");
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
-            var products = JsonConvert.DeserializeObject<List<Products>>(json);
+            var tags = JsonConvert.DeserializeObject<List<Tags>>(json);
 
-            Assert.That(products.Count == 15);
+            Assert.That(tags.Count > 0);
 
 
-            // GET single product SUCCESS
-            response = await client.GetAsync("/api/products/" + products[0].Id);
+            // GET single tag SUCCESS
+            response = await client.GetAsync("/api/tags/" + tags[0].Id);
             response.EnsureSuccessStatusCode();
 
             json = await response.Content.ReadAsStringAsync();
-            var product = JsonConvert.DeserializeObject<Products>(json);
+            var tag = JsonConvert.DeserializeObject<Tags>(json);
 
-            Assert.AreEqual(product.Id, products[0].Id);
+            Assert.AreEqual(tag.Id, tags[0].Id);
 
 
-            // GET single product BadRequest
-            response = await client.GetAsync("/api/products/" + "no-guid");
+            // GET single tag BadRequest
+            response = await client.GetAsync("/api/tags/" + "no-guid");
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
 
 
-            // GET single product NotFound
-            response = await client.GetAsync("/api/products/" + Guid.NewGuid());
+            // GET single tag NotFound
+            response = await client.GetAsync("/api/tags/" + Guid.NewGuid());
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.NotFound);
 
 
-            // PUT product SUCCESS
+            // PUT tag SUCCESS
             StringContent body = new StringContent(
-                JsonConvert.SerializeObject(product),Encoding.UTF8, "application/json"
+                JsonConvert.SerializeObject(tag), Encoding.UTF8, "application/json"
                 );
 
-            response = await client.PutAsync("/api/products/" + product.Id, body);
+            response = await client.PutAsync("/api/tags/" + tag.Id, body);
             response.EnsureSuccessStatusCode();
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.NoContent);
 
-            // PUT product BadRequest
-            response = await client.PutAsync("/api/products/" + Guid.NewGuid(), body);
+            // PUT tag BadRequest
+            response = await client.PutAsync("/api/tags/" + Guid.NewGuid(), body);
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
 
 
-            // PUT product NotFound
+            // PUT tag NotFound
             Guid nonExistingId = Guid.NewGuid();
 
             body = new StringContent(
-                JsonConvert.SerializeObject(new Products
+                JsonConvert.SerializeObject(new Tags
                 {
                     Id = nonExistingId,
                     Name = "test1",
-                    Price = 3.12,
-                    Volume = "3 stuks"
+                    Products = new List<ProductTag>()
                 }), Encoding.UTF8, "application/json"
                 );
 
-            response = await client.PutAsync("/api/products/" + nonExistingId, body);
+            response = await client.PutAsync("/api/tags/" + nonExistingId, body);
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.NotFound);
 
 
-            // POST product SUCCESS
+            // POST tag SUCCESS
             body = new StringContent(
-                JsonConvert.SerializeObject(new Products {
+                JsonConvert.SerializeObject(new Tags
+                {
                     Name = "test1",
-                    Price = 3.12,
-                    Volume = "3 stuks"
+                    Products = new List<ProductTag>()
                 }), Encoding.UTF8, "application/json"
                 );
 
-            response = await client.PostAsync("api/products", body);
+            response = await client.PostAsync("api/tags", body);
             response.EnsureSuccessStatusCode();
 
             json = await response.Content.ReadAsStringAsync();
-            var newProduct = JsonConvert.DeserializeObject<Products>(json);
+            var newTag = JsonConvert.DeserializeObject<Tags>(json);
 
-            Assert.AreEqual("test1", newProduct.Name);
+            Assert.AreEqual("test1", newTag.Name);
 
 
-            // POST product BadRequest 
+            // POST tag BadRequest 
             body = new StringContent("kaas"
                , Encoding.UTF8, "application/json"
                 );
 
-            response = await client.PostAsync("api/products", body);
+            response = await client.PostAsync("api/tags", body);
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
 
 
-            // DELETE product SUCCESS
-            response = await client.DeleteAsync("/api/products/" + products[0].Id);
+            // DELETE tag SUCCESS
+            response = await client.DeleteAsync("/api/tags/" + tags[0].Id);
             response.EnsureSuccessStatusCode();
 
             json = await response.Content.ReadAsStringAsync();
-            product = JsonConvert.DeserializeObject<Products>(json);
+            tag = JsonConvert.DeserializeObject<Tags>(json);
 
-            Assert.AreEqual(product.Id, products[0].Id);
+            Assert.AreEqual(tag.Id, tags[0].Id);
 
 
-            // DELETE single product BadRequest
-            response = await client.DeleteAsync("/api/products/" + "no-guid");
+            // DELETE single tag BadRequest
+            response = await client.DeleteAsync("/api/tags/" + "no-guid");
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
 
 
-            // DELETE single product NotFound
-            response = await client.DeleteAsync("/api/products/" + Guid.NewGuid());
+            // DELETE single tag NotFound
+            response = await client.DeleteAsync("/api/tags/" + Guid.NewGuid());
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.NotFound);
         }

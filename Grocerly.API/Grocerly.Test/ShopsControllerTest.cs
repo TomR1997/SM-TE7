@@ -1,4 +1,4 @@
-using Grocerly.API;
+﻿using Grocerly.API;
 using Grocerly.Database.Pocos;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Grocerly.Test
 {
     [TestFixture]
-    public class ProductsControllerTest
+    public class ShopsControllerTest
     {
         private TestServer server;
         private HttpClient client;
@@ -38,120 +38,125 @@ namespace Grocerly.Test
         }
 
         [Test]
-        public async Task Test_Products()
+        public async Task Test_Shops()
         {
-            // GET all products
-            var response = await client.GetAsync("/api/products");
+            // GET all shops
+            var response = await client.GetAsync("/api/shops");
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
-            var products = JsonConvert.DeserializeObject<List<Products>>(json);
+            var shops = JsonConvert.DeserializeObject<List<Shops>>(json);
 
-            Assert.That(products.Count == 15);
+            Assert.That(shops.Count > 0);
 
 
-            // GET single product SUCCESS
-            response = await client.GetAsync("/api/products/" + products[0].Id);
+            // GET single shop SUCCESS
+            response = await client.GetAsync("/api/shops/" + shops[0].Id);
             response.EnsureSuccessStatusCode();
 
             json = await response.Content.ReadAsStringAsync();
-            var product = JsonConvert.DeserializeObject<Products>(json);
+            var shop = JsonConvert.DeserializeObject<Shops>(json);
 
-            Assert.AreEqual(product.Id, products[0].Id);
+            Assert.AreEqual(shop.Id, shops[0].Id);
 
 
-            // GET single product BadRequest
-            response = await client.GetAsync("/api/products/" + "no-guid");
+            // GET single shop BadRequest
+            response = await client.GetAsync("/api/shops/" + "no-guid");
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
 
 
-            // GET single product NotFound
-            response = await client.GetAsync("/api/products/" + Guid.NewGuid());
+            // GET single shop NotFound
+            response = await client.GetAsync("/api/shops/" + Guid.NewGuid());
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.NotFound);
 
 
-            // PUT product SUCCESS
+            // PUT shop SUCCESS
             StringContent body = new StringContent(
-                JsonConvert.SerializeObject(product),Encoding.UTF8, "application/json"
+                JsonConvert.SerializeObject(shop), Encoding.UTF8, "application/json"
                 );
 
-            response = await client.PutAsync("/api/products/" + product.Id, body);
+            response = await client.PutAsync("/api/shops/" + shop.Id, body);
             response.EnsureSuccessStatusCode();
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.NoContent);
 
-            // PUT product BadRequest
-            response = await client.PutAsync("/api/products/" + Guid.NewGuid(), body);
+            // PUT shop BadRequest
+            response = await client.PutAsync("/api/shops/" + Guid.NewGuid(), body);
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
 
 
-            // PUT product NotFound
+            // PUT shop NotFound
             Guid nonExistingId = Guid.NewGuid();
 
             body = new StringContent(
-                JsonConvert.SerializeObject(new Products
+                JsonConvert.SerializeObject(new Shops
                 {
                     Id = nonExistingId,
                     Name = "test1",
-                    Price = 3.12,
-                    Volume = "3 stuks"
+                    Latitude = 0.1,
+                    Longitude = 0.1,
+                    ZipCode = "5500 AB",
+                    Products = new List<ShopProduct>()
                 }), Encoding.UTF8, "application/json"
                 );
 
-            response = await client.PutAsync("/api/products/" + nonExistingId, body);
+            response = await client.PutAsync("/api/shops/" + nonExistingId, body);
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.NotFound);
 
 
-            // POST product SUCCESS
+            // POST shop SUCCESS
             body = new StringContent(
-                JsonConvert.SerializeObject(new Products {
+                JsonConvert.SerializeObject(new Shops
+                {
                     Name = "test1",
-                    Price = 3.12,
-                    Volume = "3 stuks"
+                    Latitude = 0.1,
+                    Longitude = 0.1,
+                    ZipCode = "5500 AB",
+                    Products = new List<ShopProduct>()
                 }), Encoding.UTF8, "application/json"
                 );
 
-            response = await client.PostAsync("api/products", body);
+            response = await client.PostAsync("api/shops", body);
             response.EnsureSuccessStatusCode();
 
             json = await response.Content.ReadAsStringAsync();
-            var newProduct = JsonConvert.DeserializeObject<Products>(json);
+            var newShop = JsonConvert.DeserializeObject<Shops>(json);
 
-            Assert.AreEqual("test1", newProduct.Name);
+            Assert.AreEqual("test1", newShop.Name);
 
 
-            // POST product BadRequest 
+            // POST shop BadRequest 
             body = new StringContent("kaas"
                , Encoding.UTF8, "application/json"
                 );
 
-            response = await client.PostAsync("api/products", body);
+            response = await client.PostAsync("api/shops", body);
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
 
 
-            // DELETE product SUCCESS
-            response = await client.DeleteAsync("/api/products/" + products[0].Id);
+            // DELETE shop SUCCESS
+            response = await client.DeleteAsync("/api/shops/" + shops[0].Id);
             response.EnsureSuccessStatusCode();
 
             json = await response.Content.ReadAsStringAsync();
-            product = JsonConvert.DeserializeObject<Products>(json);
+            shop = JsonConvert.DeserializeObject<Shops>(json);
 
-            Assert.AreEqual(product.Id, products[0].Id);
+            Assert.AreEqual(shop.Id, shops[0].Id);
 
 
-            // DELETE single product BadRequest
-            response = await client.DeleteAsync("/api/products/" + "no-guid");
+            // DELETE single shop BadRequest
+            response = await client.DeleteAsync("/api/shops/" + "no-guid");
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
 
 
-            // DELETE single product NotFound
-            response = await client.DeleteAsync("/api/products/" + Guid.NewGuid());
+            // DELETE single shop NotFound
+            response = await client.DeleteAsync("/api/shops/" + Guid.NewGuid());
 
             Assert.AreEqual(response.StatusCode, HttpStatusCode.NotFound);
         }
