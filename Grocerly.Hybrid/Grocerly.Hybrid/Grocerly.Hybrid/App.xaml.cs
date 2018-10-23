@@ -6,6 +6,7 @@ using Grocerly.Hybrid.Views;
 using Grocerly.Hybrid.Models;
 using Newtonsoft.Json;
 using System.Globalization;
+using Grocerly.Hybrid.Services.Interfaces;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Grocerly.Hybrid
@@ -34,7 +35,6 @@ namespace Grocerly.Hybrid
 
             DependencyService.Register<AuthService>();
             DependencyService.Register<UserService>();
-            DependencyService.Register<ProductService>();
 
             DependencyService.Register<ShoppingListService>();
 

@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Grocerly.Hybrid.Models;
 using Grocerly.Hybrid.Services;
+using Grocerly.Hybrid.Services.Interfaces;
 using Xamarin.Forms;
 
 namespace Grocerly.Hybrid.ViewModels
 {
     public class ProductsViewModel : BaseViewModel
     {
-        public ProductService DataStore => DependencyService.Get<ProductService>();
-        public ShoppingListService ListStore => DependencyService.Get<ShoppingListService>();
+        public IProductService DataStore;
+        public IShoppingListService ListStore;
         public ObservableCollection<Product> Products { get; set; }
         public Command LoadProductsCommand { get; set; }
         public ICommand LoadMore { get; set; }
@@ -39,11 +40,25 @@ namespace Grocerly.Hybrid.ViewModels
             }
         }
 
+        public ProductsViewModel(IProductService productService, IShoppingListService shoppingListService )
+        {
+            this.DataStore = productService;
+            this.ListStore = shoppingListService;
+            Setup();
+        }
+
 
         public ProductsViewModel()
         {
             UniformColumns = Device.Idiom == TargetIdiom.Phone ? 2 : 3;
 
+            DataStore = new ProductService();
+            ListStore = new ShoppingListService();
+            Setup();
+        }
+
+        public void Setup()
+        {
             Products = new ObservableCollection<Product>();
             LoadProductsCommand = new Command(async () => await ExecuteLoadProductsCommand());
             CalculatePriceCommand = new Command(async () => await CalculateCurrentPrice());

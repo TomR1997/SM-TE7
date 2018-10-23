@@ -6,11 +6,12 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using Grocerly.Hybrid.Models;
+using Grocerly.Hybrid.Services.Interfaces;
 using Newtonsoft.Json;
 
 namespace Grocerly.Hybrid.Services
 {
-    public class ProductService
+    public class ProductService : IProductService
     {
         readonly HttpClient client;
         IEnumerable<Product> products;

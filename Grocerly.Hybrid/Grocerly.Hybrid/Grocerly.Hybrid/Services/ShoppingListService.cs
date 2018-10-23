@@ -1,4 +1,5 @@
 ﻿using Grocerly.Hybrid.Models;
+using Grocerly.Hybrid.Services.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Grocerly.Hybrid.Services
 {
-    public class ShoppingListService
+    public class ShoppingListService : IShoppingListService
     {
         readonly HttpClient client;
         

@@ -7,9 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grocerly.Hybrid.Android", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grocerly.Hybrid.iOS", "Grocerly.Hybrid\Grocerly.Hybrid.iOS\Grocerly.Hybrid.iOS.csproj", "{57F17463-4548-481D-AC11-84AC5E5207FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grocerly.Hybrid.MobileAppService", "Grocerly.Hybrid\Grocerly.Hybrid.MobileAppService\Grocerly.Hybrid.MobileAppService.csproj", "{F733BBED-3757-44DB-B33D-B19D6ED02FFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grocerly.Hybrid.MobileAppService", "Grocerly.Hybrid\Grocerly.Hybrid.MobileAppService\Grocerly.Hybrid.MobileAppService.csproj", "{F733BBED-3757-44DB-B33D-B19D6ED02FFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grocerly.Hybrid", "Grocerly.Hybrid\Grocerly.Hybrid\Grocerly.Hybrid.csproj", "{A5FC089E-1C67-4515-8DBA-EC39A3180B39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Grocerly.Hybrid", "Grocerly.Hybrid\Grocerly.Hybrid\Grocerly.Hybrid.csproj", "{A5FC089E-1C67-4515-8DBA-EC39A3180B39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grocerly.UnitTests", "Grocerly.UnitTests\Grocerly.UnitTests.csproj", "{B9CCD0D5-3250-46DB-B076-3755C8113BEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,18 @@ Global
 		{A5FC089E-1C67-4515-8DBA-EC39A3180B39}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{A5FC089E-1C67-4515-8DBA-EC39A3180B39}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{A5FC089E-1C67-4515-8DBA-EC39A3180B39}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Release|iPhone.Build.0 = Release|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{B9CCD0D5-3250-46DB-B076-3755C8113BEE}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
