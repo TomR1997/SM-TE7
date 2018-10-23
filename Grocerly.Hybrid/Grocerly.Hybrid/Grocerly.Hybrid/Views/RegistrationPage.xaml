@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Grocerly.Hybrid.Views.RegistrationPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout x:Name="MasterLayout">
+            <StackLayout x:Name="Logo" VerticalOptions="FillAndExpand">
+                <Image x:Name="RegisterIcon" Source="grocerly_icon" Margin="0,20,0,0"/>
+            </StackLayout>
+            <StackLayout x:Name="RegisterForm" VerticalOptions="StartAndExpand" Margin="20,0,20,0">
+
+                <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True"/>
+
+                <Label x:Name="Lbl_Email" Text="Email" FontSize="Large"/>
+                <Entry x:Name="Entry_Email" Placeholder="Email"/>
+                <Label x:Name="Lbl_Username" Text="Gebruikersnaam" FontSize="Large"/>
+                <Entry x:Name="Entry_Username" Placeholder="Username"/>
+                <Label x:Name="Lbl_Password" Text="Wachtwoord" FontSize="Large"/>
+                <Entry x:Name="Entry_Password" IsPassword="True" Placeholder="Password"/>
+                <StackLayout HorizontalOptions="Start">
+                    <Label x:Name="Lbl_Roles" Text="Vrijwilliger" FontSize="Large"/>
+                    <Switch x:Name="Switch_Roles"/>
+                </StackLayout>
+                <Button x:Name="Btn_Register" Text="Registreer" Clicked="Register"/>
+                <Label
+                    x:Name="error_label"
+                    IsVisible="false"
+                    TextColor="Red"
+                    Text="Alle velden zijn verplicht"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

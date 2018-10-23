@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Grocerly.Hybrid.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Global Styles-->
+            <Color x:Key="NavigationPrimary">#4CAF50</Color>
+            <Color x:Key="ColorPrimary">#FF9800</Color>
+            
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="#ffffff" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

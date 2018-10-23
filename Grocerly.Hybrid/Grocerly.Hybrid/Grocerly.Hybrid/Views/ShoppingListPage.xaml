@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Grocerly.Hybrid.Views.ShoppingListPage"
+             Title="{Binding Title}">
+    <StackLayout>
+        <Button Text="Aanvragen"
+                Clicked="RequestShoppingList"/>
+        <Label
+                    x:Name="error_label"
+                    IsVisible="false"
+                    TextColor="Red"
+                    Text="Het aanvragen is mislukt."/>
+        <ListView x:Name="ShoppinglistListView"
+                    ItemsSource="{Binding ShoppingListItems}"
+                    HasUnevenRows="True"
+                    VerticalOptions="FillAndExpand"
+                    ItemTapped="Handle_ItemTapped"
+                    CachingStrategy="RecycleElement">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="20, 10, 30, 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackLayout Grid.Column="0">
+                                <Label Text="{Binding Name}" 
+                                        LineBreakMode="CharacterWrap" 
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        FontSize="16" />
+                                <Label Text="{Binding Volume}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                        FontSize="13" />
+                            </StackLayout>
+                        <Label Text="{Binding Quantity}"
+                               HorizontalOptions="Center"
+                               LineBreakMode="NoWrap"
+                               Style="{DynamicResource ListItemTextStyle}"
+                               FontSize="16"
+                               Grid.Column="1"/>
+                        <Label Text="{Binding Price, StringFormat='{0:C}'}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListItemTextStyle}"
+                                        FontSize="16" 
+                                        Grid.Column="2"
+                                        XAlign="End"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Grocerly.Hybrid.Views.MenuPage"
+             Title="Menu">
+    <StackLayout VerticalOptions="FillAndExpand">
+        <OnPlatform x:TypeArguments="View"> 
+            <OnPlatform.Android>
+                <BoxView HeightRequest="50"
+                    BackgroundColor="#4CAF50"/>
+            </OnPlatform.Android>
+            <OnPlatform.iOS>
+                <BoxView HeightRequest="50"
+                    BackgroundColor="White"/>
+            </OnPlatform.iOS>
+        </OnPlatform>
+    
+            
+        <Label x:Name="laUsername" 
+               Text="{Binding Name}"
+               XAlign="Center"/>
+        <Button Text="Uitloggen"
+                x:Name="btnLogout"
+                Clicked="OnLogoutButtonClicked"/>
+        
+        <ListView x:Name="ListViewMenu"
+                    HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Label Text="{Binding Title}" FontSize="20"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

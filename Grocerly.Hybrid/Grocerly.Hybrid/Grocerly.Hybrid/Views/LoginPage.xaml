@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Grocerly.Hybrid.Views.LoginPage"
+             Title="{Binding Title}"
+             >
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="400"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackLayout
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="White"
+                Padding="16">
+                
+                <Label Text="Gebruikersnaam"
+                       TextColor="Black"
+                       FontSize="Large"
+                       />
+                
+                <Entry Placeholder="Gebruikersnaam"
+                       x:Name="username"/>
+                
+                <Label Text="Wachtwoord"
+                       TextColor="Black"
+                       FontSize="Large"/>
+                
+                <Entry Placeholder="Wachtwoord"
+                       x:Name="password"
+                       IsPassword="true"/>
+                
+                <Button Text="Inloggen"
+                        Clicked="OnLoginButtonClicked"/>
+                
+                <Label
+                    x:Name="error_label"
+                    IsVisible="false"
+                    TextColor="Red"
+                       Text="Gebruikersnaam of wachtwoord is incorrect"/>
+                
+            </StackLayout>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
