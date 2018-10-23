@@ -4,7 +4,8 @@
              x:Class="Grocerly.Hybrid.Views.VolunteerPage">
     <ContentPage.Content>
         <ListView ItemsSource="ShoppingLists"
-                  HasUnevenRows="True">
+                  HasUnevenRows="True"
+                  ItemTapped="ListView_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Label Text="{Binding Name}"/>

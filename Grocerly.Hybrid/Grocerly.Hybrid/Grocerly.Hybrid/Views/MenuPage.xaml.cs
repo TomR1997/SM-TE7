@@ -22,10 +22,15 @@ namespace Grocerly.Hybrid.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Producten" },
                 new HomeMenuItem {Id = MenuItemType.Shoppinglist, Title ="Mijn boodschappenlijst"},
-                new HomeMenuItem {Id = MenuItemType.Volunteer, Title = "Vrijwilligers pagina"}
             };
+
+            if (App.user.Role == "User")
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Browse, Title = "Producten" });
+
+            if (App.user.Role == "Volunteer")
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Volunteer, Title = "Vrijwilligers pagina" });
+
 
             ListViewMenu.ItemsSource = menuItems;
 
