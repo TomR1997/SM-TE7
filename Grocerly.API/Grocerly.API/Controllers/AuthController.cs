@@ -39,7 +39,7 @@ namespace Grocerly.API.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim("name", user.Name),
+                    new Claim("name", user.Username),
                     new Claim("id", user.Id.ToString()),
                     new Claim("roles", user.Role)
 
