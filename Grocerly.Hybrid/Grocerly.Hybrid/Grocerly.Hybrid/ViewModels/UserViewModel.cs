@@ -19,12 +19,12 @@ namespace Grocerly.Hybrid.ViewModels
             Title = "Registeren";
         }
 
-        public async Task<bool> TryRegister(string email, string username, string password, string role)
+        public async Task<bool> TryRegister(string email, string name, string username, string password, string role)
         {
-            return await ExecuteRegisterCommand(email, username, password, role);
+            return await ExecuteRegisterCommand(email, name, username, password, role);
         }
 
-        async Task<bool> ExecuteRegisterCommand(string email, string username, string password, string role)
+        async Task<bool> ExecuteRegisterCommand(string email, string name, string username, string password, string role)
         {
             if (IsBusy)
                 return false;
@@ -33,7 +33,7 @@ namespace Grocerly.Hybrid.ViewModels
 
             try
             {
-                User = await UserService.RegisterAsync(email, username, password, role);
+                User = await UserService.RegisterAsync(email, name, username, password, role);
                 return true;
             }
             catch(Exception ex)

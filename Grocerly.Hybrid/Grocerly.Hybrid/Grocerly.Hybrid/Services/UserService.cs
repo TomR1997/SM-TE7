@@ -23,11 +23,12 @@ namespace Grocerly.Hybrid.Services
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", App.jwt);
         }
 
-        public async Task<User> RegisterAsync(string email, string username, string password, string role)
+        public async Task<User> RegisterAsync(string email, string name, string username, string password, string role)
         {
             var content = new StringContent(JsonConvert.SerializeObject(new User
             {
                 Email = email,
+                Name = name,
                 Username = username,
                 Password = password,
                 Role = role

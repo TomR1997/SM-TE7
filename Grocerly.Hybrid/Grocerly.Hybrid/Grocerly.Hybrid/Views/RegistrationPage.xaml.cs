@@ -33,7 +33,7 @@ namespace Grocerly.Hybrid.Views
                 role = "Volunteer";
             }
 
-            bool success = await viewModel.TryRegister(Entry_Email.Text, Entry_Username.Text, Entry_Password.Text, role);
+            bool success = await viewModel.TryRegister(Entry_Email.Text, Entry_Username.Text, Entry_Username.Text, Entry_Password.Text, role);
 
             if (success)
                 await Navigation.PushAsync(new LoginPage());
