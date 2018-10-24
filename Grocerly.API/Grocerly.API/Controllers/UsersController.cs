@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Grocerly.Database;
 using Grocerly.Database.Pocos;
 using Grocerly.API.Database.Pocos;
+using Grocerly.API.Utils;
 
 namespace Grocerly.API.Controllers
 {
@@ -87,11 +88,7 @@ namespace Grocerly.API.Controllers
         [HttpPost]
         public async Task<IActionResult> PostUsers([FromBody] Users users)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+            users.Password = PasswordHasher.HashPassword(users.Password);
             _context.Users.Add(users);
             await _context.SaveChangesAsync();
 

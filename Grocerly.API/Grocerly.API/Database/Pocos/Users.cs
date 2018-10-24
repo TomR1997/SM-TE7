@@ -16,7 +16,7 @@ namespace Grocerly.Database.Pocos
         public int HouseNumber { get; set; }
 
         public string Username { get; set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public string Password { get; set; }
 
         [JsonIgnore]
