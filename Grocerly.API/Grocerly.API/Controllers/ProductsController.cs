@@ -8,10 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using Grocerly.Database;
 using Grocerly.Database.Pocos;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
+using System.Globalization;
 
 namespace Grocerly.API.Controllers
 {
-    [Authorize]
     [Produces("application/json")]
     [Route("api/Products")]
     public class ProductsController : Controller
@@ -27,10 +28,26 @@ namespace Grocerly.API.Controllers
         [HttpGet]
         public IEnumerable<Products> GetProducts(int numberOfRows = 15, int page = 1, string name = "")
         {
-            return _context.Products.Where(p => p.Name.Contains(name))
-                           .OrderBy(p => p.CreationDate)
-                           .Skip(numberOfRows * (page - 1))
-                           .Take(numberOfRows);
+            var searchWords = RemoveDiacritics(name).ToLower().Split(' ');
+
+            IEnumerable<Products> results = new List<Products>();
+
+            foreach(string s in searchWords)
+            {
+                results = results.Concat(
+                (from p in _context.Products
+                 from t in _context.Tags
+                 from pt in _context.ProductTags
+                 where t.Name.Contains(searchWords[0])
+                 && p.Id.Equals(pt.Id_Product) && t.Id.Equals(pt.Id_Tag)
+                 select pt.Product
+                 ));
+            }
+
+            return results.OrderBy(p => p.CreationDate)
+                          .Skip(numberOfRows * (page - 1))
+                          .Take(numberOfRows)
+                          .Distinct();
         }
 
         // GET: api/Products/5
@@ -127,6 +144,23 @@ namespace Grocerly.API.Controllers
         private bool ProductsExists(Guid id)
         {
             return _context.Products.Any(e => e.Id == id);
+        }
+
+        static string RemoveDiacritics(string text)
+        {
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
     }
 }

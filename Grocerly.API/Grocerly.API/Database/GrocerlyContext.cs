@@ -11,6 +11,7 @@ namespace Grocerly.Database
     {
 
         public DbSet<Tags> Tags { get; set; }
+        public DbSet<ProductTag> ProductTags { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<ShoppingLists> ShoppingLists { get; set; }
         public DbSet<Users> Users { get; set; }
@@ -102,74 +103,74 @@ namespace Grocerly.Database
             Shops.Add(Lidl);
 
 
-            var AHProducts = new List<Products>();
+            //var AHProducts = new List<Products>();
 
-            for (int i = 0; i < 20; i++)
-            {
-                AHProducts.Add(new Products
-                {
-                    Name = "AH product " + i,
-                    Price = 3.12,
-                    Volume = "500 gr"
-                });
-            }
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    AHProducts.Add(new Products
+            //    {
+            //        Name = "AH product " + i,
+            //        Price = 3.12,
+            //        Volume = "500 gr"
+            //    });
+            //}
 
-            Products.AddRange(AHProducts);
+            //Products.AddRange(AHProducts);
 
-            for (int i = 0; i < 20; i++)
-            {
-                AH.Products.Add(
-                    new ShopProduct
-                    {
-                        Shop = AH,
-                        Product = AHProducts[i]
-                    });
-            }
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    AH.Products.Add(
+            //        new ShopProduct
+            //        {
+            //            Shop = AH,
+            //            Product = AHProducts[i]
+            //        });
+            //}
 
-            for (int i = 0; i < 20; i++)
-            {
-                Status status = Status.Open;
-                if (i > 10)
-                {
-                    status = Status.Closed;
-                    if(i > 15)
-                    {
-                        status = Status.Pending;
-                    }
-                }
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    Status status = Status.Open;
+            //    if (i > 10)
+            //    {
+            //        status = Status.Closed;
+            //        if(i > 15)
+            //        {
+            //            status = Status.Pending;
+            //        }
+            //    }
 
-                ShoppingLists shoppingList = new ShoppingLists
-                {
-                    Id = new Guid(),
-                    Name = "Name" + i,
-                    Status = status
-                };
-                ShoppingLists.Add(shoppingList);
+            //    ShoppingLists shoppingList = new ShoppingLists
+            //    {
+            //        Id = new Guid(),
+            //        Name = "Name" + i,
+            //        Status = status
+            //    };
+            //    ShoppingLists.Add(shoppingList);
 
-                Users user = new Users
-                {
-                    Id = new Guid(),
-                    Name = "User " + i,
-                    Email = "Email" + i + "@mail.com",
-                    Role = "User",
-                    Zipcode = "55" + i + "AZ",
-                    Address = "Address" + i,
-                    HouseNumber = i,
-                    Username = "Username" + i,
-                    Password = PasswordHasher.HashPassword("Password" + i),
-                    ShoppingLists = new List<ShoppingLists>()
-                };
+            //    Users user = new Users
+            //    {
+            //        Id = new Guid(),
+            //        Name = "User " + i,
+            //        Email = "Email" + i + "@mail.com",
+            //        Role = "User",
+            //        Zipcode = "55" + i + "AZ",
+            //        Address = "Address" + i,
+            //        HouseNumber = i,
+            //        Username = "Username" + i,
+            //        Password = PasswordHasher.HashPassword("Password" + i),
+            //        ShoppingLists = new List<ShoppingLists>()
+            //    };
 
-                user.ShoppingLists.Add(shoppingList);
-                Users.Add(user);
+            //    user.ShoppingLists.Add(shoppingList);
+            //    Users.Add(user);
 
-                ShoppinglistItems.Add(new ShoppinglistItem
-                {
-                    List = shoppingList,
-                    Product = AHProducts[i],
-                    Quantity = new Random().Next(1, 10)
-                });
-            }
+            //    ShoppinglistItems.Add(new ShoppinglistItem
+            //    {
+            //        List = shoppingList,
+            //        Product = AHProducts[i],
+            //        Quantity = new Random().Next(1, 10)
+            //    });
+            //}
 
             var admin = new Users
             {
@@ -191,6 +192,145 @@ namespace Grocerly.Database
 
                 Tags.Add(tag);
             }
+
+            var calvePindakaas = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/7a4cbe13470b14ea32eaaacc31f5d812.jpg",
+                Name = "Calvé Pindakaas",
+                Price = 2.55,
+                Volume = "350 gram"
+            };
+
+            IEnumerable<Tags> tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "pindakaas"
+                },
+                new Tags
+                {
+                    Name = "pot"
+                },
+                new Tags
+                {
+                    Name = "zwarte"
+                },
+                new Tags
+                {
+                    Name = "deksel"
+                },
+                new Tags
+                {
+                    Name = "calve"
+                }
+            };
+            calvePindakaas.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                calvePindakaas.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = calvePindakaas,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(calvePindakaas);
+
+
+
+            var calvePindakaasStukjes = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/c145a223740ccb98c540b1ef11ff5e7a.jpg",
+                Name = "Calvé Pindakaas Pinda's",
+                Price = 2.99,
+                Volume = "350 gram"
+            };
+
+            tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "pindakaas"
+                },
+                new Tags
+                {
+                    Name = "pot"
+                },
+                new Tags
+                {
+                    Name = "gele"
+                },
+                new Tags
+                {
+                    Name = "deksel"
+                },
+                new Tags
+                {
+                    Name = "calve"
+                }
+            };
+
+            calvePindakaasStukjes.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                calvePindakaasStukjes.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = calvePindakaasStukjes,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(calvePindakaasStukjes);
+
+            var ahPindakaas = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/d6e2425d58386c13ec5eb4da943714cd.jpg",
+                Name = "AH Pindakaas Naturel",
+                Price = 1.99,
+                Volume = "350 gram"
+            };
+
+            tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "pindakaas"
+                },
+                new Tags
+                {
+                    Name = "pot"
+                },
+                new Tags
+                {
+                    Name = "zilvere"
+                },
+                new Tags
+                {
+                    Name = "deksel"
+                },
+                new Tags
+                {
+                    Name = "albert heijn"
+                }
+            };
+
+            ahPindakaas.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                ahPindakaas.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = ahPindakaas,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(ahPindakaas);
 
             await SaveChangesAsync();
         }
