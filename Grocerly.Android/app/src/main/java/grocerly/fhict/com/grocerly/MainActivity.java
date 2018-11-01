@@ -118,11 +118,7 @@ public class MainActivity extends AppCompatActivity
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
             intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hello how can I help you?");
-            try{
-                startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
-            } catch (ActivityNotFoundException e){
-                //Handle ex
-            }
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
         }
     }
 
