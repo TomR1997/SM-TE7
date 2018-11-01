@@ -1,13 +1,21 @@
 package grocerly.fhict.com.grocerly;
 
+import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,12 +26,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import grocerly.fhict.com.grocerly.adapters.ProductsGridViewAdapter;
 import grocerly.fhict.com.grocerly.models.Product;
@@ -35,11 +47,14 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final int MY_PERMISSION_REQUEST = 1;
+    private static final int REQ_CODE_SPEECH_INPUT = 100;
+
     GridView productsGrid;
     ProgressBar progressBar;
-
+    EditText searchView;
     ProductService productService;
-
+    ImageButton microphoneButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +101,80 @@ public class MainActivity extends AppCompatActivity
         productService = new ProductService();
         searchProducts(12, 1, "");
 
+        searchView = findViewById(R.id.searchView);
+        microphoneButton = findViewById(R.id.microphoneButton);
+        microphoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startVoiceInput();
+            }
+        });
+
+    }
+
+    private void startVoiceInput(){
+        if(requestPermission(this)){
+            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hello how can I help you?");
+            try{
+                startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+            } catch (ActivityNotFoundException e){
+                //Handle ex
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+        switch (requestCode){
+            case MY_PERMISSION_REQUEST: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    if (ContextCompat.checkSelfPermission(MainActivity.this,
+                            Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                        Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, "No permission granted!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                break;
+            }
+        }
+    }
+
+    private boolean requestPermission(Context context){
+        MainActivity mainActivity = (MainActivity) context;
+        if (ContextCompat.checkSelfPermission(context,
+                Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(mainActivity,
+                    Manifest.permission.RECORD_AUDIO)){
+                Toast.makeText(context,
+                        "Microphone permission is needed to search products by speech.",
+                        Toast.LENGTH_SHORT).show();
+            }
+            ActivityCompat.requestPermissions(mainActivity,
+                    new String[]{Manifest.permission.RECORD_AUDIO}, MY_PERMISSION_REQUEST);
+        } else {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch(requestCode){
+            case REQ_CODE_SPEECH_INPUT:{
+                if (resultCode == RESULT_OK && data != null){
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    searchView.setText(result.get(0));
+                }
+                break;
+            }
+        }
     }
 
     private void searchProducts(int numberOfRows, int page, String searchTerm){

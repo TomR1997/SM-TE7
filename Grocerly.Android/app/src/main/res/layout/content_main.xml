@@ -37,13 +37,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/products_grid" />
 
-    <SearchView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
         android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         android:gravity="top|fill|start"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/microphoneButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/microphoneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="#FFF"
+        android:contentDescription="@string/microphone"
+        app:layout_constraintBottom_toTopOf="@+id/products_grid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchView"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_mic_black" />
 
 </android.support.constraint.ConstraintLayout>
