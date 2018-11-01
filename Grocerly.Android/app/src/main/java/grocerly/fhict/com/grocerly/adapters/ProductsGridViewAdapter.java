@@ -7,6 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +53,7 @@ public final class ProductsGridViewAdapter extends BaseAdapter {
         Product product = mItems.get(position);
 
         ImageView productImage = view.findViewById(R.id.product_image);
+        Picasso.get().load(product.getImageUrl()).into(productImage);
 
         TextView productName = view.findViewById(R.id.product_name);
         TextView productVolume = view.findViewById(R.id.product_volume);

@@ -3,6 +3,7 @@ package grocerly.fhict.com.grocerly.models;
 public class Product {
 
     private String id;
+    private String imageUrl;
     private String name;
     private String volume;
     private double price;
@@ -13,6 +14,14 @@ public class Product {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
