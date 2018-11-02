@@ -1,35 +1,28 @@
 package grocerly.fhict.com.grocerly;
 
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.graphics.drawable.AnimatedVectorDrawable;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.VectorDrawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -73,28 +66,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         productsGrid = findViewById(R.id.products_grid);
         progressBar = findViewById(R.id.progressBar);
-
-//        List<Product> products = new ArrayList<>();
-//        for(int i = 0; i < 9; i++ ) {
-//            products.add(new Product(
-//                    "https://www.vomar.nl/cmsstatic/gewoonpindakaasnaturel600gr.jpg",
-//                    "Calve Pindakaas",
-//                    "350 gram",
-//                    3.50
-//            ));
-//
-//            products.add(new Product(
-//                    "https://static.webshopapp.com/shops/241343/files/190291118/900x900x2/calve-pindakaas-met-stukjes-pinda.jpg",
-//                    "Calve Pindakaas",
-//                    "350 gram",
-//                    3.50
-//            ));
-//
-//        }
-//      productsGrid.setAdapter(new ProductsGridViewAdapter(products));
 
         productsGrid.setNumColumns(calculateColumns(null));
 
@@ -117,7 +90,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hello how can I help you?");
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hallo, welk product wil je zoeken?");
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
         }
     }
@@ -167,6 +140,7 @@ public class MainActivity extends AppCompatActivity
                 if (resultCode == RESULT_OK && data != null){
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     searchView.setText(result.get(0));
+                    searchProducts(4, 1, searchView.getText().toString());
                 }
                 break;
             }
@@ -235,21 +209,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_products) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_shoppinglist) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_orders) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_volunteer_order) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_volunteer_new) {
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

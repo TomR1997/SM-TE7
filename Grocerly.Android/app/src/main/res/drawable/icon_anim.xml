@@ -1,0 +1,91 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="grocerly"
+            android:width="6dp"
+            android:height="6dp"
+            android:viewportWidth="6"
+            android:viewportHeight="6">
+            <path
+                android:name="carrot"
+                android:pathData="M 1.306 2.465 C 2.446 1.286 4.069 1.923 4.402 2.397 L 4.411 2.766 C 3.688 2.532 3.075 2.506 2.558 2.66 C 3.135 2.746 3.7 2.876 4.149 3.446 L 3.975 3.834 C 3.223 3.565 3.034 3.606 2.781 3.611 C 3.125 3.818 3.505 4.007 3.625 4.338 C 3.364 4.736 3.134 4.827 2.898 4.979 C 1.817 4.083 1.406 3.258 1.306 2.465 Z"
+                android:fillColor="#ff4900"
+                android:strokeWidth="1"/>
+            <path
+                android:name="tomato"
+                android:pathData="M 4.143 1.483 C 4.466 1.685 4.731 1.964 4.915 2.293 C 5.099 2.622 5.195 2.992 5.195 3.368 C 5.195 3.961 4.955 4.53 4.528 4.95 C 4.101 5.369 3.521 5.605 2.917 5.605 C 2.313 5.605 1.733 5.369 1.306 4.95 C 0.879 4.53 0.639 3.961 0.639 3.368 C 0.639 2.974 0.745 2.587 0.946 2.246 C 1.147 1.905 1.436 1.623 1.784 1.427"
+                android:strokeColor="#f16527"
+                android:strokeWidth="0.256759"/>
+            <path
+                android:name="leaf"
+                android:pathData="M 1.966 0.505 C 2.064 0.791 2.24 1.57 2.956 1.621 C 3.666 1.503 3.962 1.207 4.052 0.505 C 3.734 0.415 3.535 0.518 3.344 0.631 C 3.332 0.284 3.209 0.142 3.043 0.078 C 2.687 0.19 2.666 0.445 2.665 0.709 C 2.471 0.542 2.261 0.416 1.966 0.505 Z"
+                android:fillColor="#66b50b"
+                android:strokeWidth="1"/>
+            <path
+                android:name="shine"
+                android:pathData="M 3.414 4.944 L 4.17 4.2 L 4.35 3.469 L 4.612 2.79 L 4.583 2.051 L 4.819 2.299 L 4.819 2.913 L 4.382 4.283 L 3.567 5.086 Z"
+                android:fillColor="#ffffff"
+                android:fillAlpha="0.5"
+                android:strokeWidth="0.1"/>
+        </vector>
+    </aapt:attr>
+    <target android:name="tomato">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="strokeAlpha"
+                    android:duration="763"
+                    android:valueFrom="1"
+                    android:valueTo="0.3"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="strokeAlpha"
+                    android:startOffset="763"
+                    android:duration="737"
+                    android:valueFrom="0.3"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="shine">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="pathData"
+                    android:duration="522"
+                    android:valueFrom="M 3.414 4.944 L 4.17 4.2 L 4.35 3.469 L 4.612 2.79 L 4.583 2.051 L 4.819 2.299 L 4.819 2.913 L 4.382 4.283 L 3.567 5.086 Z"
+                    android:valueTo="M 3.049 5.239 L 3.108 4.401 L 3.147 3.646 L 3.126 2.683 L 3.227 1.633 L 3.297 1.684 L 3.262 3.101 L 3.238 4.472 L 3.12 4.979 Z"
+                    android:valueType="pathType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="pathData"
+                    android:startOffset="522"
+                    android:duration="478"
+                    android:valueFrom="M 3.049 5.239 L 3.108 4.401 L 3.147 3.646 L 3.126 2.683 L 3.227 1.633 L 3.297 1.684 L 3.262 3.101 L 3.238 4.472 L 3.12 4.979 Z"
+                    android:valueTo="M 2.705 5.097 L 1.795 4.116 L 1.409 3.527 L 1.317 3.178 L 1.406 2.262 L 1.595 2.097 L 1.583 3.254 L 2.185 4.258 L 2.906 4.943 Z"
+                    android:valueType="pathType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:duration="522"
+                    android:valueFrom="0"
+                    android:valueTo="0.5"
+                    android:valueType="floatType"
+                    android:interpolator="@android:interpolator/fast_out_slow_in"/>
+                <objectAnimator
+                    android:propertyName="fillAlpha"
+                    android:startOffset="522"
+                    android:duration="478"
+                    android:valueFrom="0.5"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+</animated-vector>
