@@ -30,21 +30,15 @@ namespace Grocerly.API.Controllers
         {
             var searchWords = RemoveDiacritics(name).ToLower().Split(' ');
 
-            IEnumerable<Products> results = new List<Products>();
-
-            foreach(string s in searchWords)
-            {
-                results = results.Concat(
+                return
                 (from p in _context.Products
                  from t in _context.Tags
                  from pt in _context.ProductTags
-                 where t.Name.Contains(searchWords[0])
+                 where searchWords.All(key=> p.Tags.Any(tag => tag.Tag.Name.Contains(key)))
                  && p.Id.Equals(pt.Id_Product) && t.Id.Equals(pt.Id_Tag)
                  select pt.Product
-                 ));
-            }
-
-            return results.OrderBy(p => p.CreationDate)
+                 )
+                 .OrderBy(p => p.CreationDate)
                           .Skip(numberOfRows * (page - 1))
                           .Take(numberOfRows)
                           .Distinct();

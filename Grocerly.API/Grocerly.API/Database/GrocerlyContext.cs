@@ -209,6 +209,10 @@ namespace Grocerly.Database
                 },
                 new Tags
                 {
+                    Name = "met"
+                },
+                new Tags
+                {
                     Name = "pot"
                 },
                 new Tags
@@ -260,6 +264,10 @@ namespace Grocerly.Database
                 },
                 new Tags
                 {
+                    Name = "met"
+                },
+                new Tags
+                {
                     Name = "gele"
                 },
                 new Tags
@@ -302,6 +310,10 @@ namespace Grocerly.Database
                 },
                 new Tags
                 {
+                    Name = "met"
+                },
+                new Tags
+                {
                     Name = "pot"
                 },
                 new Tags
@@ -331,6 +343,156 @@ namespace Grocerly.Database
                 );
             }
             Products.Add(ahPindakaas);
+
+            var ahStroopwafels = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/209713a251040f0904f7457a8afb204f.jpg",
+                Name = "AH Stroopwafels",
+                Price = 1.59,
+                Volume = "12 stuks"
+            };
+
+            tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "koekjes"
+                },
+                new Tags
+                {
+                    Name = "koek"
+                },
+                new Tags
+                {
+                    Name = "stroopwafels"
+                },
+                new Tags
+                {
+                    Name = "paarse"
+                },
+                new Tags
+                {
+                    Name = "zakje"
+                },
+                new Tags
+                {
+                    Name = "albert heijn"
+                }
+            };
+
+            ahStroopwafels.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                ahStroopwafels.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = ahStroopwafels,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(ahStroopwafels);
+
+            var jumboStroopwafels = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/a596699b98ef24aef516622d40189b7c.jpg",
+                Name = "Jumbo Roomboter Stroopwafels",
+                Price = 1.70,
+                Volume = "468 gram"
+            };
+
+            tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "koekjes"
+                },
+                new Tags
+                {
+                    Name = "koek"
+                },
+                new Tags
+                {
+                    Name = "stroopwafels"
+                },
+                new Tags
+                {
+                    Name = "paarse"
+                },
+                new Tags
+                {
+                    Name = "zakje"
+                },
+                new Tags
+                {
+                    Name = "jumbo"
+                }
+            };
+
+            jumboStroopwafels.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                jumboStroopwafels.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = jumboStroopwafels,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(jumboStroopwafels);
+
+            var koffieleutjes = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/dadb3e2927d7df7096d696d18a79ca76.jpg",
+                Name = "Lotus Koffieleutjes",
+                Price = 1.39,
+                Volume = "235 gram"
+            };
+
+            tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "koekjes"
+                },
+                new Tags
+                {
+                    Name = "koffieleutjes"
+                },
+                new Tags
+                {
+                    Name = "koffie"
+                },
+                new Tags
+                {
+                    Name = "rode"
+                },
+                new Tags
+                {
+                    Name = "speculoos"
+                },
+                new Tags
+                {
+                    Name = "lotus"
+                }
+            };
+
+            koffieleutjes.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                koffieleutjes.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = koffieleutjes,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(koffieleutjes);
 
             await SaveChangesAsync();
         }
