@@ -76,16 +76,19 @@ public abstract class BaseActivity extends AppCompatActivity
 
         int id = menuItem.getItemId();
 
-        if (id == R.id.nav_products) {
-            intent = new Intent(this ,MainActivity.class);
-        } else if (id == R.id.nav_shoppinglist) {
-            intent = new Intent(this ,ShoppingListActivity.class);
-        } else if (id == R.id.nav_orders) {
-
-        } else if (id == R.id.nav_volunteer_order) {
-
-        } else if (id == R.id.nav_volunteer_new) {
-
+        switch (id) {
+            case R.id.nav_products:
+                intent = new Intent(this, MainActivity.class);
+                break;
+            case R.id.nav_shoppinglist:
+                intent = new Intent(this, ShoppingListActivity.class);
+                break;
+            case R.id.nav_volunteer_order:
+                intent = new Intent(this, VolunteerActivity.class);
+                break;
+            default:
+                intent = new Intent(this, MainActivity.class);
+                break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
