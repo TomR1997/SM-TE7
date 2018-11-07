@@ -15,6 +15,8 @@ import android.view.MenuItem;
 public abstract class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
+    private NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,10 @@ public abstract class BaseActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(getActivityID()).setChecked(true);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -71,9 +77,9 @@ public abstract class BaseActivity extends AppCompatActivity
         int id = menuItem.getItemId();
 
         if (id == R.id.nav_products) {
-            intent = new Intent(this,MainActivity.class);
+            intent = new Intent(this ,MainActivity.class);
         } else if (id == R.id.nav_shoppinglist) {
-
+            intent = new Intent(this ,ShoppingListActivity.class);
         } else if (id == R.id.nav_orders) {
 
         } else if (id == R.id.nav_volunteer_order) {
