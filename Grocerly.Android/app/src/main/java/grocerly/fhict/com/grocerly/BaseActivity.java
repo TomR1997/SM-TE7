@@ -1,5 +1,6 @@
 package grocerly.fhict.com.grocerly;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,12 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(getLayoutResourceId());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -26,31 +28,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                // Handle navigation view item clicks here.
-                int id = menuItem.getItemId();
-
-                if (id == R.id.nav_products) {
-
-                } else if (id == R.id.nav_shoppinglist) {
-
-                } else if (id == R.id.nav_orders) {
-
-                } else if (id == R.id.nav_volunteer_order) {
-
-                } else if (id == R.id.nav_volunteer_new) {
-
-                }
-
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
-            }
-        });
     }
 
     @Override
@@ -84,5 +61,34 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        Intent intent = null;
+
+        int id = menuItem.getItemId();
+
+        if (id == R.id.nav_products) {
+            intent = new Intent(this,MainActivity.class);
+        } else if (id == R.id.nav_shoppinglist) {
+
+        } else if (id == R.id.nav_orders) {
+
+        } else if (id == R.id.nav_volunteer_order) {
+
+        } else if (id == R.id.nav_volunteer_new) {
+
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        startActivity(intent);
+        return true;
+    }
+
+    protected abstract int getLayoutResourceId();
+    protected abstract int getActivityID();
 
 }
