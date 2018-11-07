@@ -30,18 +30,17 @@ namespace Grocerly.API.Controllers
         {
             var searchWords = RemoveDiacritics(name).ToLower().Split(' ');
 
-                return
-                (from p in _context.Products
-                 from t in _context.Tags
-                 from pt in _context.ProductTags
-                 where searchWords.All(key=> p.Tags.Any(tag => tag.Tag.Name.Contains(key)))
-                 && p.Id.Equals(pt.Id_Product) && t.Id.Equals(pt.Id_Tag)
-                 select pt.Product
-                 )
-                 .OrderBy(p => p.CreationDate)
-                          .Skip(numberOfRows * (page - 1))
-                          .Take(numberOfRows)
-                          .Distinct();
+            return
+            (from p in _context.Products
+             from t in _context.Tags
+             from pt in _context.ProductTags
+             where searchWords.All(key => p.Tags.Any(tag => tag.Tag.Name.Contains(key)))
+             && p.Id.Equals(pt.Id_Product) && t.Id.Equals(pt.Id_Tag)
+             select pt.Product
+             ).Distinct()
+             .OrderBy(p => p.CreationDate)
+                      .Skip(numberOfRows * (page - 1))
+                .Take(numberOfRows);
         }
 
         // GET: api/Products/5

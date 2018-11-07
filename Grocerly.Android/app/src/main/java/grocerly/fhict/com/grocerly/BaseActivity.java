@@ -76,6 +76,13 @@ public abstract class BaseActivity extends AppCompatActivity
 
         int id = menuItem.getItemId();
 
+        int index = navigationView.getMenu()
+                .getItem(getActivityID())
+                .getItemId();
+
+        if (id == index)
+            return true;
+
         switch (id) {
             case R.id.nav_products:
                 intent = new Intent(this, MainActivity.class);
