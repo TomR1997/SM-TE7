@@ -10,7 +10,7 @@ import retrofit2.http.Path;
 
 public interface IShoppingListService {
     @GET("api/shoppinglist/{id}/products")
-    Call<List<Product>> shoppingListItems(@Path("id") String id);
+    Call<List<Product>> getShoppingListItems(@Path("id") String id);
 
     @GET("api/shoppinglist/")
     Call<List<ShoppingList>> allShoppingLists();

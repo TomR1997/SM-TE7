@@ -40,8 +40,8 @@ public class ShoppingListService {
         service = retrofit.create(IShoppingListService.class);
     }
 
-    public void shoppingListItems(String id, Callback<List<Product>> callBack) {
-        Call<List<Product>> call = service.shoppingListItems(id);
+    public void getShoppingListItems(String id, Callback<List<Product>> callBack) {
+        Call<List<Product>> call = service.getShoppingListItems(id);
         call.enqueue(callBack);
     }
 
