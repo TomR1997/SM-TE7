@@ -23,8 +23,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VolunteerActivity"></activity>
-        <activity android:name=".ShoppingListActivity"></activity>
+        <activity android:name=".VolunteerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ShoppingListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <service
+            android:enabled="true"
+            android:exported="false"
+            android:isolatedProcess="false"
+            android:name=".services.SenderService" />
+
+        <service
+            android:enabled="true"
+            android:exported="false"
+            android:isolatedProcess="false"
+            android:name=".services.ReceiverService" />
     </application>
 
 </manifest>
