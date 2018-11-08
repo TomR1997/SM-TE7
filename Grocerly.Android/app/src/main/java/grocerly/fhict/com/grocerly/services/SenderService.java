@@ -71,7 +71,7 @@ public class SenderService extends Service {
         Message msg = mServiceHandler.obtainMessage();
         msg.arg1 = startId;
         mServiceHandler.sendMessage(msg);
-        
+
         return START_STICKY;
     }
 
