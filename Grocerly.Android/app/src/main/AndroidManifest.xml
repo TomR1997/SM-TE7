@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="grocerly.fhict.com.grocerly">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
@@ -23,8 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VolunteerActivity"></activity>
-        <activity android:name=".ShoppingListActivity"></activity>
+        <activity android:name=".VolunteerActivity" />
+        <activity android:name=".ShoppingListActivity" />
     </application>
 
 </manifest>
