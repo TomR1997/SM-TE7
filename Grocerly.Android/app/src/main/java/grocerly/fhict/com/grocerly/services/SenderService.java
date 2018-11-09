@@ -34,7 +34,7 @@ public class SenderService extends Service {
                 factory.setUsername("grocerly");
                 factory.setPassword("1234");
                 factory.setVirtualHost("/");
-                factory.setHost("145.93.128.114");
+                factory.setHost("13.69.136.31");
 
                 Connection connection = factory.newConnection();
 
