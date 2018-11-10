@@ -20,7 +20,14 @@ import com.rabbitmq.client.Envelope;
 
 import java.io.IOException;
 
+import grocerly.fhict.com.grocerly.models.User;
+import grocerly.fhict.com.grocerly.utils.Convert;
+
 public class ReceiverService extends Service {
+
+    private final static String EXCHANGE_NAME = "ORDERS";
+    private final static String QUEUE_NAME = "ORDERS_REPLY";
+    private  final static String ORDER_ID = "a1727265-c504-41cd-aa84-39512c7f89e2";
 
     private ServiceHandler mServiceHandler;
 
@@ -39,7 +46,10 @@ public class ReceiverService extends Service {
             try {
                 Connection connection = factory.newConnection();
                 final Channel channel = connection.createChannel();
-                channel.basicConsume("my-queue", false, "myConsumerTag",
+                channel.queueDeclare(QUEUE_NAME,true, false, false, null);
+                channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, ORDER_ID);
+
+                channel.basicConsume(QUEUE_NAME, false,
                         new DefaultConsumer(channel) {
                             @Override
                             public void handleDelivery(String consumerTag,
@@ -51,6 +61,14 @@ public class ReceiverService extends Service {
 
                                 Intent localIntent = new Intent("VOLUNTEER_FOUND");
                                 localIntent.putExtra("DATA", new String(body, "UTF8"));
+
+                                User volunteer = new User();
+                                volunteer.setName("Bob Janssen");
+                                volunteer.setProfileImage("https://i340824core.venus.fhict.nl/media/1/e8d5a3b0428a63a29ed46df8e687d753.jpg");
+                                String json = Convert.classToString(volunteer);
+
+                                localIntent.putExtra("USER", json);
+
                                 localBroadcastManager.sendBroadcast(localIntent);
                                 channel.basicAck(deliveryTag, false);
                             }
@@ -73,7 +91,6 @@ public class ReceiverService extends Service {
         HandlerThread thread = new HandlerThread("ServiceStartArguments");
         thread.start();
 
-        // Get the HandlerThread's Looper and use it for our Handler
         Looper mServiceLooper = thread.getLooper();
         mServiceHandler = new ServiceHandler(mServiceLooper);
 
@@ -89,7 +106,6 @@ public class ReceiverService extends Service {
         msg.arg1 = startId;
         mServiceHandler.sendMessage(msg);
 
-        // If we get killed, after returning from here, restart
         return START_STICKY;
     }
 

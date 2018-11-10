@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-</android.support.constraint.ConstraintLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="7"
+        android:padding="8dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <Button
+            android:id="@+id/order_btn"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Bestellen" />
+
+        <Button
+            android:id="@+id/price_order_btn"
+            android:clickable="false"
+            android:textColor="@color/background"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_button"
+            android:text="5,00" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -20,6 +20,11 @@ import java.util.concurrent.TimeoutException;
 public class SenderService extends Service {
 
     private ServiceHandler mServiceHandler;
+    private final static String EXCHANGE_NAME = "ORDERS";
+
+    private  final static String ORDER_ID = "a1727265-c504-41cd-aa84-39512c7f89e2";
+
+    private ConnectionFactory factory;
 
     private final class ServiceHandler extends Handler {
 
@@ -30,23 +35,16 @@ public class SenderService extends Service {
         @Override
         public void handleMessage(Message msg) {
             try {
-                ConnectionFactory factory = new ConnectionFactory();
-                factory.setUsername("grocerly");
-                factory.setPassword("1234");
-                factory.setVirtualHost("/");
-                factory.setHost("13.69.136.31");
+                Thread.sleep(5000);
 
                 Connection connection = factory.newConnection();
 
-                Channel channel = connection.createChannel();
-
-                channel.queueDeclare("my-queue", true, false, false, null);
+                final Channel channel = connection.createChannel();
 
                 String message = "A message";
+                channel.exchangeDeclare(EXCHANGE_NAME, "direct");
+                channel.basicPublish(EXCHANGE_NAME, ORDER_ID, null, message.getBytes());
 
-                channel.basicPublish("", "my-queue", null, message.getBytes());
-
-                Thread.sleep(5000);
             } catch (InterruptedException | IOException | TimeoutException e) {
                 Thread.currentThread().interrupt();
             }
@@ -56,10 +54,16 @@ public class SenderService extends Service {
 
     @Override
     public void onCreate() {
+
+        factory = new ConnectionFactory();
+        factory.setUsername("grocerly");
+        factory.setPassword("1234");
+        factory.setVirtualHost("/");
+        factory.setHost("13.69.136.31");
+
         HandlerThread thread = new HandlerThread("ServiceStartArguments");
         thread.start();
 
-        // Get the HandlerThread's Looper and use it for our Handler
         Looper mServiceLooper = thread.getLooper();
         mServiceHandler = new ServiceHandler(mServiceLooper);
     }

@@ -5,11 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
+import grocerly.fhict.com.grocerly.fragments.VolunteerDialogFragment;
+import grocerly.fhict.com.grocerly.models.User;
 import grocerly.fhict.com.grocerly.services.ReceiverService;
 import grocerly.fhict.com.grocerly.services.SenderService;
+import grocerly.fhict.com.grocerly.utils.Convert;
 
 public class ShoppingListActivity extends BaseActivity {
 
@@ -28,7 +34,6 @@ public class ShoppingListActivity extends BaseActivity {
 
         senderService = new Intent(this, SenderService.class);
         receiverService = new Intent(this, ReceiverService.class);
-        startService(senderService);
         startService(receiverService);
 
 
@@ -36,9 +41,22 @@ public class ShoppingListActivity extends BaseActivity {
             @Override
             public void onReceive( Context context, Intent intent ) {
                 String data = intent.getStringExtra("DATA");
+                String json = intent.getStringExtra("USER");
+
+                User volunteer = Convert.stringToClass(json, User.class);
+                showDialog(volunteer);
+
                 Log.d( "Received data : ", data);
             }
         };
+
+        Button orderBtn = findViewById(R.id.order_btn);
+        orderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                orderOnClick();
+            }
+        });
 
         localBroadcastManager.registerReceiver(listener, new IntentFilter("VOLUNTEER_FOUND"));
 
@@ -71,5 +89,19 @@ public class ShoppingListActivity extends BaseActivity {
     }
 
 
+    private void orderOnClick(){
+        startService(senderService);
+    }
+
+    private void showDialog(User volunteer){
+        DialogFragment dialog = new VolunteerDialogFragment();
+
+        Bundle data = new Bundle();
+        data.putString("NAME", volunteer.getName());
+        data.putString("IMAGE", volunteer.getProfileImage());
+
+        dialog.setArguments(data);
+        dialog.show(getSupportFragmentManager(), "Volunteer");
+    }
 
 }

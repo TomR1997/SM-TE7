@@ -53,7 +53,7 @@ public final class ProductsGridViewAdapter extends BaseAdapter {
         Product product = mItems.get(position);
 
         ImageView productImage = view.findViewById(R.id.product_image);
-        Picasso.get().load(product.getImageUrl()).into(productImage);
+        Picasso.get().load(product.getImageUrl()).placeholder(R.drawable.grocerly_icon).into(productImage);
 
         TextView productName = view.findViewById(R.id.product_name);
         TextView productVolume = view.findViewById(R.id.product_volume);
