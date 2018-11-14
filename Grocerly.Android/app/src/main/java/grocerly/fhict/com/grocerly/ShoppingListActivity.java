@@ -1,6 +1,5 @@
 package grocerly.fhict.com.grocerly;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,6 +23,8 @@ public class ShoppingListActivity extends BaseActivity {
     private Intent senderService;
     private Intent receiverService;
 
+    private boolean inBackground = true;
+
     private BroadcastReceiver listener;
 
     private LocalBroadcastManager localBroadcastManager;
@@ -43,9 +44,8 @@ public class ShoppingListActivity extends BaseActivity {
             @Override
             public void onReceive( Context context, Intent intent ) {
                 String data = intent.getStringExtra("DATA");
-                String json = intent.getStringExtra("USER");
 
-                User volunteer = Convert.stringToClass(json, User.class);
+                User volunteer = loadVolunteer(intent);
                 showDialog(volunteer);
 
                 Log.d( "Received data : ", data);
@@ -62,7 +62,27 @@ public class ShoppingListActivity extends BaseActivity {
 
         localBroadcastManager.registerReceiver(listener, new IntentFilter("VOLUNTEER_FOUND"));
 
+        inBackground = false;
+
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        inBackground = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        inBackground = false;
+        Intent intent = getIntent();
+        User volunteer = loadVolunteer(intent);
+
+        if (volunteer != null)
+            showDialog(volunteer);
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -86,27 +106,32 @@ public class ShoppingListActivity extends BaseActivity {
         return 1;
     }
 
+    private User loadVolunteer(Intent intent){
+        String json = intent.getStringExtra("USER");
+
+        if (json == null)
+            return null;
+
+        return Convert.stringToClass(json, User.class);
+    }
 
     private void orderOnClick(){
         startService(senderService);
-        NotificationManager notif =(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notify = new Notification.Builder
-                (getApplicationContext()).setContentTitle("Vrijwilliger").setContentText("We hebben een sappige vrijwilliger voor je").
-                setContentTitle("test").setSmallIcon(R.drawable.grocerly_icon).build();
-
-        notify.flags |= Notification.FLAG_AUTO_CANCEL;
-        notif.notify(0, notify);
     }
 
     private void showDialog(User volunteer){
-        DialogFragment dialog = new VolunteerDialogFragment();
+        if (!inBackground) {
+            DialogFragment dialog = new VolunteerDialogFragment();
 
-        Bundle data = new Bundle();
-        data.putString("NAME", volunteer.getName());
-        data.putString("IMAGE", volunteer.getProfileImage());
+            Bundle data = new Bundle();
+            data.putString("NAME", volunteer.getName());
+            data.putString("IMAGE", volunteer.getProfileImage());
 
-        dialog.setArguments(data);
-        dialog.show(getSupportFragmentManager(), "Volunteer");
+            dialog.setArguments(data);
+            dialog.show(getSupportFragmentManager(), "Volunteer");
+        }
     }
+
+
 
 }
