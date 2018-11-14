@@ -23,8 +23,11 @@ import com.rabbitmq.client.Envelope;
 
 import java.io.IOException;
 
+import grocerly.fhict.com.grocerly.ShoppingListActivity;
 import grocerly.fhict.com.grocerly.models.User;
 import grocerly.fhict.com.grocerly.utils.Convert;
+
+import static grocerly.fhict.com.grocerly.utils.Notification.createNotification;
 
 public class ReceiverService extends Service {
 
@@ -77,8 +80,11 @@ public class ReceiverService extends Service {
                                 localBroadcastManager.sendBroadcast(localIntent);
                                 channel.basicAck(deliveryTag, false);
 
+                                Intent intent = new Intent(getApplicationContext(), ShoppingListActivity.class);
+                                intent.putExtra("USER", json);
 
-
+                                createNotification("We hebben een vrijwilliger voor je gevonden!",
+                                        getApplicationContext(), intent);
                             }
                         });
             }catch (Exception e){
@@ -108,13 +114,14 @@ public class ReceiverService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (!isRunning) {
+
             Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
             Message msg = mServiceHandler.obtainMessage();
             msg.arg1 = startId;
             mServiceHandler.sendMessage(msg);
-        }
+            isRunning = true;
+
 
         return START_STICKY;
     }
