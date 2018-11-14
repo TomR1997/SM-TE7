@@ -1,6 +1,9 @@
 package grocerly.fhict.com.grocerly.services;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -28,6 +31,8 @@ public class ReceiverService extends Service {
     private final static String EXCHANGE_NAME = "ORDERS";
     private final static String QUEUE_NAME = "ORDERS_REPLY";
     private  final static String ORDER_ID = "a1727265-c504-41cd-aa84-39512c7f89e2";
+
+    private static boolean isRunning = false;
 
     private ServiceHandler mServiceHandler;
 
@@ -71,6 +76,9 @@ public class ReceiverService extends Service {
 
                                 localBroadcastManager.sendBroadcast(localIntent);
                                 channel.basicAck(deliveryTag, false);
+
+
+
                             }
                         });
             }catch (Exception e){
@@ -100,11 +108,13 @@ public class ReceiverService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
+        if (!isRunning) {
+            Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
-        Message msg = mServiceHandler.obtainMessage();
-        msg.arg1 = startId;
-        mServiceHandler.sendMessage(msg);
+            Message msg = mServiceHandler.obtainMessage();
+            msg.arg1 = startId;
+            mServiceHandler.sendMessage(msg);
+        }
 
         return START_STICKY;
     }
@@ -117,6 +127,6 @@ public class ReceiverService extends Service {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
+        super.onDestroy();
     }
 }

@@ -1,5 +1,7 @@
 package grocerly.fhict.com.grocerly;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -69,10 +71,6 @@ public class ShoppingListActivity extends BaseActivity {
             stopService(senderService);
         }
 
-        if (receiverService != null) {
-            stopService(receiverService);
-        }
-
         localBroadcastManager.unregisterReceiver(listener);
 
         super.onDestroy();
@@ -91,6 +89,13 @@ public class ShoppingListActivity extends BaseActivity {
 
     private void orderOnClick(){
         startService(senderService);
+        NotificationManager notif =(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification notify = new Notification.Builder
+                (getApplicationContext()).setContentTitle("Vrijwilliger").setContentText("We hebben een sappige vrijwilliger voor je").
+                setContentTitle("test").setSmallIcon(R.drawable.grocerly_icon).build();
+
+        notify.flags |= Notification.FLAG_AUTO_CANCEL;
+        notif.notify(0, notify);
     }
 
     private void showDialog(User volunteer){
