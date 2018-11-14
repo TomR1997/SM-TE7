@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -80,6 +81,10 @@ public class MainActivity extends BaseActivity {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH){
                     if (event == null || !event.isShiftPressed()) {
                         searchProducts(6, 1, v.getText().toString());
+                        
+                        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(searchView.getWindowToken(),
+                                InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
                         return true;
                     }
