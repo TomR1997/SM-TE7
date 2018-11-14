@@ -2,99 +2,47 @@ package grocerly.fhict.com.grocerly;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
-import android.util.SparseArray;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
+import java.util.List;
+
+import grocerly.fhict.com.grocerly.models.Product;
+import grocerly.fhict.com.grocerly.models.ShoppingList;
+import grocerly.fhict.com.grocerly.services.ProductService;
+import grocerly.fhict.com.grocerly.services.ShoppingListService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class VolunteerActivity extends BaseActivity {
 
-    private SurfaceView surfaceView;
-    private CameraSource cameraSource;
-    private TextView textView;
-    private BarcodeDetector barcodeDetector;
+    private ShoppingListService shoppingListService;
+    private ProductService productService;
+    private List<ShoppingList> shoppingLists;
+    private List<Product> products;
+    private TextView productView;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        surfaceView = findViewById(R.id.camerapreview);
-        textView = findViewById(R.id.textView);
+        productView = findViewById(R.id.productView);
+        imageView = findViewById(R.id.productImageView);
 
-        requestPermission(this);
-
-        barcodeDetector = new BarcodeDetector.Builder(this)
-                //.setBarcodeFormats(Barcode.QR_CODE)
-                .setBarcodeFormats(Barcode.ALL_FORMATS)
-                .build();
-
-        cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                //.setRequestedPreviewSize(640, 480)
-                .setAutoFocusEnabled(true)
-                .build();
-
-        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                try {
-                    cameraSource.start(holder);
-                } catch(IOException ex){
-                    ex.printStackTrace();
-                }
-
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                cameraSource.stop();
-            }
-        });
-
-        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
-            @Override
-            public void release() {
-                surfaceView.setVisibility(View.INVISIBLE);
-                cameraSource.stop();
-            }
-
-            @Override
-            public void receiveDetections(Detector.Detections<Barcode> detections) {
-                final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
-                if(qrCodes.size() > 0){
-                    textView.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                            assert vibrator != null;
-                            vibrator.vibrate(1000);
-                            textView.setText(qrCodes.valueAt(0).displayValue);
-                            release();
-                        }
-                    });
-                }
-            }
-        });
+        productService = new ProductService();
+        searchProducts(12, 1, "");
+        shoppingListService = new ShoppingListService();
     }
 
     private void requestPermission(Context context) {
@@ -113,6 +61,89 @@ public class VolunteerActivity extends BaseActivity {
         }
     }
 
+    private void allShoppingLists(){
+        shoppingListService.allShoppinglists(new Callback<List<ShoppingList>>() {
+            @Override
+            public void onResponse(Call<List<ShoppingList>> call, Response<List<ShoppingList>> response) {
+                List<ShoppingList> allShoppingLists = response.body();
+                if(shoppingLists == null){
+                    return;
+                }
+                shoppingLists = allShoppingLists;
+            }
+
+            @Override
+            public void onFailure(Call<List<ShoppingList>> call, Throwable t) {
+                Log.e("shoppingLists", t.getMessage());
+            }
+        });
+    }
+
+    private void getShoppingListItems(){
+        if (!shoppingLists.isEmpty()){
+            shoppingListService.getShoppingListItems(shoppingLists.get(0).getId(), new Callback<List<Product>>() {
+                @Override
+                public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                    List<Product> products = response.body();
+                    if(products == null){
+                        return;
+                    }
+                    //TODO set adapter
+                }
+
+                @Override
+                public void onFailure(Call<List<Product>> call, Throwable t) {
+                    Log.e("products", t.getMessage());
+                }
+            });
+        }
+
+    }
+
+    private void searchProducts(int numberOfRows, int page, String searchTerm){
+        productService.allProducts(numberOfRows, page, searchTerm,
+                new Callback<List<Product>>() {
+
+                    @Override
+                    public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                        products = response.body();
+                        getProductFromIntent();
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Product>> call, Throwable throwable) {
+                        Log.e("products", throwable.getMessage());
+                    }
+                });
+    }
+
+    private Product findProductByBarcode(int barcode){
+        if(products!=null){
+            for (Product p : products) {
+                if (p.getBarcode() == barcode){
+                    return p;
+                }
+            }
+        }
+        return null;
+    }
+
+    private void getProductFromIntent(){
+        int barcode;
+        Intent intent = getIntent();
+        if (intent != null){
+            barcode = intent.getIntExtra("Barcode", 0);
+            if (barcode != 0){
+                Product product = findProductByBarcode(barcode);
+                if(product != null){
+                    productView.setText(product.getName());
+                    Picasso.get().load(product.getImageUrl()).into(imageView);
+                    productView.setVisibility(View.VISIBLE);
+                    imageView.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
 
     @Override
     protected int getLayoutResourceId() {
@@ -122,5 +153,10 @@ public class VolunteerActivity extends BaseActivity {
     @Override
     protected int getActivityID() {
         return 2;
+    }
+
+    public void startBarcodeScanner(View view) {
+        requestPermission(this);
+        startActivity(new Intent(this, BarcodeScannerActivity.class));
     }
 }

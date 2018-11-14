@@ -198,7 +198,8 @@ namespace Grocerly.Database
                 ImageUrl = "https://i340824core.venus.fhict.nl/media/1/7a4cbe13470b14ea32eaaacc31f5d812.jpg",
                 Name = "Calvé Pindakaas",
                 Price = 2.55,
-                Volume = "350 gram"
+                Volume = "350 gram",
+                Barcode = 12345678
             };
 
             IEnumerable<Tags> tags = new List<Tags>
@@ -249,7 +250,8 @@ namespace Grocerly.Database
                 ImageUrl = "https://i340824core.venus.fhict.nl/media/1/c145a223740ccb98c540b1ef11ff5e7a.jpg",
                 Name = "Calvé Pindakaas Pinda's",
                 Price = 2.99,
-                Volume = "350 gram"
+                Volume = "350 gram",
+                Barcode = 23456789
             };
 
             tags = new List<Tags>
@@ -299,7 +301,8 @@ namespace Grocerly.Database
                 ImageUrl = "https://i340824core.venus.fhict.nl/media/1/d6e2425d58386c13ec5eb4da943714cd.jpg",
                 Name = "AH Pindakaas Naturel",
                 Price = 1.99,
-                Volume = "350 gram"
+                Volume = "350 gram",
+                Barcode = 34567890
             };
 
             tags = new List<Tags>
@@ -349,7 +352,8 @@ namespace Grocerly.Database
                 ImageUrl = "https://i340824core.venus.fhict.nl/media/1/209713a251040f0904f7457a8afb204f.jpg",
                 Name = "AH Stroopwafels",
                 Price = 1.59,
-                Volume = "12 stuks"
+                Volume = "12 stuks",
+                Barcode = 45678901
             };
 
             tags = new List<Tags>
@@ -399,7 +403,8 @@ namespace Grocerly.Database
                 ImageUrl = "https://i340824core.venus.fhict.nl/media/1/a596699b98ef24aef516622d40189b7c.jpg",
                 Name = "Jumbo Roomboter Stroopwafels",
                 Price = 1.70,
-                Volume = "468 gram"
+                Volume = "468 gram",
+                Barcode = 56789012
             };
 
             tags = new List<Tags>
@@ -449,7 +454,8 @@ namespace Grocerly.Database
                 ImageUrl = "https://i340824core.venus.fhict.nl/media/1/dadb3e2927d7df7096d696d18a79ca76.jpg",
                 Name = "Lotus Koffieleutjes",
                 Price = 1.39,
-                Volume = "235 gram"
+                Volume = "235 gram",
+                Barcode = 67890123
             };
 
             tags = new List<Tags>

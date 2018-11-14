@@ -13,6 +13,7 @@ namespace Grocerly.Database.Pocos
         public double Price { get; set; }
         public string Volume { get; set; }
         public DateTime CreationDate { get; set; }
+        public int Barcode { get; set; }
 
         [JsonIgnore]
         public List<ProductTag> Tags { get; set; }

@@ -35,17 +35,19 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <service
-            android:enabled="true"
-            android:exported="false"
-            android:isolatedProcess="false"
-            android:name=".services.SenderService" />
 
         <service
+            android:name=".services.SenderService"
             android:enabled="true"
             android:exported="false"
-            android:isolatedProcess="false"
-            android:name=".services.ReceiverService" />
+            android:isolatedProcess="false" />
+        <service
+            android:name=".services.ReceiverService"
+            android:enabled="true"
+            android:exported="false"
+            android:isolatedProcess="false" />
+
+        <activity android:name=".BarcodeScannerActivity"></activity>
     </application>
 
 </manifest>

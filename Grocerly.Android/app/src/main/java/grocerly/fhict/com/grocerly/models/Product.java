@@ -7,6 +7,7 @@ public class Product {
     private String name;
     private String volume;
     private double price;
+    private int barcode;
 
     public String getId() {
         return id;
@@ -46,5 +47,13 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(int barcode) {
+        this.barcode = barcode;
     }
 }
