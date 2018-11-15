@@ -1,5 +1,12 @@
 package grocerly.fhict.com.grocerly;
 
+import android.view.View;
+import android.widget.GridView;
+import android.widget.ListView;
+
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -41,7 +48,19 @@ public class MainActivityTest {
         getInstrumentation().waitForIdleSync();
 
         onView(withId(R.id.products_grid))
-                .check(matches(hasChildCount(2)));
+                .check(matches(withListSize(4)));
 
+    }
+
+    public static Matcher<View> withListSize (final int size) {
+        return new TypeSafeMatcher<View>() {
+            @Override public boolean matchesSafely (final View view) {
+                return ((GridView) view).getChildCount () == size;
+            }
+
+            @Override public void describeTo (final Description description) {
+                description.appendText ("GridView should have " + size + " items");
+            }
+        };
     }
 }
