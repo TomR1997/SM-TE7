@@ -81,7 +81,7 @@ public class MainActivity extends BaseActivity {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH){
                     if (event == null || !event.isShiftPressed()) {
                         searchProducts(6, 1, v.getText().toString());
-                        
+
                         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(searchView.getWindowToken(),
                                 InputMethodManager.RESULT_UNCHANGED_SHOWN);
