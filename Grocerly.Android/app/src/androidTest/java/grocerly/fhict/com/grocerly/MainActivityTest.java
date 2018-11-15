@@ -22,6 +22,7 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
 @RunWith(AndroidJUnit4.class)
@@ -49,6 +50,9 @@ public class MainActivityTest {
 
         onView(withId(R.id.products_grid))
                 .check(matches(withListSize(4)));
+
+        onView(withId(R.id.searchView))
+                .check(matches(withText(searchKey)));
 
     }
 
