@@ -138,8 +138,8 @@ public class ShoppingListActivity extends BaseActivity {
 
     private void showAnim(){
         ImageView animView = findViewById(R.id.check_anim);
-        animView.setBackgroundResource(R.drawable.check_mark_anim);
-        AnimatedVectorDrawable checkAnim = (AnimatedVectorDrawable) animView.getBackground();
+        animView.setImageResource(R.drawable.check_mark_anim);
+        AnimatedVectorDrawable checkAnim = (AnimatedVectorDrawable) animView.getDrawable();
         checkAnim.start();
     }
 
