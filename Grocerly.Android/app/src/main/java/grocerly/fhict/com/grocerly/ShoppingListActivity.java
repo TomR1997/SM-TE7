@@ -5,12 +5,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import grocerly.fhict.com.grocerly.fragments.VolunteerDialogFragment;
 import grocerly.fhict.com.grocerly.models.User;
@@ -56,6 +59,7 @@ public class ShoppingListActivity extends BaseActivity {
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showAnim();
                 orderOnClick();
             }
         });
@@ -130,6 +134,13 @@ public class ShoppingListActivity extends BaseActivity {
             dialog.setArguments(data);
             dialog.show(getSupportFragmentManager(), "Volunteer");
         }
+    }
+
+    private void showAnim(){
+        ImageView animView = findViewById(R.id.check_anim);
+        animView.setBackgroundResource(R.drawable.check_mark_anim);
+        AnimatedVectorDrawable checkAnim = (AnimatedVectorDrawable) animView.getBackground();
+        checkAnim.start();
     }
 
 
