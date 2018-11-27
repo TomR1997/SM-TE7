@@ -22,11 +22,11 @@
         android:id="@+id/request_sent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="18sp"
-        android:gravity="center_horizontal"
         android:layout_weight="7"
-        android:visibility="visible"
-        android:text="@string/volunteer_found"/>
+        android:gravity="center_horizontal"
+        android:text="@string/volunteer_found"
+        android:textSize="18sp"
+        android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="match_parent"

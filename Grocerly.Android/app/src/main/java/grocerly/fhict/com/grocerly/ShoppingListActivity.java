@@ -62,7 +62,7 @@ public class ShoppingListActivity extends BaseActivity {
                 Log.d( "Received data : ", data);
             }
         };
-
+        final Button priceBtn = findViewById(R.id.price_order_btn);
         Button orderBtn = findViewById(R.id.order_btn);
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +72,8 @@ public class ShoppingListActivity extends BaseActivity {
                 editor.putLong("currentPrice", Double.doubleToRawLongBits(currentPrice));
                 editor.apply();
 
+                priceBtn.setText(format.format(currentPrice));
+
                 TextView textView = findViewById(R.id.request_sent);
                 textView.setVisibility(View.VISIBLE);
                 showAnim();
@@ -79,7 +81,7 @@ public class ShoppingListActivity extends BaseActivity {
             }
         });
 
-        Button priceBtn = findViewById(R.id.price_order_btn);
+
         priceBtn.setText(String.valueOf(format.format(currentPrice)));
         localBroadcastManager.registerReceiver(listener, new IntentFilter("VOLUNTEER_FOUND"));
 

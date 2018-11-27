@@ -115,8 +115,6 @@ public class ReceiverService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-            Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
-
             Message msg = mServiceHandler.obtainMessage();
             msg.arg1 = startId;
             mServiceHandler.sendMessage(msg);
