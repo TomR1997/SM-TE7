@@ -3,6 +3,7 @@ package grocerly.fhict.com.grocerly;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -25,6 +26,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -32,6 +35,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -48,15 +52,28 @@ public class MainActivity extends BaseActivity {
     private static final int MY_PERMISSION_REQUEST = 1;
     private static final int REQ_CODE_SPEECH_INPUT = 100;
 
+    final String MY_PREFS_NAME = "MyPrefsFile";
+
     GridView productsGrid;
     ProgressBar progressBar;
     EditText searchView;
     ProductService productService;
     ImageButton microphoneButton;
 
+    NumberFormat format = NumberFormat.getCurrencyInstance();
+
+    private List<Product> products;
+
+    private Button priceButton;
+
+    private static double currentPrice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        currentPrice = Double.longBitsToDouble(prefs.getLong("currentPrice", Double.doubleToLongBits(0)));
 
         productsGrid = findViewById(R.id.products_grid);
         progressBar = findViewById(R.id.progressBar);
@@ -90,6 +107,23 @@ public class MainActivity extends BaseActivity {
                     }
                 }
                 return false;
+            }
+        });
+
+       priceButton = findViewById(R.id.price_order_btn);
+       priceButton.setText(String.valueOf(format.format(currentPrice)));
+
+        productsGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Product product = products.get(position);
+                currentPrice += product.getPrice();
+
+                priceButton.setText(format.format(currentPrice));
+
+                SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                editor.putLong("currentPrice",Double.doubleToRawLongBits(currentPrice));
+                editor.apply();
             }
         });
 
@@ -173,7 +207,7 @@ public class MainActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                        List<Product> products = response.body();
+                        products = response.body();
                         if (products == null)
                             return;
                         productsGrid.setAdapter(
