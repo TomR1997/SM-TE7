@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import grocerly.fhict.com.grocerly.fragments.VolunteerDialogFragment;
 import grocerly.fhict.com.grocerly.models.User;
@@ -59,6 +60,8 @@ public class ShoppingListActivity extends BaseActivity {
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView textView = findViewById(R.id.request_sent);
+                textView.setVisibility(View.VISIBLE);
                 showAnim();
                 orderOnClick();
             }
