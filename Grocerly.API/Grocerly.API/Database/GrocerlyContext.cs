@@ -11,6 +11,7 @@ namespace Grocerly.Database
     {
 
         public DbSet<Tags> Tags { get; set; }
+        public DbSet<ProductTag> ProductTags { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<ShoppingLists> ShoppingLists { get; set; }
         public DbSet<Users> Users { get; set; }
@@ -102,74 +103,74 @@ namespace Grocerly.Database
             Shops.Add(Lidl);
 
 
-            var AHProducts = new List<Products>();
+            //var AHProducts = new List<Products>();
 
-            for (int i = 0; i < 20; i++)
-            {
-                AHProducts.Add(new Products
-                {
-                    Name = "AH product " + i,
-                    Price = 3.12,
-                    Volume = "500 gr"
-                });
-            }
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    AHProducts.Add(new Products
+            //    {
+            //        Name = "AH product " + i,
+            //        Price = 3.12,
+            //        Volume = "500 gr"
+            //    });
+            //}
 
-            Products.AddRange(AHProducts);
+            //Products.AddRange(AHProducts);
 
-            for (int i = 0; i < 20; i++)
-            {
-                AH.Products.Add(
-                    new ShopProduct
-                    {
-                        Shop = AH,
-                        Product = AHProducts[i]
-                    });
-            }
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    AH.Products.Add(
+            //        new ShopProduct
+            //        {
+            //            Shop = AH,
+            //            Product = AHProducts[i]
+            //        });
+            //}
 
-            for (int i = 0; i < 20; i++)
-            {
-                Status status = Status.Open;
-                if (i > 10)
-                {
-                    status = Status.Closed;
-                    if(i > 15)
-                    {
-                        status = Status.Pending;
-                    }
-                }
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    Status status = Status.Open;
+            //    if (i > 10)
+            //    {
+            //        status = Status.Closed;
+            //        if(i > 15)
+            //        {
+            //            status = Status.Pending;
+            //        }
+            //    }
 
-                ShoppingLists shoppingList = new ShoppingLists
-                {
-                    Id = new Guid(),
-                    Name = "Name" + i,
-                    Status = status
-                };
-                ShoppingLists.Add(shoppingList);
+            //    ShoppingLists shoppingList = new ShoppingLists
+            //    {
+            //        Id = new Guid(),
+            //        Name = "Name" + i,
+            //        Status = status
+            //    };
+            //    ShoppingLists.Add(shoppingList);
 
-                Users user = new Users
-                {
-                    Id = new Guid(),
-                    Name = "User " + i,
-                    Email = "Email" + i + "@mail.com",
-                    Role = "User",
-                    Zipcode = "55" + i + "AZ",
-                    Address = "Address" + i,
-                    HouseNumber = i,
-                    Username = "Username" + i,
-                    Password = PasswordHasher.HashPassword("Password" + i),
-                    ShoppingLists = new List<ShoppingLists>()
-                };
+            //    Users user = new Users
+            //    {
+            //        Id = new Guid(),
+            //        Name = "User " + i,
+            //        Email = "Email" + i + "@mail.com",
+            //        Role = "User",
+            //        Zipcode = "55" + i + "AZ",
+            //        Address = "Address" + i,
+            //        HouseNumber = i,
+            //        Username = "Username" + i,
+            //        Password = PasswordHasher.HashPassword("Password" + i),
+            //        ShoppingLists = new List<ShoppingLists>()
+            //    };
 
-                user.ShoppingLists.Add(shoppingList);
-                Users.Add(user);
+            //    user.ShoppingLists.Add(shoppingList);
+            //    Users.Add(user);
 
-                ShoppinglistItems.Add(new ShoppinglistItem
-                {
-                    List = shoppingList,
-                    Product = AHProducts[i],
-                    Quantity = new Random().Next(1, 10)
-                });
-            }
+            //    ShoppinglistItems.Add(new ShoppinglistItem
+            //    {
+            //        List = shoppingList,
+            //        Product = AHProducts[i],
+            //        Quantity = new Random().Next(1, 10)
+            //    });
+            //}
 
             var admin = new Users
             {
@@ -191,6 +192,313 @@ namespace Grocerly.Database
 
                 Tags.Add(tag);
             }
+
+            var calvePindakaas = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/7a4cbe13470b14ea32eaaacc31f5d812.jpg",
+                Name = "Calvé Pindakaas",
+                Price = 2.55,
+                Volume = "350 gram",
+                Barcode = 12345678
+            };
+
+            IEnumerable<Tags> tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "pindakaas"
+                },
+                new Tags
+                {
+                    Name = "met"
+                },
+                new Tags
+                {
+                    Name = "pot"
+                },
+                new Tags
+                {
+                    Name = "zwarte"
+                },
+                new Tags
+                {
+                    Name = "deksel"
+                },
+                new Tags
+                {
+                    Name = "calve"
+                }
+            };
+            calvePindakaas.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                calvePindakaas.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = calvePindakaas,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(calvePindakaas);
+
+
+
+            var calvePindakaasStukjes = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/c145a223740ccb98c540b1ef11ff5e7a.jpg",
+                Name = "Calvé Pindakaas Pinda's",
+                Price = 2.99,
+                Volume = "350 gram",
+                Barcode = 23456789
+            };
+
+            tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "pindakaas"
+                },
+                new Tags
+                {
+                    Name = "pot"
+                },
+                new Tags
+                {
+                    Name = "met"
+                },
+                new Tags
+                {
+                    Name = "gele"
+                },
+                new Tags
+                {
+                    Name = "deksel"
+                },
+                new Tags
+                {
+                    Name = "calve"
+                }
+            };
+
+            calvePindakaasStukjes.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                calvePindakaasStukjes.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = calvePindakaasStukjes,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(calvePindakaasStukjes);
+
+            var ahPindakaas = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/d6e2425d58386c13ec5eb4da943714cd.jpg",
+                Name = "AH Pindakaas Naturel",
+                Price = 1.99,
+                Volume = "350 gram",
+                Barcode = 34567890
+            };
+
+            tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "pindakaas"
+                },
+                new Tags
+                {
+                    Name = "met"
+                },
+                new Tags
+                {
+                    Name = "pot"
+                },
+                new Tags
+                {
+                    Name = "zilvere"
+                },
+                new Tags
+                {
+                    Name = "deksel"
+                },
+                new Tags
+                {
+                    Name = "albert heijn"
+                }
+            };
+
+            ahPindakaas.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                ahPindakaas.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = ahPindakaas,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(ahPindakaas);
+
+            var ahStroopwafels = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/209713a251040f0904f7457a8afb204f.jpg",
+                Name = "AH Stroopwafels",
+                Price = 1.59,
+                Volume = "12 stuks",
+                Barcode = 45678901
+            };
+
+            tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "koekjes"
+                },
+                new Tags
+                {
+                    Name = "koek"
+                },
+                new Tags
+                {
+                    Name = "stroopwafels"
+                },
+                new Tags
+                {
+                    Name = "paarse"
+                },
+                new Tags
+                {
+                    Name = "zakje"
+                },
+                new Tags
+                {
+                    Name = "albert heijn"
+                }
+            };
+
+            ahStroopwafels.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                ahStroopwafels.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = ahStroopwafels,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(ahStroopwafels);
+
+            var jumboStroopwafels = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/a596699b98ef24aef516622d40189b7c.jpg",
+                Name = "Jumbo Roomboter Stroopwafels",
+                Price = 1.70,
+                Volume = "468 gram",
+                Barcode = 56789012
+            };
+
+            tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "koekjes"
+                },
+                new Tags
+                {
+                    Name = "koek"
+                },
+                new Tags
+                {
+                    Name = "stroopwafels"
+                },
+                new Tags
+                {
+                    Name = "paarse"
+                },
+                new Tags
+                {
+                    Name = "zakje"
+                },
+                new Tags
+                {
+                    Name = "jumbo"
+                }
+            };
+
+            jumboStroopwafels.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                jumboStroopwafels.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = jumboStroopwafels,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(jumboStroopwafels);
+
+            var koffieleutjes = new Products
+            {
+                ImageUrl = "https://i340824core.venus.fhict.nl/media/1/dadb3e2927d7df7096d696d18a79ca76.jpg",
+                Name = "Lotus Koffieleutjes",
+                Price = 1.39,
+                Volume = "235 gram",
+                Barcode = 67890123
+            };
+
+            tags = new List<Tags>
+            {
+                new Tags
+                {
+                    Name = "koekjes"
+                },
+                new Tags
+                {
+                    Name = "koffieleutjes"
+                },
+                new Tags
+                {
+                    Name = "koffie"
+                },
+                new Tags
+                {
+                    Name = "rode"
+                },
+                new Tags
+                {
+                    Name = "speculoos"
+                },
+                new Tags
+                {
+                    Name = "lotus"
+                }
+            };
+
+            koffieleutjes.Tags = new List<ProductTag>();
+            foreach (Tags t in tags)
+            {
+                Tags.Add(t);
+                koffieleutjes.Tags.Add(
+                    new ProductTag
+                    {
+                        Product = koffieleutjes,
+                        Tag = t
+                    }
+                );
+            }
+            Products.Add(koffieleutjes);
 
             await SaveChangesAsync();
         }
