@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.NumberFormat;
 
 import grocerly.fhict.com.grocerly.fragments.VolunteerDialogFragment;
 import grocerly.fhict.com.grocerly.models.User;
@@ -30,8 +33,10 @@ public class ShoppingListActivity extends BaseActivity {
     private boolean inBackground = true;
 
     private BroadcastReceiver listener;
-
+    final String MY_PREFS_NAME = "MyPrefsFile";
+    private static double currentPrice;
     private LocalBroadcastManager localBroadcastManager;
+    NumberFormat format = NumberFormat.getCurrencyInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,8 @@ public class ShoppingListActivity extends BaseActivity {
         receiverService = new Intent(this, ReceiverService.class);
         startService(receiverService);
 
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        currentPrice = Double.longBitsToDouble(prefs.getLong("currentPrice", Double.doubleToLongBits(0)));
 
         listener = new BroadcastReceiver() {
             @Override
@@ -60,6 +67,11 @@ public class ShoppingListActivity extends BaseActivity {
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                currentPrice = 0;
+                SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                editor.putLong("currentPrice", Double.doubleToRawLongBits(currentPrice));
+                editor.apply();
+
                 TextView textView = findViewById(R.id.request_sent);
                 textView.setVisibility(View.VISIBLE);
                 showAnim();
@@ -67,6 +79,8 @@ public class ShoppingListActivity extends BaseActivity {
             }
         });
 
+        Button priceBtn = findViewById(R.id.price_order_btn);
+        priceBtn.setText(String.valueOf(format.format(currentPrice)));
         localBroadcastManager.registerReceiver(listener, new IntentFilter("VOLUNTEER_FOUND"));
 
         inBackground = false;
