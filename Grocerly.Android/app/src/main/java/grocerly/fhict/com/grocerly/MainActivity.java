@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -120,6 +121,11 @@ public class MainActivity extends BaseActivity {
                 currentPrice += product.getPrice();
 
                 priceButton.setText(format.format(currentPrice));
+
+                Snackbar.make(findViewById(R.id.main_layout),
+                        product.getName() + "  is toegevoegd aan je boodschappenlijstje",
+                        Snackbar.LENGTH_LONG).show();
+
 
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putLong("currentPrice",Double.doubleToRawLongBits(currentPrice));
