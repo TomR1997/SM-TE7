@@ -15,8 +15,14 @@
         android:id="@+id/check_anim"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:scaleType="fitCenter" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="7"
+        android:text="@string/volunteer_found"/>
 
     <LinearLayout
         android:layout_width="match_parent"

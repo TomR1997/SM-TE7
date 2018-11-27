@@ -10,6 +10,7 @@
     <string name="microphone">Microphone</string>
 
     <string name="product_page">Producten</string>
-    <string name="please_focus_on_the_code">Please focus on the code.</string>
+    <string name="please_focus_on_the_code">Focus op de barcode</string>
     <string name="scan_barcode">Scan barcode</string>
+    <string name="volunteer_found">Uw aanvraag is verzonden</string>
 </resources>
