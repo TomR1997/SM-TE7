@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83AF17B821B026CA00B23A7D /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF17B721B026CA00B23A7D /* HttpClient.swift */; };
+		83AF17BA21B0275900B23A7D /* PropertyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF17B921B0275900B23A7D /* PropertyUtils.swift */; };
 		83B6D5B821AFE52800EB64AE /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B6D5B721AFE52800EB64AE /* MapController.swift */; };
 		83C91C0B21AFEB48002412AA /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C91C0A21AFEB48002412AA /* MapLocation.swift */; };
 		83D0148121AEA36200DCF6C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D0148021AEA36200DCF6C0 /* AppDelegate.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83AF17B721B026CA00B23A7D /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		83AF17B921B0275900B23A7D /* PropertyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyUtils.swift; sourceTree = "<group>"; };
 		83B6D5B721AFE52800EB64AE /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		83C91C0A21AFEB48002412AA /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
 		83C91C0C21B0142E002412AA /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
@@ -84,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83AF17B621B0263A00B23A7D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				83AF17B721B026CA00B23A7D /* HttpClient.swift */,
+				83AF17B921B0275900B23A7D /* PropertyUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		83B6D5B621AFD4DC00EB64AE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +137,7 @@
 		83D0147F21AEA36200DCF6C0 /* Grocerly.iOS */ = {
 			isa = PBXGroup;
 			children = (
+				83AF17B621B0263A00B23A7D /* Utils */,
 				83C91C0921AFEB0E002412AA /* Models */,
 				83B6D5B621AFD4DC00EB64AE /* ViewControllers */,
 				83D014B121AEC72F00DCF6C0 /* Storyboards */,
@@ -300,8 +314,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83AF17BA21B0275900B23A7D /* PropertyUtils.swift in Sources */,
 				83B6D5B821AFE52800EB64AE /* MapController.swift in Sources */,
 				83C91C0B21AFEB48002412AA /* MapLocation.swift in Sources */,
+				83AF17B821B026CA00B23A7D /* HttpClient.swift in Sources */,
 				83D0148121AEA36200DCF6C0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
