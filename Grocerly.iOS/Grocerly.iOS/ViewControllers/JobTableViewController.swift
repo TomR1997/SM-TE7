@@ -8,24 +8,29 @@
 
 import UIKit
 
-class JobTableViewController: UITableViewController {
+class JobTableViewController: UIViewController, UITableViewDataSource {
+    
+    @IBOutlet weak var jobTable: UITableView!
     
     var shoppinglists = [ShoppingList]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.jobTable.dataSource = self
+        
         mockShoppingLists()
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shoppinglists.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "JobCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? JobTableViewCell else {
             fatalError("Could not cast cell to jobcell")

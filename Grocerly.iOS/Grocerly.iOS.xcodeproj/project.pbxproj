@@ -138,7 +138,6 @@
 				83D014B121AEC72F00DCF6C0 /* Storyboards */,
 				83D0148021AEA36200DCF6C0 /* AppDelegate.swift */,
 				83D0148921AEA36400DCF6C0 /* Assets.xcassets */,
-				83D0148B21AEA36400DCF6C0 /* LaunchScreen.storyboard */,
 				83D0148E21AEA36400DCF6C0 /* Info.plist */,
 				83C91C0C21B0142E002412AA /* Location.gpx */,
 			);
@@ -166,6 +165,7 @@
 		83D014B121AEC72F00DCF6C0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				83D0148B21AEA36400DCF6C0 /* LaunchScreen.storyboard */,
 				83D0148621AEA36200DCF6C0 /* Main.storyboard */,
 				83D014B221AEC8C600DCF6C0 /* ShoppingList.storyboard */,
 				83D014B421AED07C00DCF6C0 /* Job.storyboard */,
