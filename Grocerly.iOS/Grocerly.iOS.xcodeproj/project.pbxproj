@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83B6D5B821AFE52800EB64AE /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B6D5B721AFE52800EB64AE /* MapController.swift */; };
+		83C91C0B21AFEB48002412AA /* MapLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C91C0A21AFEB48002412AA /* MapLocation.swift */; };
 		83D0148121AEA36200DCF6C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D0148021AEA36200DCF6C0 /* AppDelegate.swift */; };
 		83D0148821AEA36200DCF6C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D0148621AEA36200DCF6C0 /* Main.storyboard */; };
 		83D0148A21AEA36400DCF6C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83D0148921AEA36400DCF6C0 /* Assets.xcassets */; };
@@ -36,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83B6D5B721AFE52800EB64AE /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		83C91C0A21AFEB48002412AA /* MapLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocation.swift; sourceTree = "<group>"; };
+		83C91C0C21B0142E002412AA /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		83C91C0D21B014E9002412AA /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Location.gpx; path = Grocerly.iOS/Location.gpx; sourceTree = "<group>"; };
 		83D0147D21AEA36200DCF6C0 /* Grocerly.iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grocerly.iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83D0148021AEA36200DCF6C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83D0148721AEA36200DCF6C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,13 +87,23 @@
 		83B6D5B621AFD4DC00EB64AE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				83B6D5B721AFE52800EB64AE /* MapController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		83C91C0921AFEB0E002412AA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				83C91C0A21AFEB48002412AA /* MapLocation.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		83D0147421AEA36200DCF6C0 = {
 			isa = PBXGroup;
 			children = (
+				83C91C0D21B014E9002412AA /* Location.gpx */,
 				83D0147F21AEA36200DCF6C0 /* Grocerly.iOS */,
 				83D0149621AEA36400DCF6C0 /* Grocerly.iOSTests */,
 				83D014A121AEA36400DCF6C0 /* Grocerly.iOSUITests */,
@@ -108,12 +124,14 @@
 		83D0147F21AEA36200DCF6C0 /* Grocerly.iOS */ = {
 			isa = PBXGroup;
 			children = (
+				83C91C0921AFEB0E002412AA /* Models */,
 				83B6D5B621AFD4DC00EB64AE /* ViewControllers */,
 				83D014B121AEC72F00DCF6C0 /* Storyboards */,
 				83D0148021AEA36200DCF6C0 /* AppDelegate.swift */,
 				83D0148921AEA36400DCF6C0 /* Assets.xcassets */,
 				83D0148B21AEA36400DCF6C0 /* LaunchScreen.storyboard */,
 				83D0148E21AEA36400DCF6C0 /* Info.plist */,
+				83C91C0C21B0142E002412AA /* Location.gpx */,
 			);
 			path = Grocerly.iOS;
 			sourceTree = "<group>";
@@ -282,6 +300,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83B6D5B821AFE52800EB64AE /* MapController.swift in Sources */,
+				83C91C0B21AFEB48002412AA /* MapLocation.swift in Sources */,
 				83D0148121AEA36200DCF6C0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
