@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Shoppinglist-->
+        <!--Boodschappenlijst-->
         <scene sceneID="Dd5-kD-SM9">
             <objects>
                 <viewController restorationIdentifier="ShoppingListController" storyboardIdentifier="ShoppingListController" id="42G-sK-T8F" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7GD-ch-7tB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Shoppinglist" image="first" id="QSJ-rU-cA2"/>
+                    <tabBarItem key="tabBarItem" title="Boodschappenlijst" image="shop" id="QSJ-rU-cA2"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7q-Pw-Z4E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="shop" width="37.5" height="37.5"/>
     </resources>
 </document>

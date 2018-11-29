@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Jobs-->
+        <!--Taken-->
         <scene sceneID="tzR-WF-CiD">
             <objects>
                 <viewController restorationIdentifier="JobController" storyboardIdentifier="JobController" id="zRo-Aw-sUt" sceneMemberID="viewController">
@@ -32,7 +32,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9QH-SA-RLt"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Jobs" image="first" id="rmY-ef-SCY"/>
+                    <tabBarItem key="tabBarItem" title="Taken" image="tasks" id="rmY-ef-SCY"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhu-US-ZKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -41,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="tasks" width="18" height="18"/>
     </resources>
 </document>

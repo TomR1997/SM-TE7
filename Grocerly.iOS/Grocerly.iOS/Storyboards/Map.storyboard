@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map-->
+        <!--Route-->
         <scene sceneID="wug-Kl-Cli">
             <objects>
                 <viewController restorationIdentifier="MapController" storyboardIdentifier="MapController" id="c5o-OH-lQJ" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="P1y-U0-czn"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="second" id="6sG-6n-eiq"/>
+                    <tabBarItem key="tabBarItem" title="Route" image="map" id="6sG-6n-eiq"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwx-Cu-dWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="second" width="30" height="30"/>
+        <image name="map" width="37.5" height="37.5"/>
     </resources>
 </document>
