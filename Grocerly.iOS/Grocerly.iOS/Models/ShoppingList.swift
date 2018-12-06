@@ -11,10 +11,12 @@ import UIKit
 class ShoppingList {
     var name: String
     var id: String
+    var image: UIImage
     
-    init(name: String, id: String) {
+    init(name: String, id: String, image: UIImage) {
         self.name = name
         self.id = id
+        self.image = image
     }
     
 }
