@@ -13,19 +13,10 @@
         <!--Boodschappenlijst-->
         <scene sceneID="Dd5-kD-SM9">
             <objects>
-                <viewController restorationIdentifier="ShoppingListController" storyboardIdentifier="ShoppingListController" id="42G-sK-T8F" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ShoppingListController" storyboardIdentifier="ShoppingListController" id="42G-sK-T8F" customClass="ShoppingListController" customModule="Grocerly_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uhN-8K-Zct">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shoppinglist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7r-bw-Ay9">
-                                <rect key="frame" x="140" y="321" width="95" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7GD-ch-7tB"/>
                     </view>
@@ -38,6 +29,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="shop" width="37.5" height="37.5"/>
+        <image name="shop" width="18" height="18"/>
     </resources>
 </document>
