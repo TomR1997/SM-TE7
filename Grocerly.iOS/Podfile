@@ -8,6 +8,7 @@ target 'Grocerly.iOS' do
   # Pods for Grocerly.iOS
 
   pod 'lottie-ios', '~> 2.5.2'
+  pod 'SwipeableTabBarController', '~> 1.4.0'
 
   target 'Grocerly.iOSTests' do
     inherit! :search_paths

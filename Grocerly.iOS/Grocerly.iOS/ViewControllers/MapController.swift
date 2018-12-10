@@ -42,7 +42,7 @@ class MapController : UIViewController, MKMapViewDelegate {
         let location = request.destination
         location?.name = "Albert Hijen"
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        location!.openInMaps(launchOptions: launchOptions)
+        //location!.openInMaps(launchOptions: launchOptions)
         
         let directions = MKDirections(request: request)
         
