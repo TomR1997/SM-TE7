@@ -49,9 +49,9 @@ class JobTableViewController: UIViewController, UITableViewDataSource {
     }
     
     private func mockShoppingLists() {
-        let shoppinglist1 = ShoppingList(name: "Mareike W's shoppinglist", id: "qwerty", image: UIImage(named: "mareike")!, distance: 2, shoppinglistItems: 1)
-        let shoppinglist2 = ShoppingList(name: "Tom R's shoppinglist", id: "wertyu", image: UIImage(named: "tom")!, distance: 4, shoppinglistItems: 3)
-        let shoppinglist3 = ShoppingList(name: "Sander Dl's shoppinglist", id: "rtyui", image: UIImage(named: "sander")!, distance: 7, shoppinglistItems: 2)
+        let shoppinglist1 = ShoppingList(name: "Mareike W's boodschappenlijst", id: "qwerty", image: UIImage(named: "mareike")!, distance: 2, shoppinglistItems: 1)
+        let shoppinglist2 = ShoppingList(name: "Tom R's boodschappenlijst", id: "wertyu", image: UIImage(named: "tom")!, distance: 4, shoppinglistItems: 3)
+        let shoppinglist3 = ShoppingList(name: "Sander Dl's boodschappenlijst", id: "rtyui", image: UIImage(named: "sander")!, distance: 7, shoppinglistItems: 2)
         
         shoppinglists += [shoppinglist1, shoppinglist2, shoppinglist3]
     }
