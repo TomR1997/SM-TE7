@@ -8,13 +8,38 @@
 
 import UIKit
 import MapKit
+import Lottie
 
 class MapController : UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var directionsMap: MKMapView!
+    var location: MKMapItem!
     
     let initialLocation = CLLocation(latitude: 51.451299, longitude: 5.4535257)
     let regionRadius: CLLocationDistance = 500
+    
+    override func loadView() {
+        super.loadView()
+        let animationView = LOTAnimationView(name: "map")
+        animationView.loopAnimation = true
+        animationView.contentMode = .scaleAspectFill
+        animationView.center = view.center
+        animationView.backgroundColor = UIColor.init(named: "Background")
+        
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(animationView)
+        
+        let verticalSpace = NSLayoutConstraint(item: self.directionsMap, attribute: .bottom, relatedBy: .equal, toItem: animationView, attribute: .top, multiplier: 1, constant: -4)
+        NSLayoutConstraint.activate([
+            verticalSpace,
+            animationView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
+            animationView.widthAnchor.constraint(equalToConstant: 75),
+            animationView.heightAnchor.constraint(equalToConstant: 75)
+            ])
+        
+        animationView.play()
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +64,8 @@ class MapController : UIViewController, MKMapViewDelegate {
         request.requestsAlternateRoutes = true
         request.transportType = .automobile
         
-        let location = request.destination
-        location?.name = "Albert Hijen"
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-        //location!.openInMaps(launchOptions: launchOptions)
+        location = request.destination!
+        location.name = "Albert Heijn"
         
         let directions = MKDirections(request: request)
         
@@ -85,5 +108,11 @@ class MapController : UIViewController, MKMapViewDelegate {
                 longitudinalMeters: regionRadius
         )
         directionsMap.setRegion(coordinateRegion, animated: true)
+    }
+    
+    @IBAction func startRouteClick(_ sender: Any) {
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        
+        location.openInMaps(launchOptions: launchOptions)
     }
 }

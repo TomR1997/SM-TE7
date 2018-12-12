@@ -16,7 +16,7 @@ class ShoppingListController : UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DisplayLoader.instance.displayLoader(onView: view)
+        DisplayLoader.instance.displayLoader(onView: view,name: "icon_loading")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
             DisplayLoader.instance.hideLoader()

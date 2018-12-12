@@ -21,15 +21,19 @@ class DisplayLoader {
         self.container = UIView()
     }
     
-    func displayLoader (onView: UIView){
+    func displayLoader (onView: UIView, name: String){
         container.frame = onView.frame
         container.center = onView.center
         container.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         
-        let animationView = LOTAnimationView(name: "icon_loading")
+        let animationView = LOTAnimationView(name: name)
         animationView.loopAnimation = true
         animationView.contentMode = .scaleAspectFill
         animationView.center = onView.center
+        
+        for view in container.subviews{
+            view.removeFromSuperview()
+        }
         
         container.addSubview(animationView)
         onView.addSubview(container)

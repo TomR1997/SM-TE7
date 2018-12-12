@@ -86,7 +86,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "../../Grocerly.iOS/Location.gpx"
+         identifier = "../Grocerly.iOS/Location.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>
