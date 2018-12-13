@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Item: Decodable {
+class Item: Codable {
     var id: String
     var imageUrl: String
     var name: String

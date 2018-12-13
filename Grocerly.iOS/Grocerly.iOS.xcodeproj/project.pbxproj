@@ -10,6 +10,7 @@
 		0CA12630088D0FB80610F426 /* Pods_Grocerly_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A16FBB75D0C5AB4E7981234 /* Pods_Grocerly_iOSTests.framework */; };
 		2B377DB5353C3727703E495E /* Pods_Grocerly_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE5EC543403E794AB38BA011 /* Pods_Grocerly_iOSUITests.framework */; };
 		69779508033B2A755BD592C5 /* Pods_Grocerly_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2578E8C2F375FE420F2AB37 /* Pods_Grocerly_iOS.framework */; };
+		8319D9D821C27AF100092CD1 /* UserPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319D9D721C27AF100092CD1 /* UserPrefs.swift */; };
 		8341F2F421B940E70076146A /* ShoppingListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341F2F321B940E70076146A /* ShoppingListController.swift */; };
 		83A221E221C1449400DEE07D /* ItemTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A221E121C1449400DEE07D /* ItemTableCell.swift */; };
 		83B446D521BE5EC200D6E851 /* DisplayLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B446D421BE5EC200D6E851 /* DisplayLoader.swift */; };
@@ -58,6 +59,7 @@
 		458E52E27313D14237A6DF9B /* Pods-Grocerly.iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocerly.iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grocerly.iOSUITests/Pods-Grocerly.iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5201E6E6945D300F278571F7 /* Pods-Grocerly.iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocerly.iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grocerly.iOSTests/Pods-Grocerly.iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E568354311051C7AF59CDF9 /* Pods-Grocerly.iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocerly.iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grocerly.iOS/Pods-Grocerly.iOS.release.xcconfig"; sourceTree = "<group>"; };
+		8319D9D721C27AF100092CD1 /* UserPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrefs.swift; sourceTree = "<group>"; };
 		8341F2F321B940E70076146A /* ShoppingListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListController.swift; sourceTree = "<group>"; };
 		83A221E121C1449400DEE07D /* ItemTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableCell.swift; sourceTree = "<group>"; };
 		83B446D421BE5EC200D6E851 /* DisplayLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLoader.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			children = (
 				83E3D9AA21C258FE00BD9EC2 /* HttpClient.swift */,
 				83E3D9AC21C26BD200BD9EC2 /* ImageUtils.swift */,
+				8319D9D721C27AF100092CD1 /* UserPrefs.swift */,
 			);
 			name = utils;
 			path = "New Group";
@@ -511,6 +514,7 @@
 				83D0148121AEA36200DCF6C0 /* AppDelegate.swift in Sources */,
 				83F0184F21C1462A00FD632D /* ItemViewController.swift in Sources */,
 				8341F2F421B940E70076146A /* ShoppingListController.swift in Sources */,
+				8319D9D821C27AF100092CD1 /* UserPrefs.swift in Sources */,
 				83E3D9AB21C258FE00BD9EC2 /* HttpClient.swift in Sources */,
 				83E7EF4421B01F6400D559D7 /* JobTableViewCell.swift in Sources */,
 			);
