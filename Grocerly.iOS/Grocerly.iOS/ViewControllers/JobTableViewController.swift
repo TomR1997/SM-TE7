@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JobTableViewController: UIViewController, UITableViewDataSource {
+class JobTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var jobTable: UITableView!
     
@@ -18,6 +18,7 @@ class JobTableViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         
         self.jobTable.dataSource = self
+        self.jobTable.delegate = self
         
         mockShoppingLists()
     }
@@ -48,9 +49,13 @@ class JobTableViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "segue", sender: self)
+    }
+    
     private func mockShoppingLists() {
         let shoppinglist1 = ShoppingList(name: "Mareike W's boodschappenlijst", id: "qwerty", image: UIImage(named: "mareike")!, distance: 2, shoppinglistItems: 1)
-        let shoppinglist2 = ShoppingList(name: "Tom R's boodschappenlijst", id: "wertyu", image: UIImage(named: "tom")!, distance: 4, shoppinglistItems: 3)
+        let shoppinglist2 = ShoppingList(name: "Tom R's boodschappenlijst", id: "wertyu", image: UIImage(named: "tom")!, distance: 4, shoppinglistItems: 6)
         let shoppinglist3 = ShoppingList(name: "Sander Dl's boodschappenlijst", id: "rtyui", image: UIImage(named: "sander")!, distance: 7, shoppinglistItems: 2)
         
         shoppinglists += [shoppinglist1, shoppinglist2, shoppinglist3]
