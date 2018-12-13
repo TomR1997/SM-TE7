@@ -13,9 +13,11 @@ class ItemViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var itemTable: UITableView!
     
     var items = [Item]()
+    var shoppinglistItems = [Item]()
     var client = HttpClient()
     var imageUtils = ImageUtils()
     var baseString = "i315103core.venus.fhict.nl"
+    var selectedShoppinglist: ShoppingList?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,7 @@ class ItemViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return shoppinglistItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -39,7 +41,7 @@ class ItemViewController: UIViewController, UITableViewDataSource {
             fatalError("Could not cast cell to itemcell")
         }
         
-        let item = items[indexPath.row]
+        let item = shoppinglistItems[indexPath.row]
         imageUtils.imageFromUrl(url: item.imageUrl) {targetImage in
             cell.itemView.image = targetImage
         }
@@ -59,6 +61,13 @@ class ItemViewController: UIViewController, UITableViewDataSource {
         
         client.get(url: url!, ofType: [Item].self) { (item, response, error) in
             self.items = item ?? [Item]()
+            
+            if (self.selectedShoppinglist != nil){
+                for _ in 0..<self.selectedShoppinglist!.shoppinglistItems {
+                    self.shoppinglistItems.append(self.items[Int.random(in: 0..<(self.selectedShoppinglist?.shoppinglistItems)!)])
+                }
+            }
+            
             self.itemTable.reloadData()
         }
     }

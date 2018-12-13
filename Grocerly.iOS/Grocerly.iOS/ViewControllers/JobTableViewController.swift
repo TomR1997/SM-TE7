@@ -13,6 +13,7 @@ class JobTableViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var jobTable: UITableView!
     
     var shoppinglists = [ShoppingList]()
+    var listIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +51,20 @@ class JobTableViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        listIndex = indexPath.row
         performSegue(withIdentifier: "segue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "segue") {
+            let itemViewController = segue.destination as! ItemViewController
+            itemViewController.selectedShoppinglist = shoppinglists[listIndex]
+        }
     }
     
     private func mockShoppingLists() {
         let shoppinglist1 = ShoppingList(name: "Mareike W's boodschappenlijst", id: "qwerty", image: UIImage(named: "mareike")!, distance: 2, shoppinglistItems: 1)
-        let shoppinglist2 = ShoppingList(name: "Tom R's boodschappenlijst", id: "wertyu", image: UIImage(named: "tom")!, distance: 4, shoppinglistItems: 6)
+        let shoppinglist2 = ShoppingList(name: "Tom R's boodschappenlijst", id: "wertyu", image: UIImage(named: "tom")!, distance: 4, shoppinglistItems: 3)
         let shoppinglist3 = ShoppingList(name: "Sander Dl's boodschappenlijst", id: "rtyui", image: UIImage(named: "sander")!, distance: 7, shoppinglistItems: 2)
         
         shoppinglists += [shoppinglist1, shoppinglist2, shoppinglist3]
