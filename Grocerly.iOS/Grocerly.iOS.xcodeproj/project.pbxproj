@@ -11,6 +11,7 @@
 		2B377DB5353C3727703E495E /* Pods_Grocerly_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE5EC543403E794AB38BA011 /* Pods_Grocerly_iOSUITests.framework */; };
 		69779508033B2A755BD592C5 /* Pods_Grocerly_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2578E8C2F375FE420F2AB37 /* Pods_Grocerly_iOS.framework */; };
 		8341F2F421B940E70076146A /* ShoppingListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341F2F321B940E70076146A /* ShoppingListController.swift */; };
+		83A221E221C1449400DEE07D /* ItemTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A221E121C1449400DEE07D /* ItemTableCell.swift */; };
 		83B446D521BE5EC200D6E851 /* DisplayLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B446D421BE5EC200D6E851 /* DisplayLoader.swift */; };
 		83B4ECA821B024FB00A34562 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B4ECA721B024FB00A34562 /* ShoppingList.swift */; };
 		83B6D5B821AFE52800EB64AE /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B6D5B721AFE52800EB64AE /* MapController.swift */; };
@@ -25,9 +26,13 @@
 		83D014B321AEC8C600DCF6C0 /* ShoppingList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D014B221AEC8C600DCF6C0 /* ShoppingList.storyboard */; };
 		83D014B521AED07C00DCF6C0 /* Job.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D014B421AED07C00DCF6C0 /* Job.storyboard */; };
 		83D014B721AED20000DCF6C0 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D014B621AED20000DCF6C0 /* Map.storyboard */; };
+		83E3D9A821C2568A00BD9EC2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E3D9A721C2568A00BD9EC2 /* Item.swift */; };
+		83E3D9AB21C258FE00BD9EC2 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E3D9AA21C258FE00BD9EC2 /* HttpClient.swift */; };
+		83E3D9AD21C26BD200BD9EC2 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E3D9AC21C26BD200BD9EC2 /* ImageUtils.swift */; };
 		83E7EF4121B01E8400D559D7 /* JobTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7EF4021B01E8400D559D7 /* JobTableViewController.swift */; };
 		83E7EF4421B01F6400D559D7 /* JobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7EF4321B01F6400D559D7 /* JobTableViewCell.swift */; };
 		83EBC3D521BC37B4005EBAEB /* icon_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 83EBC3D421BC37B4005EBAEB /* icon_loading.json */; };
+		83F0184F21C1462A00FD632D /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0184E21C1462A00FD632D /* ItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,7 @@
 		5201E6E6945D300F278571F7 /* Pods-Grocerly.iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocerly.iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grocerly.iOSTests/Pods-Grocerly.iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E568354311051C7AF59CDF9 /* Pods-Grocerly.iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocerly.iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grocerly.iOS/Pods-Grocerly.iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8341F2F321B940E70076146A /* ShoppingListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListController.swift; sourceTree = "<group>"; };
+		83A221E121C1449400DEE07D /* ItemTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableCell.swift; sourceTree = "<group>"; };
 		83B446D421BE5EC200D6E851 /* DisplayLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLoader.swift; sourceTree = "<group>"; };
 		83B4ECA721B024FB00A34562 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
 		83B6D5B721AFE52800EB64AE /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
@@ -76,9 +82,13 @@
 		83D014B221AEC8C600DCF6C0 /* ShoppingList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShoppingList.storyboard; sourceTree = "<group>"; };
 		83D014B421AED07C00DCF6C0 /* Job.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Job.storyboard; sourceTree = "<group>"; };
 		83D014B621AED20000DCF6C0 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		83E3D9A721C2568A00BD9EC2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		83E3D9AA21C258FE00BD9EC2 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		83E3D9AC21C26BD200BD9EC2 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		83E7EF4021B01E8400D559D7 /* JobTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewController.swift; sourceTree = "<group>"; };
 		83E7EF4321B01F6400D559D7 /* JobTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewCell.swift; sourceTree = "<group>"; };
 		83EBC3D421BC37B4005EBAEB /* icon_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = icon_loading.json; sourceTree = "<group>"; };
+		83F0184E21C1462A00FD632D /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		97E3EB818B3165109D94C22E /* Pods-Grocerly.iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocerly.iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Grocerly.iOSTests/Pods-Grocerly.iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE5EC543403E794AB38BA011 /* Pods_Grocerly_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grocerly_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB37FC3ADE0E0A95D6E93985 /* Pods-Grocerly.iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocerly.iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Grocerly.iOSUITests/Pods-Grocerly.iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +160,7 @@
 				83B6D5B721AFE52800EB64AE /* MapController.swift */,
 				83E7EF4021B01E8400D559D7 /* JobTableViewController.swift */,
 				8341F2F321B940E70076146A /* ShoppingListController.swift */,
+				83F0184E21C1462A00FD632D /* ItemViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -159,6 +170,7 @@
 			children = (
 				83C91C0A21AFEB48002412AA /* MapLocation.swift */,
 				83B4ECA721B024FB00A34562 /* ShoppingList.swift */,
+				83E3D9A721C2568A00BD9EC2 /* Item.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -189,6 +201,7 @@
 		83D0147F21AEA36200DCF6C0 /* Grocerly.iOS */ = {
 			isa = PBXGroup;
 			children = (
+				83E3D9A921C258E000BD9EC2 /* utils */,
 				83CC0F9F21C10B2700B9F7F4 /* map.json */,
 				83B446D321BE5E8C00D6E851 /* extentions */,
 				83EBC3D421BC37B4005EBAEB /* icon_loading.json */,
@@ -234,10 +247,21 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		83E3D9A921C258E000BD9EC2 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				83E3D9AA21C258FE00BD9EC2 /* HttpClient.swift */,
+				83E3D9AC21C26BD200BD9EC2 /* ImageUtils.swift */,
+			);
+			name = utils;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		83E7EF4221B01F0D00D559D7 /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
 				83E7EF4321B01F6400D559D7 /* JobTableViewCell.swift */,
+				83A221E121C1449400DEE07D /* ItemTableCell.swift */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -477,12 +501,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B6D5B821AFE52800EB64AE /* MapController.swift in Sources */,
+				83A221E221C1449400DEE07D /* ItemTableCell.swift in Sources */,
 				83B4ECA821B024FB00A34562 /* ShoppingList.swift in Sources */,
 				83E7EF4121B01E8400D559D7 /* JobTableViewController.swift in Sources */,
 				83B446D521BE5EC200D6E851 /* DisplayLoader.swift in Sources */,
+				83E3D9AD21C26BD200BD9EC2 /* ImageUtils.swift in Sources */,
 				83C91C0B21AFEB48002412AA /* MapLocation.swift in Sources */,
+				83E3D9A821C2568A00BD9EC2 /* Item.swift in Sources */,
 				83D0148121AEA36200DCF6C0 /* AppDelegate.swift in Sources */,
+				83F0184F21C1462A00FD632D /* ItemViewController.swift in Sources */,
 				8341F2F421B940E70076146A /* ShoppingListController.swift in Sources */,
+				83E3D9AB21C258FE00BD9EC2 /* HttpClient.swift in Sources */,
 				83E7EF4421B01F6400D559D7 /* JobTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
