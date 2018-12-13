@@ -71,5 +71,8 @@ class ItemViewController: UIViewController, UITableViewDataSource {
             self.itemTable.reloadData()
         }
     }
+    @IBAction func backButtonClick(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
 }

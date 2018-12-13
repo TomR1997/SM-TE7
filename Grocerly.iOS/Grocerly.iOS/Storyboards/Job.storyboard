@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Taken-->
+        <!--Job Table View Controller-->
         <scene sceneID="tzR-WF-CiD">
             <objects>
-                <viewController restorationIdentifier="JobController" storyboardIdentifier="JobController" id="zRo-Aw-sUt" customClass="JobTableViewController" customModule="Grocerly_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zRo-Aw-sUt" customClass="JobTableViewController" customModule="Grocerly_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eZq-Jx-GYy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Tg-EH-ivs">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="JobCell" id="Oqa-3l-aeP" customClass="JobTableViewCell" customModule="Grocerly_iOS" customModuleProvider="target">
@@ -111,7 +111,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9QH-SA-RLt"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Taken" image="tasks" id="rmY-ef-SCY"/>
+                    <navigationItem key="navigationItem" id="tOp-wh-cXY"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="jobTable" destination="0Tg-EH-ivs" id="hs6-CJ-rUi"/>
@@ -120,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mhu-US-ZKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="56.799999999999997" y="-0.44977511244377816"/>
+            <point key="canvasLocation" x="996" y="-0.44977511244377816"/>
         </scene>
         <!--Item View Controller-->
         <scene sceneID="AQF-yq-GOc">
@@ -131,7 +131,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YL1-2k-Of8" userLabel="ItemTable">
-                                <rect key="frame" x="0.0" y="20" width="375" height="579"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="486"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" id="yBL-18-6h7" userLabel="ItemCell" customClass="ItemTableCell" customModule="Grocerly_iOS" customModuleProvider="target">
@@ -172,17 +172,17 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54M-U3-Ryv">
-                                <rect key="frame" x="200" y="599" width="175" height="68"/>
+                                <rect key="frame" x="200" y="550" width="175" height="68"/>
                                 <state key="normal" title="Accepteer"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMP-Hd-XGr">
-                                <rect key="frame" x="0.0" y="599" width="175" height="68"/>
+                                <rect key="frame" x="0.0" y="550" width="175" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="faA-LM-SVY"/>
                                 </constraints>
                                 <state key="normal" title="Terug"/>
                                 <connections>
-                                    <segue destination="zRo-Aw-sUt" kind="show" id="GG9-96-7Kj"/>
+                                    <action selector="backButtonClick:" destination="LuX-Z8-gAN" eventType="touchUpInside" id="014-FE-TcF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -208,13 +208,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLN-SL-7cf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="965.60000000000002" y="-0.44977511244377816"/>
+            <point key="canvasLocation" x="1904.8" y="-0.44977511244377816"/>
+        </scene>
+        <!--Taken-->
+        <scene sceneID="iY3-H4-Gb0">
+            <objects>
+                <navigationController restorationIdentifier="JobController" storyboardIdentifier="JobController" automaticallyAdjustsScrollViewInsets="NO" id="3Bl-5A-ZPy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Taken" image="tasks" id="rmY-ef-SCY"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Mqm-iu-6CS">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zRo-Aw-sUt" kind="relationship" relationship="rootViewController" id="c8M-Uc-XEy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QTf-OR-YUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="56.799999999999997" y="-0.44977511244377816"/>
         </scene>
     </scenes>
     <resources>
-        <image name="tasks" width="24" height="24"/>
+        <image name="tasks" width="18" height="18"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="dFI-Rd-xJZ"/>
-    </inferredMetricsTieBreakers>
 </document>
