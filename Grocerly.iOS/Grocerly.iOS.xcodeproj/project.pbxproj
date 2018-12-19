@@ -36,6 +36,9 @@
 		83E7EF4121B01E8400D559D7 /* JobTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7EF4021B01E8400D559D7 /* JobTableViewController.swift */; };
 		83E7EF4421B01F6400D559D7 /* JobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E7EF4321B01F6400D559D7 /* JobTableViewCell.swift */; };
 		83EBC3D521BC37B4005EBAEB /* icon_loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 83EBC3D421BC37B4005EBAEB /* icon_loading.json */; };
+		83EE75C821CA465F00B22C5A /* ShoppingListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE75C721CA465F00B22C5A /* ShoppingListTest.swift */; };
+		83EE75CA21CA516500B22C5A /* ItemTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE75C921CA516500B22C5A /* ItemTest.swift */; };
+		83EE75CC21CA5FBC00B22C5A /* MapLocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EE75CB21CA5FBC00B22C5A /* MapLocationTest.swift */; };
 		83F0184F21C1462A00FD632D /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0184E21C1462A00FD632D /* ItemViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +99,9 @@
 		83E7EF4021B01E8400D559D7 /* JobTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewController.swift; sourceTree = "<group>"; };
 		83E7EF4321B01F6400D559D7 /* JobTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewCell.swift; sourceTree = "<group>"; };
 		83EBC3D421BC37B4005EBAEB /* icon_loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = icon_loading.json; sourceTree = "<group>"; };
+		83EE75C721CA465F00B22C5A /* ShoppingListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTest.swift; sourceTree = "<group>"; };
+		83EE75C921CA516500B22C5A /* ItemTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTest.swift; sourceTree = "<group>"; };
+		83EE75CB21CA5FBC00B22C5A /* MapLocationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapLocationTest.swift; sourceTree = "<group>"; };
 		83F0184E21C1462A00FD632D /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		97E3EB818B3165109D94C22E /* Pods-Grocerly.iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocerly.iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Grocerly.iOSTests/Pods-Grocerly.iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE5EC543403E794AB38BA011 /* Pods_Grocerly_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grocerly_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +238,9 @@
 			children = (
 				83D0149721AEA36400DCF6C0 /* Grocerly_iOSTests.swift */,
 				83D0149921AEA36400DCF6C0 /* Info.plist */,
+				83EE75C721CA465F00B22C5A /* ShoppingListTest.swift */,
+				83EE75C921CA516500B22C5A /* ItemTest.swift */,
+				83EE75CB21CA5FBC00B22C5A /* MapLocationTest.swift */,
 			);
 			path = Grocerly.iOSTests;
 			sourceTree = "<group>";
@@ -537,6 +546,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				83D0149821AEA36400DCF6C0 /* Grocerly_iOSTests.swift in Sources */,
+				83EE75CA21CA516500B22C5A /* ItemTest.swift in Sources */,
+				83EE75C821CA465F00B22C5A /* ShoppingListTest.swift in Sources */,
+				83EE75CC21CA5FBC00B22C5A /* MapLocationTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
