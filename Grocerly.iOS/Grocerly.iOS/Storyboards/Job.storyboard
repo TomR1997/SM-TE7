@@ -174,6 +174,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54M-U3-Ryv">
                                 <rect key="frame" x="200" y="550" width="175" height="68"/>
                                 <state key="normal" title="Accepteer"/>
+                                <connections>
+                                    <action selector="acceptJob:" destination="LuX-Z8-gAN" eventType="touchUpInside" id="jJz-Ky-wxj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMP-Hd-XGr">
                                 <rect key="frame" x="0.0" y="550" width="175" height="68"/>

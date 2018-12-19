@@ -11,7 +11,9 @@
 		2B377DB5353C3727703E495E /* Pods_Grocerly_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE5EC543403E794AB38BA011 /* Pods_Grocerly_iOSUITests.framework */; };
 		69779508033B2A755BD592C5 /* Pods_Grocerly_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2578E8C2F375FE420F2AB37 /* Pods_Grocerly_iOS.framework */; };
 		8319D9D821C27AF100092CD1 /* UserPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319D9D721C27AF100092CD1 /* UserPrefs.swift */; };
+		833CAB1621CA511B002F0AED /* clock.json in Resources */ = {isa = PBXBuildFile; fileRef = 833CAB1521CA511A002F0AED /* clock.json */; };
 		8341F2F421B940E70076146A /* ShoppingListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341F2F321B940E70076146A /* ShoppingListController.swift */; };
+		8379DAD621C3A70E00240947 /* DeleteRowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8379DAD521C3A70E00240947 /* DeleteRowDelegate.swift */; };
 		83A221E221C1449400DEE07D /* ItemTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A221E121C1449400DEE07D /* ItemTableCell.swift */; };
 		83B446D521BE5EC200D6E851 /* DisplayLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B446D421BE5EC200D6E851 /* DisplayLoader.swift */; };
 		83B4ECA821B024FB00A34562 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B4ECA721B024FB00A34562 /* ShoppingList.swift */; };
@@ -27,6 +29,7 @@
 		83D014B321AEC8C600DCF6C0 /* ShoppingList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D014B221AEC8C600DCF6C0 /* ShoppingList.storyboard */; };
 		83D014B521AED07C00DCF6C0 /* Job.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D014B421AED07C00DCF6C0 /* Job.storyboard */; };
 		83D014B721AED20000DCF6C0 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83D014B621AED20000DCF6C0 /* Map.storyboard */; };
+		83DAEE2B21CA3ECA00B68363 /* ShoppingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DAEE2A21CA3ECA00B68363 /* ShoppingListCell.swift */; };
 		83E3D9A821C2568A00BD9EC2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E3D9A721C2568A00BD9EC2 /* Item.swift */; };
 		83E3D9AB21C258FE00BD9EC2 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E3D9AA21C258FE00BD9EC2 /* HttpClient.swift */; };
 		83E3D9AD21C26BD200BD9EC2 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E3D9AC21C26BD200BD9EC2 /* ImageUtils.swift */; };
@@ -60,7 +63,9 @@
 		5201E6E6945D300F278571F7 /* Pods-Grocerly.iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocerly.iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grocerly.iOSTests/Pods-Grocerly.iOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E568354311051C7AF59CDF9 /* Pods-Grocerly.iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocerly.iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grocerly.iOS/Pods-Grocerly.iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8319D9D721C27AF100092CD1 /* UserPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrefs.swift; sourceTree = "<group>"; };
+		833CAB1521CA511A002F0AED /* clock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = clock.json; sourceTree = "<group>"; };
 		8341F2F321B940E70076146A /* ShoppingListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListController.swift; sourceTree = "<group>"; };
+		8379DAD521C3A70E00240947 /* DeleteRowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRowDelegate.swift; sourceTree = "<group>"; };
 		83A221E121C1449400DEE07D /* ItemTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableCell.swift; sourceTree = "<group>"; };
 		83B446D421BE5EC200D6E851 /* DisplayLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLoader.swift; sourceTree = "<group>"; };
 		83B4ECA721B024FB00A34562 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
@@ -84,6 +89,7 @@
 		83D014B221AEC8C600DCF6C0 /* ShoppingList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShoppingList.storyboard; sourceTree = "<group>"; };
 		83D014B421AED07C00DCF6C0 /* Job.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Job.storyboard; sourceTree = "<group>"; };
 		83D014B621AED20000DCF6C0 /* Map.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Map.storyboard; sourceTree = "<group>"; };
+		83DAEE2A21CA3ECA00B68363 /* ShoppingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListCell.swift; sourceTree = "<group>"; };
 		83E3D9A721C2568A00BD9EC2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		83E3D9AA21C258FE00BD9EC2 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		83E3D9AC21C26BD200BD9EC2 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
@@ -148,12 +154,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		83B446D321BE5E8C00D6E851 /* extentions */ = {
+		83B446D321BE5E8C00D6E851 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
 				83B446D421BE5EC200D6E851 /* DisplayLoader.swift */,
+				8379DAD521C3A70E00240947 /* DeleteRowDelegate.swift */,
 			);
-			path = extentions;
+			path = protocols;
 			sourceTree = "<group>";
 		};
 		83B6D5B621AFD4DC00EB64AE /* ViewControllers */ = {
@@ -203,9 +210,10 @@
 		83D0147F21AEA36200DCF6C0 /* Grocerly.iOS */ = {
 			isa = PBXGroup;
 			children = (
+				833CAB1521CA511A002F0AED /* clock.json */,
 				83E3D9A921C258E000BD9EC2 /* utils */,
 				83CC0F9F21C10B2700B9F7F4 /* map.json */,
-				83B446D321BE5E8C00D6E851 /* extentions */,
+				83B446D321BE5E8C00D6E851 /* protocols */,
 				83EBC3D421BC37B4005EBAEB /* icon_loading.json */,
 				83E7EF4221B01F0D00D559D7 /* TableCell */,
 				83C91C0921AFEB0E002412AA /* Models */,
@@ -265,6 +273,7 @@
 			children = (
 				83E7EF4321B01F6400D559D7 /* JobTableViewCell.swift */,
 				83A221E121C1449400DEE07D /* ItemTableCell.swift */,
+				83DAEE2A21CA3ECA00B68363 /* ShoppingListCell.swift */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -386,6 +395,7 @@
 				83D014B321AEC8C600DCF6C0 /* ShoppingList.storyboard in Resources */,
 				83CC0FA021C10B2700B9F7F4 /* map.json in Resources */,
 				83D014B721AED20000DCF6C0 /* Map.storyboard in Resources */,
+				833CAB1621CA511B002F0AED /* clock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +518,7 @@
 				83B4ECA821B024FB00A34562 /* ShoppingList.swift in Sources */,
 				83E7EF4121B01E8400D559D7 /* JobTableViewController.swift in Sources */,
 				83B446D521BE5EC200D6E851 /* DisplayLoader.swift in Sources */,
+				83DAEE2B21CA3ECA00B68363 /* ShoppingListCell.swift in Sources */,
 				83E3D9AD21C26BD200BD9EC2 /* ImageUtils.swift in Sources */,
 				83C91C0B21AFEB48002412AA /* MapLocation.swift in Sources */,
 				83E3D9A821C2568A00BD9EC2 /* Item.swift in Sources */,
@@ -516,6 +527,7 @@
 				8341F2F421B940E70076146A /* ShoppingListController.swift in Sources */,
 				8319D9D821C27AF100092CD1 /* UserPrefs.swift in Sources */,
 				83E3D9AB21C258FE00BD9EC2 /* HttpClient.swift in Sources */,
+				8379DAD621C3A70E00240947 /* DeleteRowDelegate.swift in Sources */,
 				83E7EF4421B01F6400D559D7 /* JobTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

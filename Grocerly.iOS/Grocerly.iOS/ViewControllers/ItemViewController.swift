@@ -18,11 +18,16 @@ class ItemViewController: UIViewController, UITableViewDataSource {
     var imageUtils = ImageUtils()
     var baseString = "i315103core.venus.fhict.nl"
     var selectedShoppinglist: ShoppingList?
+    var itemRowIndex: Int?
+    
+    weak var jobVC: DeleteRowDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.itemTable.dataSource = self
+        
+        DisplayLoader.instance.displayLoader(onView: self.view, name: "icon_loading")
         
         getProducts()
     }
@@ -69,10 +74,19 @@ class ItemViewController: UIViewController, UITableViewDataSource {
             }
             
             self.itemTable.reloadData()
+            DisplayLoader.instance.hideLoader()
         }
     }
     @IBAction func backButtonClick(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func acceptJob(_ sender: Any) {
+        if let delegate = jobVC, let index = itemRowIndex{
+            delegate.deleteTableRow(index: index)
+            UserPrefs().saveObject(forKey: "list_to_get", object: shoppinglistItems, ofType: [Item].self)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
 }

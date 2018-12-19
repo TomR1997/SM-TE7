@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JobTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class JobTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DeleteRowDelegate {
     
     @IBOutlet weak var jobTable: UITableView!
     
@@ -59,6 +59,8 @@ class JobTableViewController: UIViewController, UITableViewDataSource, UITableVi
         if (segue.identifier == "segue") {
             let itemViewController = segue.destination as! ItemViewController
             itemViewController.selectedShoppinglist = shoppinglists[listIndex]
+            itemViewController.itemRowIndex = listIndex
+            itemViewController.jobVC = self
         }
     }
     
@@ -68,6 +70,11 @@ class JobTableViewController: UIViewController, UITableViewDataSource, UITableVi
         let shoppinglist3 = ShoppingList(name: "Sander Dl's boodschappenlijst", id: "rtyui", image: UIImage(named: "sander")!, distance: 7, shoppinglistItems: 2)
         
         shoppinglists += [shoppinglist1, shoppinglist2, shoppinglist3]
+    }
+    
+    func deleteTableRow(index: Int){
+        self.shoppinglists.remove(at: index)
+        self.jobTable.reloadData()
     }
 
 }
