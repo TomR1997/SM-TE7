@@ -1,0 +1,23 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Grocerly.iOS' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Grocerly.iOS
+
+  pod 'lottie-ios', '~> 2.5.2'
+  pod 'SwipeableTabBarController', '~> 1.4.0'
+
+  target 'Grocerly.iOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'Grocerly.iOSUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

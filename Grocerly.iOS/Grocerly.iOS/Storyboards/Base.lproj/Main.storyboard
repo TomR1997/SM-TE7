@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--JobController-->
+        <scene sceneID="nnT-Le-dwm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Job" referencedIdentifier="JobController" id="UTl-pd-TtF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="rpl-7E-oG0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="utR-9x-6dc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="982" y="-611"/>
+        </scene>
+        <!--MapController-->
+        <scene sceneID="uOs-kF-rXj">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MapController" storyboardName="Map" referencedIdentifier="MapController" id="Jlu-iP-nzr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Wyk-KZ-60G"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qtK-dn-BJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="927" y="-288"/>
+        </scene>
+        <!--ShoppingListController-->
+        <scene sceneID="jps-iP-Bqi">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ShoppingList" referencedIdentifier="ShoppingListController" id="Kyx-5J-FNG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="5GP-mL-pkP"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Jn-N3-oUF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="928" y="-1"/>
+        </scene>
+        <!--Swipeable Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" customClass="SwipeableTabBarController" customModule="SwipeableTabBarController" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="centered" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" name="AccentColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="UTl-pd-TtF" kind="relationship" relationship="viewControllers" id="XWf-z8-IeO"/>
+                        <segue destination="Jlu-iP-nzr" kind="relationship" relationship="viewControllers" id="BGB-2G-8Ap"/>
+                        <segue destination="Kyx-5J-FNG" kind="relationship" relationship="viewControllers" id="0rw-IC-J7A"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

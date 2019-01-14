@@ -1,0 +1,20 @@
+PODS:
+  - lottie-ios (2.5.2)
+  - SwipeableTabBarController (1.4.0)
+
+DEPENDENCIES:
+  - lottie-ios (~> 2.5.2)
+  - SwipeableTabBarController (~> 1.4.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - lottie-ios
+    - SwipeableTabBarController
+
+SPEC CHECKSUMS:
+  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
+  SwipeableTabBarController: 3a393aa51f1c49c4517b05047c2688a6175c634c
+
+PODFILE CHECKSUM: 3f815486ca959db9166585f6eda238e64e4ae36d
+
+COCOAPODS: 1.5.3
